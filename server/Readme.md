@@ -7,4 +7,4 @@ npm install
 
 ### Run Server
 ```
-node index.js
+node index.js/ nodemon
