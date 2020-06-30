@@ -153,7 +153,7 @@ export default {
         cursor: pointer;
         height: 410px;
         box-shadow: 20px 20px 40px 0px rgba(0,0,0,0.5);
-        border: #343a40 3px solid;
+        /* border: #343a40 3px solid; */
     }
 
     .btn {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <carousel></carousel>
-    <homepage-promise></homepage-promise>
+    <homepage-brands></homepage-brands>
     <div class="container-fluid">
       <horizontal-list></horizontal-list>  
     </div>
@@ -12,13 +12,13 @@
 
 <script>
 import carousel from './Carousel.vue';
-import homepagePromise from './HomepagePromise.vue';
+import homepageBrands from './HomepageBrands.vue';
 import horizontalList from './HorizontalList.vue';
 import homeDiv from './HomeDiv.vue';
 export default {
     components: {
     carousel,
-    homepagePromise,
+    homepageBrands,
     horizontalList,
     homeDiv
   }
