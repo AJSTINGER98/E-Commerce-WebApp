@@ -7,7 +7,7 @@
       </button>      
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-0 w-100">
           <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
@@ -25,15 +25,15 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" @click="isModalVisible = true">Login</a>
+          <li class="nav-item ml-auto">
+            <a class="nav-link" href="#" @click="isModalVisible = true">Login / SignUp</a>
           </li>
         </ul>
       </div>
     </nav>
     <!-- Login/SIgnUp Component -->
-    <component :is="currentAuthPage" v-show="isModalVisible" @close="closeModal()" @change="currentAuthPage = $event"></component> 
     <home></home>
+    <component :is="currentAuthPage" v-show="isModalVisible" @close="closeModal()" @change="currentAuthPage = $event"></component> 
     <!-- Footer -->
 <footer class="page-footer font-small special-color-dark pt-4">
 
