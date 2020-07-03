@@ -8,7 +8,7 @@
             <div class="d-flex my-3">
                 <div class="col-8 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                     <div class="card text-dark" style="">
-                        <img class="card-img" src="../../assets/carousel-1.jpeg" alt="Card image cap">
+                        <img class="card-img" src="../../assets/try.png" alt="Card image cap">
                         <div class="card-footer">
                             <button class="btn btn-lg">View Product</button>
                             <h5 class="card-title">ITEM NAME</h5>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-8 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                     <div class="card text-dark" style="">
-                        <img class="card-img" src="../../assets/carousel-1.jpeg" alt="Card image cap">
+                        <img class="card-img" src="../../assets/try.png" alt="Card image cap">
                         <div class="card-footer">
                             <button class="btn btn-lg">View Product</button>
                             <h5 class="card-title">ITEM NAME</h5>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-8 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                     <div class="card text-dark" style="">
-                        <img class="card-img" src="../../assets/carousel-1.jpeg" alt="Card image cap">
+                        <img class="card-img" src="../../assets/try.png" alt="Card image cap">
                         <div class="card-footer">
                             <button class="btn btn-lg">View Product</button>
                             <h5 class="card-title">ITEM NAME</h5>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-8 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                     <div class="card text-dark" style="">
-                        <img class="card-img" src="../../assets/carousel-1.jpeg" alt="Card image cap">
+                        <img class="card-img" src="../../assets/try.png" alt="Card image cap">
                         <div class="card-footer">
                             <button class="btn btn-lg">View Product</button>
                             <h5 class="card-title">ITEM NAME</h5>

@@ -1,7 +1,7 @@
 <template>
   <div id="#app">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" :class= "{'bg-dark': hasScrolled,'bg-transparent' : !hasScrolled}">
-      <a class="navbar-brand" href="#">TITLE</a>
+      <a class="navbar-brand" href="#">Taknikki Factorry</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" @click=" checkScroll ? hasScrolled = !hasScrolled : hasScrolled = hasScrolled">
         <span class="navbar-toggler-icon"></span>
       </button>
