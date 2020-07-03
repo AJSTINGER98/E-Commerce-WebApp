@@ -114,6 +114,7 @@ export default {
         padding: 0;
         height: 80%;
         min-width: 100%;
+        transition: transform 0.3s, opacity 0.3s;
     }
     .card-footer {
         position: absolute;
@@ -141,15 +142,13 @@ export default {
 
     }
     .card:hover .card-img {
-        height: 410px;
+       
+        transform: scale(1.5);
         opacity: 0.3;
     }
 
-    .card-img {
-        transition: height 0.3s, opacity 0.3s;
-    }
 
-     .card:hover {
+    .card:hover {
         cursor: pointer;
         height: 410px;
         box-shadow: 20px 20px 40px 0px rgba(0,0,0,0.5);

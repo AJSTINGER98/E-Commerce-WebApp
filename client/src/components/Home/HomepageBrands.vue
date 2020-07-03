@@ -35,5 +35,12 @@ export default {
 </script>
 
 <style scoped>
-
+    .row {
+        margin: 40px 30px; 
+    }
+    @media screen and (max-width: 450px){
+        i {
+            font-size: 140%;
+        }
+    }
 </style>

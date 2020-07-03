@@ -25,6 +25,9 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
+          <li class="nav-item m-auto">
+            <a class="nav-link" href="#">Login/SignUp</a>
+          </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -32,6 +35,7 @@
         </form>
       </div>
     </nav>
+    <component v-show = "true" :is="loginPage"></component>
     <home></home>
     <!-- Footer -->
 <footer class="page-footer font-small special-color-dark pt-4">
@@ -80,6 +84,8 @@
 
 <script>
 import home from './components/Home/Home.vue';
+import loginPage from './components/Auth/Login.vue';
+// import signupPage from './SignUp.vue';
 
 export default {
   data (){
@@ -113,6 +119,7 @@ export default {
 
   components: {
     home,
+    loginPage,
   }
 }
 </script>
