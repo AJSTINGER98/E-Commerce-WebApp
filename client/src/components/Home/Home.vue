@@ -1,13 +1,13 @@
 <template>
   <div>
     <carousel></carousel>
-    <login-page></login-page>
     <homepage-brands></homepage-brands>
     <div class="container-fluid">
       <horizontal-list></horizontal-list>  
     </div>
     <div class="parallax"></div>
     <home-div></home-div>
+    <alternate></alternate>
   </div>
 </template>
 
@@ -16,13 +16,14 @@ import carousel from './Carousel.vue';
 import homepageBrands from './HomepageBrands.vue';
 import horizontalList from './HorizontalList.vue';
 import homeDiv from './HomeDiv.vue';
-
+import alternate from './Alternate.vue'
 export default {
     components: {
     carousel,
     homepageBrands,
     horizontalList,
     homeDiv,
+    alternate
   }
 }
 </script>

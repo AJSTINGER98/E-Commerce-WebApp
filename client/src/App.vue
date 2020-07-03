@@ -1,10 +1,10 @@
 <template>
   <div id="#app">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" :class= "{'bg-dark': hasScrolled,'bg-transparent' : !hasScrolled}">
-      <a class="navbar-brand" href="#">TITLE</a>
+      <a class="navbar-brand" href="#">Taknikki Factorry</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" @click=" checkScroll ? hasScrolled = !hasScrolled : hasScrolled = hasScrolled">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button>      
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -25,17 +25,14 @@
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>
-          <li class="nav-item m-auto">
-            <a class="nav-link" href="#">Login/SignUp</a>
+          <li class="nav-item">
+            <a class="nav-link" href="#" @click="isModalVisible = true">Login</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
       </div>
     </nav>
-    <component v-show = "true" :is="loginPage"></component>
+    <!-- Login/SIgnUp Component -->
+    <component :is="currentAuthPage" v-show="isModalVisible" @close="closeModal()" @change="currentAuthPage = $event"></component> 
     <home></home>
     <!-- Footer -->
 <footer class="page-footer font-small special-color-dark pt-4">
@@ -84,14 +81,17 @@
 
 <script>
 import home from './components/Home/Home.vue';
-import loginPage from './components/Auth/Login.vue';
-// import signupPage from './SignUp.vue';
+import login from './components/Auth/Login.vue';
+import signUp from './components/Auth/SignUp.vue';
+
 
 export default {
   data (){
     return {
       hasScrolled : false,
       updateScroll : window.scrollY,
+      isModalVisible : false,
+      currentAuthPage : 'login'
 
     }
   },
@@ -114,12 +114,21 @@ export default {
         this.hasScrolled = false;
       }
     },
+    closeModal() {
+      this.isModalVisible = false;
+      var vm = this;
+      setTimeout(() => {
+        vm.currentAuthPage = 'login';
+      },1000)
+    }
+    
     
   },
 
   components: {
     home,
-    loginPage,
+    login,
+    signUp,
   }
 }
 </script>
