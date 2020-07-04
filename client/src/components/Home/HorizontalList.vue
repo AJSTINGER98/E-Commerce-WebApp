@@ -1,51 +1,63 @@
 <template>
-  <div>
-        <div class="d-flex justify-content-center my-4 ">
-            <h1>Featured Catalog</h1>
+  <div class="py-4">
+        <div class="container d-flex text-center justify-content-center my-4 ">
+            <h1>FEATURED CATALOG</h1>
         </div>
 
-        <div class="horizontal-scrollable mb-4">
-            <div class="d-flex my-3">
-                <div class="col-8 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                    <div class="card text-dark" style="">
-                        <img class="card-img" src="../../assets/try.png" alt="Card image cap">
-                        <div class="card-footer">
-                            <button class="btn btn-lg">View Product</button>
-                            <h5 class="card-title">ITEM NAME</h5>
-                            <p class="card-text"><strong>Rs. 500</strong></p>
+        <div class="horizontal-scrollable my-4">
+            <div class="d-flex w-100">
+                <div class="col-8 col-sm-6 col-md-4 p-0 div-hover">
+
+                    <div class="img-card w-100">
+                        <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
+
+                    </div>
+                    <div class="img-footer">
+                        <div class="upper-div mx-0 ">
+                            <button class="btn">View</button>
+                        </div>
+                        <div class="lower-div mx-0 ">
+                            <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
+                            <h5 class="mb-1 text-weight-bold">$ 50</h5>
                         </div>
                     </div>
+                    
                 </div>
-                <div class="col-8 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                    <div class="card text-dark" style="">
-                        <img class="card-img" src="../../assets/try.png" alt="Card image cap">
-                        <div class="card-footer">
-                            <button class="btn btn-lg">View Product</button>
-                            <h5 class="card-title">ITEM NAME</h5>
-                            <p class="card-text"><strong>Rs. 500</strong></p>
+                <div class="col-8 col-sm-6 col-md-4 p-0 div-hover">
+
+                    <div class="img-card w-100">
+                        <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
+
+                    </div>
+                    <div class="img-footer">
+                        <div class="upper-div mx-0 ">
+                            <button class="btn">View</button>
+                        </div>
+                        <div class="lower-div mx-0 ">
+                            <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
+                            <h5 class="mb-1 text-weight-bold">$ 50</h5>
                         </div>
                     </div>
+                    
                 </div>
-                <div class="col-8 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                    <div class="card text-dark" style="">
-                        <img class="card-img" src="../../assets/try.png" alt="Card image cap">
-                        <div class="card-footer">
-                            <button class="btn btn-lg">View Product</button>
-                            <h5 class="card-title">ITEM NAME</h5>
-                            <p class="card-text"><strong>Rs. 500</strong></p>
+                <div class="col-8 col-sm-6 col-md-4 p-0 div-hover">
+
+                    <div class="img-card w-100">
+                        <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
+
+                    </div>
+                    <div class="img-footer">
+                        <div class="upper-div mx-0 ">
+                            <button class="btn">View</button>
+                        </div>
+                        <div class="lower-div mx-0 ">
+                            <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
+                            <h5 class="mb-1 text-weight-bold">$ 50</h5>
                         </div>
                     </div>
+                    
                 </div>
-                <div class="col-8 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                    <div class="card text-dark" style="">
-                        <img class="card-img" src="../../assets/try.png" alt="Card image cap">
-                        <div class="card-footer">
-                            <button class="btn btn-lg">View Product</button>
-                            <h5 class="card-title">ITEM NAME</h5>
-                            <p class="card-text"><strong>Rs. 500</strong></p>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
   </div>
@@ -80,82 +92,70 @@ export default {
      }
 
     .horizontal-scrollable .d-flex{
-        margin-left: 50px;
-        margin-bottom: 50px;
+        margin: 50px 20px;
     }
-    .horizontal-scrollable .d-flex .col-8 {
-        margin-left: 30px;
-        
+    
+    .div-hover{
+        max-width: max-content;
+        margin: 10px 5%;
     }
-    .card {
-        position: relative;
-        background-color: #FFFFFF;
-        height: 370px;
-        margin: 10px;
+    .img-card {
+        height: 50vh;
         width: 100%;
+        min-height: 400px;
+        min-width: 300px;
+        max-width: 350px;
         overflow: hidden;
-        box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.5);
-        transition: height 0.3s, box-shadow 0.3s,border 0.3s;
+        cursor: pointer;
     }
-    .card-img {
+    .img-card img{
         margin: 0;
         padding: 0;
         height: 80%;
         min-width: 100%;
-        transition: transform 0.3s, opacity 0.3s;
+        transition: transform 1s ease-in-out;
     }
-    .card-footer {
-        position: absolute;
-        bottom: 0;
-        border: hidden;
-        background: transparent;
+    .div-hover:hover .img-card img{
+        transform: scale(1.2);
+    }
+    
+    .img-footer {
         width: 100%;
-        padding: 10px 15px;
-    }
-    .card-title {
-        font-size: 20px;
-        color: rgba(0, 0, 0, 0.7);
-    }
-    .card-text {
-        font-size: 100%;
+        margin: 0;
+        bottom: 0;
+        padding: 2px;
+        font-size: 2px;
         color: black;
-        transition: color 0.3s;
+        min-width: 300px;
+        max-width: 350px;
     }
-    .card:hover .card-title {
+    .upper-div{
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.5s ease-in-out;
+    }
+    .lower-div{
+        max-height: 60px;
+        overflow: hidden;
+        transition: all 0.5s ease-in-out;
+    }
+    .img-footer .upper-div .btn {
+        border: 1px solid black;
         color: black;
+        transition: all 0.3s ease-out;
+        padding:10px 30px ;
+        border-radius: 0;
+        width: 100%;
     }
-
-    .card:hover .card-text {
-        color: #6a6456;
-
+    .img-footer .upper-div .btn:hover {
+        border: 1px solid black;
+        background: black;
+        color: white;
     }
-    .card:hover .card-img {
-       
-        transform: scale(1.5);
-        opacity: 0.3;
+    .div-hover:hover  .img-footer .upper-div{
+        max-height: 60px;
     }
-
-
-    .card:hover {
-        cursor: pointer;
-        height: 410px;
-        box-shadow: 20px 20px 40px 0px rgba(0,0,0,0.5);
-        /* border: #343a40 3px solid; */
+    .div-hover:hover .img-footer .lower-div{
+        max-height: 0;
     }
-
-    .btn {
-        margin-bottom: 120px;
-        margin-left: 10%;
-        display: none;
-        border: #343a40 3px solid;
-        color: #343a40;
-        font-weight: 900;
-        transition: display 0.3s;
-    }
-
-    .card:hover .btn{
-        display: block;
-    }
-
-
 </style>

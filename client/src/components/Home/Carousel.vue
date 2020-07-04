@@ -10,7 +10,7 @@
     <div class="carousel-inner embed-responsive embed-responsive-16by9" role="listbox">
       <div class="carousel-item embed-responsive-item active">
         <img src="../../assets/1.jpg" alt="First slide image" class="img-fluid">
-        <div class="carousel-caption">
+        <div class="carousel-caption d-none d-md-block">
           <h3>Inspired by the wilderness.
           designed in london in our own homes
           </h3>
@@ -20,7 +20,7 @@
 
       <div class="carousel-item embed-responsive-item">
         <img src="../../assets/2.jpg" alt="Second slide image" class="img-fluid">
-        <div class="carousel-caption">
+        <div class="carousel-caption d-none d-md-block">
           <h3>we've taken the great outdoors, indoors.</h3>
           <p>Taknikki Factorry</p>
         </div>
@@ -28,7 +28,7 @@
 
       <div class="carousel-item embed-responsive-item">
         <img src="../../assets/3.jpg" alt="Third slide image" class="img-fluid">
-        <div class="carousel-caption">
+        <div class="carousel-caption d-none d-md-block">
           <h3>by drawing inspiration from
             all the places we'd love to go</h3>
           <p>Taknikki Factorry</p>
@@ -55,7 +55,16 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.carousel-item img{
+  width: 100%;
+  height: auto;
+}
 
+.carousel-item{
+  overflow:hidden;
+  height: 100vh;
+  width: 100%;
+}
 .carousel.carousel-fade .carousel-item {
     display: block;
     opacity: 0;
