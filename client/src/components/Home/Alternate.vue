@@ -1,8 +1,9 @@
 <template>
   <div>
     <section class="container-fluid px-0 overflow">
-      <div data-aos="fade-right" data-aos-offset="400" data-aos-duration="400"
-      data-aos-anchor-placement="top-center"
+       <!-- data-aos="fade-right" data-aos-offset="400" data-aos-duration="400" -->
+      <!-- data-aos-anchor-placement="top-center" -->
+      <div v-scrollanimation
        class="row align-items-center content">
         <div class="col-md-6 order-2 order-md-1 p-0 zoom-effect-container">
          <div class="image-card">
@@ -22,9 +23,7 @@
         </div>
       </div>
 
-      <div data-aos="fade-left"
-      data-aos-anchor-placement="top-center"
-       data-aos-offset="400" data-aos-duration="400" class="row align-items-center content">
+      <div v-scrollanimation class="row align-items-center content">
         <div class="col-md-6 text-center p-0">
           <div class="row justify-content-center">
             <div class="col-10 col-lg-8 mb-5 mb-md-0">
@@ -43,9 +42,7 @@
         </div>
       </div>
 
-      <div data-aos="fade-right"
-      data-aos-anchor-placement="top-center"
-      data-aos-offset="400" data-aos-duration="400" class="row align-items-center content ">
+      <div v-scrollanimation class="row align-items-center content ">
           <div class="col-md-6 order-2 order-md-1 p-0 zoom-effect-container">
               <div class="image-card">
             <img class="img-fluid" src="https://www.amd.com/system/files/2020-06/516203-terminator-key-art-thumbnail-1260x709.jpg">
@@ -85,5 +82,16 @@ export default {
 }
 .zoom-effect-container{
      overflow: hidden
+}
+
+.before-enter{
+  opacity:0;
+  transform: translateY(200px);
+  transition: all 1.5s ease-out
+}
+
+.enter{
+    opacity:1;
+  transform: translateY(0px);
 }
 </style>

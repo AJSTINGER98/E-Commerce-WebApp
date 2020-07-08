@@ -1,5 +1,5 @@
 <template>
-    <div class="d-none d-md-block">
+    <div v-scrollanimation class="d-none d-md-block">
         <div style="d-flex">
             <div class="row py-4 my-4">
             <div class="col-md-4 col-lg-6 col-xl-8 align-middle text-dark text-center my-auto">
@@ -23,5 +23,14 @@ export default {
 </script>
 
 <style scoped>
+.before-enter{
+  opacity:0;
+  transform: scale(.5) rotateZ(-25deg);
+  transition: all 1s ease-out
+}
 
+.enter{
+    opacity:1;
+    transform: scale(1) rotateZ(0deg);
+}
 </style>

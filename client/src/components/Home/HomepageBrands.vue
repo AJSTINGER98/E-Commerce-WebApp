@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div class="text-dark bg-light py-4">
+      <div v-scrollanimation class="text-dark bg-light py-4">
           <div class="d-flex justify-content-center mt-0 pt-0 mb-4">
               <h6 class="text-secondary">Powered By:</h6>
           </div>
@@ -43,4 +43,15 @@ export default {
             font-size: 140%;
         }
     }
+
+    .before-enter{
+  opacity:0;
+  transform: translateY(200px);
+  transition: all 1s ease-out
+}
+
+.enter{
+    opacity:1;
+  transform: translateY(0px);
+}
 </style>

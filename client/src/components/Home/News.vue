@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class= "parallax">
+        <div v-scrollanimation class= "parallax">
         <div class="container-fluid">
   
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -152,9 +152,23 @@ export default {
 </script>
 
 <style scoped>
+
+.before-enter{
+  opacity:0;
+  transform: translateX(-200px);
+  transition: all 1.5s ease-out
+}
+
+.enter{
+    opacity:1;
+  transform: translateX(0px);
+}
 /* .zoom-effect-container{
   height
 } */
+.card-body{
+  background: #f2f2f2
+}
 .card-img-top {
   -webkit-transition: 1.6s ease;
   transition: 1.6s ease;
@@ -166,7 +180,7 @@ export default {
 }
 
 .overlay{
-  position: relative;
+  position: absolute;
   top: 0;
   /* bottom: 0; */
   left: 0;

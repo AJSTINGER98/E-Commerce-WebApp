@@ -270,7 +270,7 @@ export default {
 	background-color: rgba(129,103,169,.6);
 }
 
-  .dropdown-menu {
+  /* .dropdown-menu {
     transition: all 0.3s ease;
     border-radius: 0;
     background: black;
@@ -287,7 +287,7 @@ export default {
   .dropdown-menu:focus {
 	color: #fff;
 	background-color: rgba(129,103,169,.6);
-}
+} */
 
   .sidebar ul li a {
     color: inherit;

@@ -56,7 +56,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .fix{
-  height:100vh
+  max-height:100vh
 }
 .carousel-item img{
   width: 100%;

@@ -1,12 +1,12 @@
 <template>
   <div class="py-4">
-        <div class="container d-flex text-center justify-content-center my-4 ">
+        <div v-scrollanimation class="container d-flex text-center justify-content-center my-4 ">
             <h1>FEATURED CATALOG</h1>
         </div>
 
-        <div class="horizontal-scrollable my-4">
+        <div v-scrollanimation class="horizontal-scrollable my-4">
             <div class="d-flex w-100">
-                <div class="col-8 col-sm-6 col-md-4 p-0 div-hover">
+                <div  class="col-8 col-sm-6 col-md-4 p-0 div-hover">
 
                     <div class="img-card w-100">
                         <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
@@ -23,7 +23,7 @@
                     </div>
                     
                 </div>
-                <div class="col-8 col-sm-6 col-md-4 p-0 div-hover">
+                <div v-scrollanimation class="col-8 col-sm-6 col-md-4 p-0 div-hover">
 
                     <div class="img-card w-100">
                         <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
@@ -40,7 +40,7 @@
                     </div>
                     
                 </div>
-                <div class="col-8 col-sm-6 col-md-4 p-0 div-hover">
+                <div v-scrollanimation class="col-8 col-sm-6 col-md-4 p-0 div-hover">
 
                     <div class="img-card w-100">
                         <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
@@ -70,6 +70,16 @@ export default {
 </script>
 
 <style scoped>
+.before-enter{
+  opacity:0;
+  transform: translateX(200px);
+  transition: all 1.5s ease-out
+}
+
+.enter{
+    opacity:1;
+  transform: translateX(0px);
+}
     /* The heart of the matter */
     .horizontal-scrollable {
         height: 80%;
