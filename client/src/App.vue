@@ -2,7 +2,7 @@
   <div id="#app">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" :class= "{'background-dark': hasScrolled,'bg-transparent' : !hasScrolled }">
       <a class="navbar-brand nav-header navbar-mobile" :class="{'nav-header-scroll': hasScrolled}"  href="#"><img src="./assets/nav-logo.png" alt="nav-logo"></a>
-      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" @click="isToggled = true, handleScroll()">
+      <button v-show="!isToggled" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" @click="isToggled = true">
         <span class="navbar-toggler-icon"></span>
       </button>      
       <!-- NAVBAR -->
@@ -35,6 +35,7 @@
           </div>
         </ul>
       </div>
+      
       <!-- SIDEBAR -->
       <div class="sidebar" :class="{'sidebar-active' : isToggled}"  v-else>
           <a href="javascript:void(0)" class="closebtn" @click="isToggled = false,handleScroll()">&times;</a>
@@ -63,6 +64,7 @@
         </ul>
       </div>
     </nav>
+    
     <!-- Login/SIgnUp Component -->
     <home :class="{'blur-effect' : isModalVisible}"></home>
     <component :is="currentAuthPage" v-show="isModalVisible" @close="closeModal()" @change="currentAuthPage = $event"></component> 
@@ -141,7 +143,7 @@ export default {
   methods: {
     handleScroll(){
       this.updateScroll = window.scrollY; 
-      if(window.scrollY > 100 || this.isToggled){
+      if(window.scrollY > 100){
         this.hasScrolled = true;
       } else{
         this.hasScrolled = false;
@@ -171,6 +173,9 @@ export default {
     home,
     login,
     signUp,
+  },
+  mounted() {
+  
   }
 }
 </script>
@@ -178,6 +183,7 @@ export default {
 <style scoped>
   .navbar{
     transition: background 0.5s;
+    min-height:54px
   }
 
   .navbar ul li {
@@ -215,7 +221,12 @@ export default {
     color: white;
 
   }
-
+  
+  .nav-link{
+    font-weight:600;
+    padding-left: 40px;
+    color: white
+  }
 
   @media screen and (max-width: 990px){
     .navbar-mobile {
@@ -238,6 +249,7 @@ export default {
     transition: width 0.7s ease;
     overflow-x: hidden;
     z-index: 1;
+    opacity: 0.7
   }
   .sidebar-active {
 
@@ -253,6 +265,10 @@ export default {
     padding: 10px 5px;
     width: 100%;
   }
+  .dropdown-menu:focus {
+	color: #fff;
+	background-color: rgba(129,103,169,.6);
+}
 
   .dropdown-menu {
     transition: all 0.3s ease;
@@ -268,6 +284,10 @@ export default {
     background: white;
     color: black;
   }
+  .dropdown-menu:focus {
+	color: #fff;
+	background-color: rgba(129,103,169,.6);
+}
 
   .sidebar ul li a {
     color: inherit;
@@ -288,8 +308,8 @@ export default {
     content: '';
     display: block;
     width: 100%;
-    height: 1px;
-    background-color: white  ;
+    height: 2px;
+    background-color :#8167a9 ;
     bottom: 0;
     left: 0;
     transform: scaleX(0);

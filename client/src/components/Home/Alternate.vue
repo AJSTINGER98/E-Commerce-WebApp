@@ -1,7 +1,9 @@
 <template>
   <div>
-    <section class="container-fluid px-0">
-      <div class="row align-items-center content">
+    <section class="container-fluid px-0 overflow">
+      <div data-aos="fade-right" data-aos-offset="400" data-aos-duration="400"
+      data-aos-anchor-placement="top-center"
+       class="row align-items-center content">
         <div class="col-md-6 order-2 order-md-1 p-0 zoom-effect-container">
          <div class="image-card">
           <img class="img-fluid" src="https://www.amd.com/system/files/2020-05/473974-dell-g5-laptop-campaign-1260x709_1.jpg">
@@ -20,7 +22,9 @@
         </div>
       </div>
 
-      <div class="row align-items-center content">
+      <div data-aos="fade-left"
+      data-aos-anchor-placement="top-center"
+       data-aos-offset="400" data-aos-duration="400" class="row align-items-center content">
         <div class="col-md-6 text-center p-0">
           <div class="row justify-content-center">
             <div class="col-10 col-lg-8 mb-5 mb-md-0">
@@ -39,7 +43,9 @@
         </div>
       </div>
 
-      <div class="row align-items-center content ">
+      <div data-aos="fade-right"
+      data-aos-anchor-placement="top-center"
+      data-aos-offset="400" data-aos-duration="400" class="row align-items-center content ">
           <div class="col-md-6 order-2 order-md-1 p-0 zoom-effect-container">
               <div class="image-card">
             <img class="img-fluid" src="https://www.amd.com/system/files/2020-06/516203-terminator-key-art-thumbnail-1260x709.jpg">
@@ -66,6 +72,9 @@ export default {
 }
 </script>
 <style scoped>
+.overflow{
+  overflow:hidden
+}
 .image-card img {
   -webkit-transition: 2.6s ease;
   transition: 2.6s ease;

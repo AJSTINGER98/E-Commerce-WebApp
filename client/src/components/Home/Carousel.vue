@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="carousel-fade" class="carousel carousel-fade" data-ride="carousel" data-interval="5000">
+    <div id="carousel-fade" class="carousel carousel-fade fix" data-ride="carousel" data-interval="5000">
     <!-- <ol class="carousel-indicators">
         <li data-target="#carousel-fade" data-slide-to="0" class="active"></li>
         <li data-target="#carousel-fade" data-slide-to="1"></li>
@@ -55,12 +55,16 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.fix{
+  height:100vh
+}
 .carousel-item img{
   width: 100%;
   height: auto;
 }
 
 .carousel-item{
+  transition: opacity ease-out 1.2s;
   overflow:hidden;
   height: 100vh;
   width: 100%;
