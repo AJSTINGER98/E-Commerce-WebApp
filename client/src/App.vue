@@ -2,12 +2,12 @@
   <div id="#app">
     <nav class="navbar navbar-expand-lg fixed-top" :class= "{'background-dark': hasScrolled,'bg-transparent' : !hasScrolled }">
       <a class="navbar-brand nav-header navbar-mobile" :class="{'nav-header-scroll': hasScrolled}"  href="#"><img src="./assets/nav-logo.png" alt="nav-logo"></a>
-      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" @click="isToggled = true">
+      <button v-show="!isToggled" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" @click="isToggled = true" style="transition all 0.5s">
         <span class="">&#9776;</span>
       </button>      
       <!-- NAVBAR -->
       <div class="collapse navbar-collapse container" :class="{'navbar-small' : hasScrolled,}" v-if="checkWidth">
-        <ul class="navbar-nav mr-0 w-100 nav-body" >
+        <ul class="navbar-nav mr-0 w-100 nav-body pt-1" >
           <li class="nav-item active">
             <a class="nav-link" href="#" selected><span> HOME</span></a>
           </li>
@@ -42,6 +42,7 @@
           </div>
         </ul>
       </div>
+      
       <!-- SIDEBAR -->
       <div class="sidebar" :class="{'sidebar-active' : isToggled}"  v-else>
           <a href="javascript:void(0)" class="closebtn" @click="isToggled = false,handleScroll()">&times;</a>
@@ -184,6 +185,9 @@ export default {
     home,
     login,
     signUp,
+  },
+  mounted() {
+  
   }
 }
 </script>
@@ -193,6 +197,8 @@ export default {
     transition: background 0.5s;
     font-size: 15px;
     padding: 10px 0;
+    /*  */
+    min-height:54px
   }
 
   .navbar ul li {
@@ -219,11 +225,11 @@ export default {
   }
   
   .background-dark {
-    background-color: black;
+    background-color: #222222;
     color: white;
     
   }
-
+  
 
   @media screen and (max-width: 990px){
     .navbar-mobile {
@@ -277,7 +283,7 @@ export default {
     padding: 4px;
     margin: 0;
     padding: 0;
-  
+    opacity: 0.7
   }
   .sidebar-active {
     width: 350px;
@@ -293,6 +299,7 @@ export default {
     padding: 10px 5px;
     width: 100%;
   }
+
 
   .sidebar-dropdown-active{
     max-height: 50vh;
@@ -313,6 +320,10 @@ export default {
     
 
   }
+  .dropdown-menu:focus {
+	color: #fff;
+	background-color: rgba(129,103,169,.6);
+}
 
   .sidebar .dropdown-menu a{
     color: inherit;
@@ -346,9 +357,9 @@ export default {
   .nav-link span::after{
     content: '';
     display: block;
-    width: 100%;
+    width: 95%;
     height: 1px;
-    background-color: white  ;
+    background-color :white ;
     bottom: 0;
     left: 0;
     margin-top: 10px;

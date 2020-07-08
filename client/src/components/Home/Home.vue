@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <horizontal-list></horizontal-list>  
     </div>
-    <div class="parallax"></div>
+    <news></news>
     <home-div></home-div>
     <alternate></alternate>
   </div>
@@ -17,30 +17,19 @@ import homepageBrands from './HomepageBrands.vue';
 import horizontalList from './HorizontalList.vue';
 import homeDiv from './HomeDiv.vue';
 import alternate from './Alternate.vue'
+import news from './News'
 export default {
     components: {
     carousel,
     homepageBrands,
     horizontalList,
     homeDiv,
-    alternate
+    alternate,
+    news
   }
 }
 </script>
 
 <style scoped>
-    .parallax {
-    /* The image used */
-    background-image: url("../../assets/parallax-1.jpeg");
-
-      /* Set a specific height */
-    min-height: 500px;
-    min-width: 100%; 
-
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+    
 </style>

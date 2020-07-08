@@ -14,7 +14,7 @@
                     </div>
                     <div class="img-footer">
                         <div class="upper-div mx-0 ">
-                            <button class="btn">View</button>
+                            <button class="btn">VIEW</button>
                         </div>
                         <div class="lower-div mx-0 ">
                             <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     
-                </div>
+                </div>                
                 <div class="col-8 col-sm-6 col-md-4 p-0 div-hover">
 
                     <div class="img-card w-100">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="img-footer">
                         <div class="upper-div mx-0 ">
-                            <button class="btn">View</button>
+                            <button class="btn">VIEW</button>
                         </div>
                         <div class="lower-div mx-0 ">
                             <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     
-                </div>
+                </div>                
                 <div class="col-8 col-sm-6 col-md-4 p-0 div-hover">
 
                     <div class="img-card w-100">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="img-footer">
                         <div class="upper-div mx-0 ">
-                            <button class="btn">View</button>
+                            <button class="btn">VIEW</button>
                         </div>
                         <div class="lower-div mx-0 ">
                             <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
@@ -56,7 +56,24 @@
                         </div>
                     </div>
                     
-                </div>
+                </div>                
+                <div class="col-8 col-sm-6 col-md-4 p-0 div-hover">
+
+                    <div class="img-card w-100">
+                        <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
+
+                    </div>
+                    <div class="img-footer">
+                        <div class="upper-div mx-0 ">
+                            <button class="btn">VIEW</button>
+                        </div>
+                        <div class="lower-div mx-0 ">
+                            <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
+                            <h5 class="mb-1 text-weight-bold">$ 50</h5>
+                        </div>
+                    </div>
+                    
+                </div>                
                 
             </div>
         </div>
@@ -65,7 +82,14 @@
 
 <script>    
 export default {
+    data(){
+        return{
+           
+        }
+    },
+    methods:{
 
+    }
 }
 </script>
 
@@ -141,16 +165,22 @@ export default {
     }
     .img-footer .upper-div .btn {
         border: 1px solid black;
+        background: rgb(0,0,0);
+        background: linear-gradient(90deg, rgba(0,0,0,1) 33.33%, rgba(255,255,255,0) 33.33%, rgba(255,255,255,0) 66.66%, rgba(0,0,0,1) 66.66%);
+        background-size: 300%;
+        background-position: 50% 100%;    
         color: black;
-        transition: all 0.3s ease-out;
+        /* font-weight: bold; */
+        transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
         padding:10px 30px ;
         border-radius: 0;
-        width: 100%;
+        width: 99%;
+        animation: slide-out 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     }
     .img-footer .upper-div .btn:hover {
-        border: 1px solid black;
-        background: black;
+        background-position: 100% 100%;
         color: white;
+        animation: slide-in 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     }
     .div-hover:hover  .img-footer .upper-div{
         max-height: 60px;
@@ -158,4 +188,27 @@ export default {
     .div-hover:hover .img-footer .lower-div{
         max-height: 0;
     }
+
+    @keyframes slide-in {
+        from {
+            background-position: 50% 100%;
+        }
+
+        to {
+            background-position: 0% 100%;
+        }
+
+    }
+    @keyframes slide-out {
+        from {
+            background-position: 100% 100%;
+        }
+
+        to {
+            background-position: 50% 100%;
+        }
+
+    }
+
+    
 </style>
