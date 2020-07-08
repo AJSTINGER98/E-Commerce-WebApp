@@ -122,30 +122,29 @@
 export default {
     mounted(){
         window.$(document).ready(function() {
-  window.$("#myCarousel").on("slide.bs.carousel", function(e) {
-    var $e = window.$(e.relatedTarget);
-    var idx = $e.index();
-    var itemsPerSlide = 4;
-    var totalItems = window.$(".carousel-item").length;
+          window.$("#myCarousel").on("slide.bs.carousel", function(e) {
+            var $e = window.$(e.relatedTarget);
+            var idx = $e.index();
+            var itemsPerSlide = 4;
+            var totalItems = window.$(".carousel-item").length;
 
-    if (idx >= totalItems - (itemsPerSlide - 1)) {
-      var it = itemsPerSlide - (totalItems - idx);
-      for (var i = 0; i < it; i++) {
-        // append slides to end
-        if (e.direction == "left") {
-         window.$(".carousel-item")
-            .eq(i)
-            .appendTo(".carousel-inner");
-        } else {
-          window.$(".carousel-item")
-            .eq(i)
-            .appendTo(window.$(this).find(".carousel-inner"));
-        }
-      }
-    }
-  });
-    window.$(console.log("Hello"))
-});
+            if (idx >= totalItems - (itemsPerSlide - 1)) {
+              var it = itemsPerSlide - (totalItems - idx);
+              for (var i = 0; i < it; i++) {
+                // append slides to end
+                if (e.direction == "left") {
+                window.$(".carousel-item")
+                    .eq(i)
+                    .appendTo(".carousel-inner");
+                } else {
+                  window.$(".carousel-item")
+                    .eq(i)
+                    .appendTo(window.$(this).find(".carousel-inner"));
+                }
+              }
+            }
+          });
+        });
 
     }
 }
@@ -232,6 +231,10 @@ export default {
 }
 .card{
     border:none;
+}
+
+.card-body {
+  background-color: #f2f2f2;
 }
 /* .parallax{ */
  /* The image used */
