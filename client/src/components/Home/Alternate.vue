@@ -3,9 +3,9 @@
     <section class="container-fluid px-0 overflow">
        <!-- data-aos="fade-right" data-aos-offset="400" data-aos-duration="400" -->
       <!-- data-aos-anchor-placement="top-center" -->
-      <div v-scrollanimation
+      <div 
        class="row align-items-center content">
-        <div class="col-md-6 order-2 order-md-1 p-0 zoom-effect-container">
+        <div v-scrollanimation class="col-md-6 order-2 order-md-1 p-0 zoom-effect-container">
          <div class="image-card">
           <img class="img-fluid" src="https://www.amd.com/system/files/2020-05/473974-dell-g5-laptop-campaign-1260x709_1.jpg">
          </div>
@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <div v-scrollanimation class="row align-items-center content">
+      <div  class="row align-items-center content">
         <div class="col-md-6 text-center p-0">
           <div class="row justify-content-center">
             <div class="col-10 col-lg-8 mb-5 mb-md-0">
@@ -35,15 +35,15 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 p-0 zoom-effect-container">
+        <div v-scrollanimation class="col-md-6 p-0 zoom-effect-container">
          <div class="image-card">
           <img class="img-fluid" id="try" src="https://www.amd.com/system/files/2020-04/461767_AAA_laptops_1260x709.jpg">
          </div>
         </div>
       </div>
 
-      <div v-scrollanimation class="row align-items-center content ">
-          <div class="col-md-6 order-2 order-md-1 p-0 zoom-effect-container">
+      <div  class="row align-items-center content ">
+          <div v-scrollanimation class="col-md-6 order-2 order-md-1 p-0 zoom-effect-container">
               <div class="image-card">
             <img class="img-fluid" src="https://www.amd.com/system/files/2020-06/516203-terminator-key-art-thumbnail-1260x709.jpg">
             </div>
@@ -87,7 +87,7 @@ export default {
 .before-enter{
   opacity:0;
   transform: translateY(200px);
-  transition: all 1.5s ease-out
+  transition: all 1.2s ease-out
 }
 
 .enter{
