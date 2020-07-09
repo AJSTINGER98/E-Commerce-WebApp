@@ -22,13 +22,8 @@
                         </div>
                     </div>
                     
-<<<<<<< HEAD
                 </div>
                 <div v-scrollanimation class="col-8 col-sm-6 col-md-4 p-0 div-hover">
-=======
-                </div>                
-                <div class="col-8 col-sm-6 col-md-4 p-0 div-hover">
->>>>>>> ef530c343de2324280be66a4db209f9702a9d347
 
                     <div class="img-card w-100">
                         <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
@@ -44,13 +39,8 @@
                         </div>
                     </div>
                     
-<<<<<<< HEAD
                 </div>
                 <div v-scrollanimation class="col-8 col-sm-6 col-md-4 p-0 div-hover">
-=======
-                </div>                
-                <div class="col-8 col-sm-6 col-md-4 p-0 div-hover">
->>>>>>> ef530c343de2324280be66a4db209f9702a9d347
 
                     <div class="img-card w-100">
                         <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
