@@ -2,8 +2,15 @@
   <div id="#app">
     <nav class="navbar navbar-expand-lg fixed-top" :class= "{'background-dark': hasScrolled,'bg-transparent' : !hasScrolled }">
       <a class="navbar-brand nav-header navbar-mobile" :class="{'nav-header-scroll': hasScrolled}"  href="#"><img src="./assets/nav-logo.png" alt="nav-logo"></a>
-      <button v-show="!isToggled" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" @click="isToggled = true" style="transition all 0.5s">
-        <span class="">&#9776;</span>
+      <button :class="{'btn-open': isToggled}" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" @click="isToggled = !isToggled" >
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </button>      
       <!-- NAVBAR -->
       <div class="collapse navbar-collapse container" :class="{'navbar-small' : hasScrolled,}" v-if="checkWidth">
@@ -45,7 +52,6 @@
       
       <!-- SIDEBAR -->
       <div class="sidebar" :class="{'sidebar-active' : isToggled}"  v-else>
-          <a href="javascript:void(0)" class="closebtn" @click="isToggled = false,handleScroll()">&times;</a>
           <ul class="navbar-nav w-100" >
           <li class="nav-item">
             <a class="nav-link" href="#" selected>HOME</a>
@@ -56,11 +62,11 @@
           <li class="nav-item dropdown show">
             <a class="nav-link" href="#" id="navbarDropdown" role="button" @click="toggleDropdown = !toggleDropdown">
               DROPDOWN
+            <div class="float-right dropdown-sign" :class="{'sidebar-dropdown-sign-active': toggleDropdown,'sidebar-dropdown-sign-inactive': !toggleDropdown}"> &#x2b; </div> 
             </a>
             <div class="dropdown-menu show" aria-labelledby="navbarDropdown" :class="{'sidebar-dropdown-active': toggleDropdown ,'sidebar-dropdown-inactive': !toggleDropdown}">
               <a class="dropdown-item py-2 px-4" href="#">ACTION</a>
               <a class="dropdown-item py-2 px-4" href="#">ANOTHER ACTION</a>
-              <div class="dropdown-divider m-0"></div>
               <a class="dropdown-item py-2 px-4" href="#">SOMETHING ELSE HERE</a>
             </div>
           </li>
@@ -193,12 +199,11 @@ export default {
 </script>
 
 <style scoped>
+  /* NAVBAR STYLING AND ANIMATION */
   .navbar{
     transition: background 0.5s;
     font-size: 15px;
     padding: 10px 0;
-    /*  */
-    min-height:54px
   }
 
   .navbar ul li {
@@ -230,6 +235,7 @@ export default {
     
   }
   
+ 
 
   @media screen and (max-width: 990px){
     .navbar-mobile {
@@ -241,6 +247,7 @@ export default {
     }
   }
 
+  /* NAVBAR DROPDOWN ANIMATION */
   
   .navbar-collapse .dropdown .dropdown-menu {
     border-radius: 0;
@@ -269,6 +276,7 @@ export default {
   }
   
 
+  /* SIDEBAR STYLING AND ANIMATION */
   .sidebar {
     position: absolute;
     left: 0;
@@ -283,7 +291,9 @@ export default {
     padding: 4px;
     margin: 0;
     padding: 0;
-    opacity: 0.7
+    padding-top: 100px;
+    opacity: 0.8;
+    outline:none;
   }
   .sidebar-active {
     width: 350px;
@@ -300,10 +310,17 @@ export default {
     width: 100%;
   }
 
-<<<<<<< HEAD
-  /* .dropdown-menu {
-    transition: all 0.3s ease;
-=======
+
+
+  /* NAVBAR AND SIDEBAR COLOR TEXT SPACING */
+
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    letter-spacing: 2px;
+  }
+
+  /* SIDEBAR DROPDOWN ANIMATION */
 
   .sidebar-dropdown-active{
     max-height: 50vh;
@@ -314,7 +331,7 @@ export default {
     transition: max-height 0.7s ease;
   }
   .sidebar .dropdown-menu {
->>>>>>> ef530c343de2324280be66a4db209f9702a9d347
+
     border-radius: 0;
     background: black;
     color: white;
@@ -325,21 +342,13 @@ export default {
     
 
   }
-  .dropdown-menu:focus {
-	color: #fff;
-	background-color: rgba(129,103,169,.6);
-} */
+
+
+
 
   .sidebar .dropdown-menu a{
     color: inherit;
   }
-
-  .nav-link {
-    color: white;
-    text-decoration: none;
-    letter-spacing: 2px;
-  }
-
 
 
   .sidebar .dropdown-menu .dropdown-item:hover , .sidebar .dropdown-menu .dropdown-item:focus{
@@ -347,17 +356,8 @@ export default {
     color: black;
   }
 
-  .sidebar .closebtn {
-    color: inherit;
-    position: relative;
-    margin-right: 10px;
-    float: right;
-    font-size: 40px;
-    text-decoration: none;
-    padding-top: 4px;
-    height: 10%;
-  }
 
+/* NAVBAR LINK HOVER EFFECT */
 
   .nav-link span::after{
     content: '';
@@ -369,26 +369,173 @@ export default {
     left: 0;
     margin-top: 10px;
     opacity: 0;
-    /* transform: scaleX(0); */
+    
     transition: all 0.3s ease-in-out;
   }
-  
 
   .nav-link:hover span:after {
-    /* transform: scaleX(1); */
+    
     margin-top: 0;
     opacity: 1;
   }
+  /* SIDEBAR LINK UNDERLINE  */
 
-  .navbar-toggler span{
-    color: white;
-    width: 20px;
-    height: 30px;
+   .sidebar .nav-item::after{
+    content: '';
+    display: block;
+    width: 95%;
+    height: 1px;
+    background-color :white ;
+    bottom: 0;
+    left: 0;
+    margin-top: 10px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.3s ease;
+    
   }
+
+  .sidebar .nav-item:hover:after{
+    transform: scaleX(1);
+  }
+
+  /* HAMBURGER DESIGN AND ANIMATION */
+  .navbar-toggler{
+    /* position: absolute; */
+    color: white;
+    min-width: 20px;
+    min-height: 30px;
+    z-index:999;
+    outline: none;
+    transform: scale(0.5);
+    transform-origin: left;
+    margin-left: 10px;
+
+  }
+
+
+  .hamburger{
+    height: 45px;
+    width: 60px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .5s ease-in-out;
+    -moz-transition: .5s ease-in-out;
+    -o-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+  }
+
+  .hamburger span {
+    display: block;
+    position: absolute;
+    height: 9px;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    background: white;
+    border: none;
+    /* border-radius: 9px; */
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: .25s ease-in-out;
+    -moz-transition: .25s ease-in-out;
+    -o-transition: .25s ease-in-out;
+    transition: .25s ease-in-out;
+  }
+  .hamburger span:nth-child(even){
+    left: 50%;
+    border-radius: 0 9px 9px 0;
+  }
+  .hamburger span:nth-child(odd){
+    left: 0;
+    border-radius: 9px 0 0 9px;
+  }
+  .hamburger span:nth-child(1),.hamburger span:nth-child(2){
+    top: 0px;
+  }
+  .hamburger span:nth-child(3),.hamburger span:nth-child(4){
+    top: 18px;
+  }
+  .hamburger span:nth-child(5) ,.hamburger span:nth-child(6){
+    top: 36px;
+  }
+  
+  .btn-open .hamburger span:nth-child(1),.btn-open .hamburger span:nth-child(6){
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .btn-open .hamburger span:nth-child(2),.btn-open .hamburger span:nth-child(5){
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  .btn-open .hamburger span:nth-child(1){
+    left: 9px;
+    top: 7px;
+  }
+  .btn-open .hamburger span:nth-child(2){
+    left: calc(50%-9px);
+    top: 7px;
+  }
+  .btn-open .hamburger span:nth-child(3){
+    left: -50%;
+    opacity: 0;
+  }
+  .btn-open .hamburger span:nth-child(4){
+    left: 100%;
+    opacity: 0;
+  }
+  .btn-open .hamburger span:nth-child(5){
+    left: 9px;
+    top: 29px;
+  }
+  .btn-open .hamburger span:nth-child(6){
+    left: calc(50%-9px);
+    top: 29px;
+  }
+
+  /* NAVBAR LOGIN AND CART ICON  */
   .div-icons .icons{
     transition: transform 0.5s ease-out;
   }
   .div-icons .icons:hover{
     transform: scale(1.3);
   }
+
+  /* STYLE DROPDOWN SIGN */
+  .sidebar-dropdown-sign-inactive{
+    position: absolute;
+    font-size: 40px;
+    right: 0;
+    top: 0;
+    margin-right: 15px;
+    
+    cursor:pointer;
+    transition: all 0.4s ease-out;
+    transform: rotate(0deg);
+  }
+  .sidebar-dropdown-sign-active{
+    position: absolute;
+    font-size: 40px;
+    right: 0;
+    top: 0;
+    margin-right: 15px;
+    cursor:pointer;
+    transition: all 0.4s ease-out;
+    transform: rotate(45deg);
+
+  }
+
+
 </style>

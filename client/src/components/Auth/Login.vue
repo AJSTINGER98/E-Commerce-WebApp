@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 bg-white text-center">
-                        <button class="btn w-100 py-2">SUBMIT</button>
+                        <button class="btn w-100 py-2" id="loginSubmit">SUBMIT</button>
                     </div>
             
                 </form>
@@ -46,11 +46,6 @@
 
 <script>
 export default {
-    mounted(){
-        setTimeout(() =>{
-            document.getElementById(".btn").style.animation = "slide-out 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);";
-        },1000)
-    },
     methods:{
         close(){
             this.$emit('close');
@@ -119,18 +114,17 @@ export default {
         border: 1px solid black;
         border-radius: 0;
         background: rgb(0,0,0);
-        background: linear-gradient(90deg, rgba(0,0,0,1) 33.33%, rgba(255,255,255,0) 33.33%, rgba(255,255,255,0) 66.66%, rgba(0,0,0,1) 66.66%);
+        background: linear-gradient(90deg, rgba(0,0,0,0) 33.33%, rgba(0,0,0,1) 33.33%, rgba(0,0,0,1) 66.66%, rgba(0,0,0,0) 66.66%);
         background-size: 300%;
         background-position: 50% 100%;
-        transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-        color: black;
-        
+        transition: all 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        color: white;
     }
     .btn:hover{
 
         background-position: 100% 100%;
-        animation: slide-in 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-        color: white;
+        animation: slide-in 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        color: black;
 
     }
 
@@ -141,16 +135,6 @@ export default {
 
         to {
             background-position: 0% 100%;
-        }
-
-    }
-    @keyframes slide-out {
-        from {
-            background-position: 100% 100%;
-        }
-
-        to {
-            background-position: 50% 100%;
         }
 
     }
