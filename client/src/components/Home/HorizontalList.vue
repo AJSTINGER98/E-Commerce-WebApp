@@ -166,21 +166,20 @@ export default {
     .img-footer .upper-div .btn {
         border: 1px solid black;
         background: rgb(0,0,0);
-        background: linear-gradient(90deg, rgba(0,0,0,1) 33.33%, rgba(255,255,255,0) 33.33%, rgba(255,255,255,0) 66.66%, rgba(0,0,0,1) 66.66%);
+        background: linear-gradient(90deg, rgba(0,0,0,0) 33.33%, rgba(0,0,0,1) 33.33%, rgba(0,0,0,1) 66.66%, rgba(0,0,0,0) 66.66%);
         background-size: 300%;
         background-position: 50% 100%;    
-        color: black;
-        /* font-weight: bold; */
-        transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        color: white;
+        transition: all 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
         padding:10px 30px ;
         border-radius: 0;
         width: 99%;
-        animation: slide-out 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        animation: slide-out 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     }
     .img-footer .upper-div .btn:hover {
         background-position: 100% 100%;
-        color: white;
-        animation: slide-in 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+        color: black;
+        animation: slide-in 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     }
     .div-hover:hover  .img-footer .upper-div{
         max-height: 60px;
