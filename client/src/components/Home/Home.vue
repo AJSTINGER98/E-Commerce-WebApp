@@ -5,7 +5,9 @@
     <div class="container-fluid">
       <horizontal-list></horizontal-list>  
     </div>
-    <news></news>
+    <div class="parallax">
+      <news></news>
+    </div>
     <home-div></home-div>
     <alternate></alternate>
   </div>
@@ -31,5 +33,22 @@ export default {
 </script>
 
 <style scoped>
+
+.parallax{
+ /* The image used */
+ background-image: url("../../assets/parallax.jpg");
+ 
+ /* Set a specific height */
+ min-height: 500px;
+ min-width: 100%; 
+ height: auto;
+ /* Create the parallax scrolling effect */
+ background-attachment: fixed;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+
+ }
+
     
 </style>

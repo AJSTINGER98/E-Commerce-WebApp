@@ -1,152 +1,120 @@
 <template>
-    <div>
-        <div v-scrollanimation class= "parallax">
-        <div class="container-fluid">
-  
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner row w-100 mx-auto">
-      <div class="carousel-item col-md-3 active">
-        <div class="card">
-        <div class="zoom-effect-container">
-          <img class="card-img-top img-fluid" src="https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/geforce-minecraft-rtx-nv-sfg-295x166.jpg" alt="Card image cap">
-          <div class="overlay">
-                <div class="text">The most powerful GPU ever created.</div>
-          </div>
+    <div class="main-div d-flex">
+      <div v-scrollanimation class="container-fluid justify-content-center">
+        <div id="myCarousel" class="carousel slide mx-4 h-100" data-ride="carousel">
+          <div class="carousel-inner row w-100 mx-auto">
+            <transition-group :name="direction" class="w-100 h-100 d-flex justify-content-around align-items-center">
+              <div class="carousel-item col-12 col-md-6 col-xl-4 active" v-for="i in currentItem" :key= "i">
+                  <div class="card">
+                  <div class="zoom-effect-container">
+                    <img class="card-img-top img-fluid" :src="content[i].image" alt="Card image cap">
+                    <div class="overlay">
+                          <div class="text">{{ content[i].comment}}</div>
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title">{{ content[i].title }}</h4>
+                    </div>
+                  </div>
+                  </div>
+              </div>
+            </transition-group>    
+          </div> 
         </div>
-          <div class="card-body">
-            <h4 class="card-title">Minecraft with RTX</h4>
-            
-          </div>
-        </div>
+        <a class="carousel-control-prev carousel-arrows" role="button" data-slide="prev" @click="slideLeft">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next carousel-arrows" role="button" data-slide="next" @click="slideRight">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
-      <div class="carousel-item col-md-3">
-        <div class="card">
-        <div class="zoom-effect-container">
-          <img class="card-img-top img-fluid" src="https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/mfg/geforce-magma-nvidia-sfg-295x166.jpg" alt="Card image cap">
-          <div class="overlay">
-                <span class="text">The most powerful GPU ever created.</span>
-          </div>
-        </div>
-        <div class="card-body">
-            <h4 class="card-title">Frames wins games.</h4>
-        </div>
-        </div>
-      </div>
-      <div class="carousel-item col-md-3">
-        <div class="card">
-        <div class="zoom-effect-container">
-          <img class="card-img-top img-fluid" src="https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/geforce-laptop-refresh-2020-sfg-295x166@2x.jpg" alt="Card image cap">
-          <div class="overlay">
-                <span class="text">The most powerful GPU ever created.</span>
-          </div>
-        </div>
-          <div class="card-body">
-            <h4 class="card-title">Titan V</h4>
-            
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item col-md-3">
-        <div class="card">
-        <div class="zoom-effect-container">
-          <img class="card-img-top img-fluid" src="https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/geforce-gsync-nv-sfg-295x166.jpg" alt="Card image cap">
-          <div class="overlay">
-                <div class="text">The most powerful GPU ever created.</div>
-          </div>
-          </div>
-          <div class="card-body">
-            <h4 class="card-title">Work. Play. Create.</h4>
-            
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item col-md-3">
-        <div class="card">
-        <div class="zoom-effect-container">
-          <img class="card-img-top img-fluid" src="https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/apache-spark-3-sfg-295x166.jpg" alt="Card image cap">
-          <div class="overlay">
-                <div class="text">The most powerful GPU ever created.</div>
-          </div>
-        </div>
-          <div class="card-body">
-            <h4 class="card-title">Gaming</h4>
-            
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item col-md-3">
-        <div class="card">
-        <div class="zoom-effect-container">
-          <img class="card-img-top img-fluid" src="https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/ai-for-dev-recsys-sfg-295x166.jpg" alt="Card image cap">
-          <div class="overlay">
-                <div class="text">The most powerful GPU ever created.</div>
-          </div>
-        </div>
-          <div class="card-body">
-            <h4 class="card-title">Takniiki Factorry</h4>
-            
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item col-md-3">
-        <div class="card">
-        <div class="zoom-effect-container">
-          <img class="card-img-top img-fluid" src="https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/nvidia-quadro-experience-sfg-295x166-dtm.jpg" alt="Card image cap">
-          <div class="overlay">
-                <div class="text">The most powerful GPU ever created.</div>
-          </div>
-        </div>
-          <div class="card-body">
-            <h4 class="card-title">RTX Studio</h4>
-            
-          </div>
-        </div>
-      </div>
-    </div> 
-    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
   </div>
-</div>
-    </div>
-    </div>
   
 </template>
 
 <script>
 export default {
-    mounted(){
-        window.$(document).ready(function() {
-          window.$("#myCarousel").on("slide.bs.carousel", function(e) {
-            var $e = window.$(e.relatedTarget);
-            var idx = $e.index();
-            var itemsPerSlide = 4;
-            var totalItems = window.$(".carousel-item").length;
-
-            if (idx >= totalItems - (itemsPerSlide - 1)) {
-              var it = itemsPerSlide - (totalItems - idx);
-              for (var i = 0; i < it; i++) {
-                // append slides to end
-                if (e.direction == "left") {
-                window.$(".carousel-item")
-                    .eq(i)
-                    .appendTo(".carousel-inner");
-                } else {
-                  window.$(".carousel-item")
-                    .eq(i)
-                    .appendTo(window.$(this).find(".carousel-inner"));
-                }
-              }
-            }
-          });
-        });
-
+  data() {
+    return {
+      content: [
+        {
+        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/geforce-minecraft-rtx-nv-sfg-295x166.jpg',
+        comment: 'The most powerful GPU ever created.',
+        title: 'Minecraft with RTX'
+        },
+        {
+        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/mfg/geforce-magma-nvidia-sfg-295x166.jpg',
+        comment: 'The most powerful GPU ever created.',
+        title: 'Frames wins games.'
+        },
+        {
+        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/geforce-laptop-refresh-2020-sfg-295x166@2x.jpg',
+        comment: 'The most powerful GPU ever created.',
+        title: 'Titan V'
+        },
+        {
+        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/geforce-gsync-nv-sfg-295x166.jpg',
+        comment: 'The most powerful GPU ever created.',
+        title: 'Work. Play. Create.'
+        },
+        {
+        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/apache-spark-3-sfg-295x166.jpg',
+        comment: 'The most powerful GPU ever created.',
+        title: 'Gaming'
+        },
+        {
+        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/ai-for-dev-recsys-sfg-295x166.jpg',
+        comment: 'The most powerful GPU ever created.',
+        title: 'Takniiki Factorry'
+        },
+        {
+        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/nvidia-quadro-experience-sfg-295x166-dtm.jpg',
+        comment: 'The most powerful GPU ever created.',
+        title: 'RTX Studio'
+        },
+      ],
+      itemLength: 7,
+      itemCount: 5,
+      currentItem: [0,1,2,3,4],
+      direction: 'left',
+      interval: 7000
+      
     }
+  },
+
+  methods: {
+    slideLeft(){
+      this.direction = 'left';
+      var i = this.currentItem[0]-1
+      if(i< 0){
+        i = this.itemLength -1;
+      }
+      this.currentItem.pop();
+      this.currentItem.unshift(i);
+
+    },
+    slideRight(){
+      this.direction = 'right'
+      var i = (this.currentItem[this.itemCount-1]+1)%this.itemLength;
+      this.currentItem.shift();
+      this.currentItem.push(i);
+    }
+  },
+
+  mounted(){
+    var vm = this;
+    var myInterval= setInterval(()=>{
+      vm.slideRight();
+    },vm.interval);
+
+    window.$('.carousel-arrows').click(()=>{
+      clearInterval(myInterval);
+      myInterval = setInterval(()=>{
+        vm.slideRight();
+      },vm.interval);
+    });
+  }
 }
 </script>
 
@@ -159,24 +127,14 @@ export default {
 }
 
 .enter{
-    opacity:1;
+  opacity:1;
   transform: translateX(0px);
 }
-/* .zoom-effect-container{
-  height
-} */
+
 .card-body{
-  background: #f2f2f2
-}
-.card-img-top {
-  -webkit-transition: 1.6s ease;
-  transition: 1.6s ease;
+  background: transparent;
 }
 
-.zoom-effect-container:hover .card-img-top{
-  -webkit-transform: scale(1.08);
-  transform: scale(1.08);
-}
 
 .overlay{
   position: absolute;
@@ -184,24 +142,27 @@ export default {
   /* bottom: 0; */
   left: 0;
   /* right: 0; */
-  height: 68%;
+  height: 100%;
   width: 100%;
   opacity: 0;
   transition: .5s ease;
   background-color:black;
- -webkit-transition: 1.6s ease;
-  transition: 1.6s ease;
+ -webkit-transition: 0.6s ease;
+  transition: 0.6s ease;
 }
 
 .zoom-effect-container:hover .overlay {
-  /* visibility: visible; */
-  opacity: 0.6;
-   transform: scale(1.08);
-     -webkit-transform: scale(1.08);
+  opacity: 0.7;
+
+}
+.zoom-effect-container:hover{
+  transform: scale(1.08);
+}
+.zoom-effect-container{
+  transition: transform 0.6s ease;
 }
 
 .text {
-  /* visibility: hidden; */
   font-weight:700;
   color: white;
   font-size: 20px;
@@ -213,19 +174,11 @@ export default {
   transform: translate(-50%, -50%);
   text-align: center;
 }
-/* .carousel-item{
-    width:250px
-}
-.card-img-top{
-    width:200px
-} */
-.carousel-control-prev{
+
+.carousel-control-prev, .carousel-control-next{
     width:50px;
-    color:black
 }
-.carousel-control-next{
-    width:50px
-}
+
 .card-title{
     text-align:center
 }
@@ -236,88 +189,78 @@ export default {
 .card-body {
   background-color: #f2f2f2;
 }
-/* .parallax{ */
- /* The image used */
- /* background-image: url("../../assets/parallax.jpg"); */
- 
- /* Set a specific height */
- /* min-height: 500px;
- min-width: 100%;  */
- 
- /* Create the parallax scrolling effect */
- /* background-attachment: fixed; */
- /* background-position: center;
- background-repeat: no-repeat;
- background-size: cover;
- } */
 
 
-@media (min-width: 768px) {
-  /* show 4 items */
-  .carousel-inner .active,
-  .carousel-inner .active + .carousel-item,
-  .carousel-inner .active + .carousel-item + .carousel-item,
-  .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item {
-    display: block;
-  }
 
-  .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
-  .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
-  .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
-  .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
-    transition: none;
-  }
 
-  .carousel-inner .carousel-item-next,
-  .carousel-inner .carousel-item-prev {
-    position: relative;
-    transform: translate3d(0, 0, 0);
-  }
-
-  .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
-    position: absolute;
-    top: 0;
-    right: -25%;
-    z-index: -1;
-    display: block;
-    visibility: visible;
-  }
-
-  /* left or forward direction */
-  .active.carousel-item-left + .carousel-item-next.carousel-item-left,
-  .carousel-item-next.carousel-item-left + .carousel-item,
-  .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
-  .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
-  .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
-    position: relative;
-    transform: translate3d(-100%, 0, 0);
-    visibility: visible;
-  }
-
-  /* farthest right hidden item must be absolue position for animations */
-  .carousel-inner .carousel-item-prev.carousel-item-right {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    display: block;
-    visibility: visible;
-  }
-
-  /* right or prev direction */
-  .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
-  .carousel-item-prev.carousel-item-right + .carousel-item,
-  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
-  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
-  .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
-    position: relative;
-    transform: translate3d(100%, 0, 0);
-    visibility: visible;
-    display: block;
-    visibility: visible;
-  }
-}
 .carousel-item{
-    margin-right:0
+    margin-right:0;
+    
 }
+
+/* VUE TRANSITION */
+
+.main-div{
+  height: 100%;
+  padding-top: 10px;
+  min-height: 500px;
+  background-color: rgb(0,0,0,0.7);
+}
+
+.row{
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 90%;
+}
+
+.left-enter-active{
+  transition: all 0.9s ease;
+  transform: translateX(0%);
+  
+}
+
+.left-leave-active{
+  transition: all 0.9s ease;
+  position: absolute;
+  transform: translateX(400%);
+  
+}
+
+.left-enter{
+  visibility: hidden;
+  transform: translateX(-200%);
+  
+}
+.left-leave-to {
+  visibility: hidden;
+  position: absolute;
+  transform: translateX(500%);
+  
+}
+.right-enter-active{
+  transition: all 0.1s ease;
+  transform: translateX(300%);
+  
+}
+
+
+.right-leave-active{
+  transition: all 0.9s ease;
+  position: absolute;
+  transform: translateX(-100%);
+  
+}
+
+.right-enter{
+  visibility: hidden;
+  transform: translateX(100%);
+}
+.right-leave-to {
+  visibility: hidden;
+  position: absolute;
+  transform: translateX(-300%);
+}
+
+
 </style>

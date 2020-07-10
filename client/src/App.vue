@@ -199,6 +199,9 @@ export default {
 </script>
 
 <style scoped>
+
+
+
   /* NAVBAR STYLING AND ANIMATION */
   .navbar{
     transition: background 0.5s;
@@ -294,6 +297,7 @@ export default {
     padding-top: 100px;
     opacity: 0.8;
     outline:none;
+    max-width: 100vw;
   }
   .sidebar-active {
     width: 350px;
@@ -309,8 +313,6 @@ export default {
     padding: 10px 5px;
     width: 100%;
   }
-
-
 
   /* NAVBAR AND SIDEBAR COLOR TEXT SPACING */
 
@@ -331,7 +333,6 @@ export default {
     transition: max-height 0.7s ease;
   }
   .sidebar .dropdown-menu {
-
     border-radius: 0;
     background: black;
     color: white;
@@ -412,7 +413,6 @@ export default {
     margin-left: 10px;
 
   }
-
 
   .hamburger{
     height: 45px;

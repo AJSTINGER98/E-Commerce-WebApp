@@ -94,16 +94,17 @@ export default {
 </script>
 
 <style scoped>
-.before-enter{
-  opacity:0;
-  transform: translateX(200px);
-  transition: all 1.5s ease-out
-}
+    .before-enter{
+        opacity:0;
+        transform: translateX(200px);
+        transition: all 1.5s ease-out
+    }
 
-.enter{
-    opacity:1;
-  transform: translateX(0px);
-}
+    .enter{
+        opacity:1;
+        transform: translateX(0px);
+    }
+
     /* The heart of the matter */
     .horizontal-scrollable {
         height: 80%;

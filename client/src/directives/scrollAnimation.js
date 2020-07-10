@@ -23,4 +23,4 @@ const animatedScrollObserver = new IntersectionObserver(
       el.classList.add('before-enter');
       animatedScrollObserver.observe(el);
     }
-  }
+  };
