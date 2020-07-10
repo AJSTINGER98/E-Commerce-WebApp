@@ -164,8 +164,9 @@ export default {
 
 .text {
   font-weight:700;
+  width:75%;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   position: absolute;
   top: 50%;
   left: 50%;

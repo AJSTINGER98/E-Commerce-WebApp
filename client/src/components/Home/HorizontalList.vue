@@ -117,9 +117,19 @@ export default {
 
     /* Hide scrollbar for Chrome, Safari and Opera */
     .horizontal-scrollable::-webkit-scrollbar {
-        display: none;
+        /* display: none; */
+        height:3px;
+        max-width:30px
     }
-
+    .horizontal-scrollable::-webkit-scrollbar-thumb {
+        /* display: none; */
+        background: linear-gradient(transparent, black);
+        border-radius: 6px;
+    }
+     .horizontal-scrollable::-webkit-scrollbar-thumb:hover {
+        /* display: none; */
+        background: linear-gradient(transparent,#81f);
+    }
     /* Hide scrollbar for IE, Edge and Firefox */
     .horizontal-scrollable {
         -ms-overflow-style: none;  /* IE and Edge */
