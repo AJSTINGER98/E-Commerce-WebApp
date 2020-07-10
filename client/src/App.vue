@@ -363,7 +363,7 @@ export default {
     content: '';
     display: block;
     width: 95%;
-    height: 1px;
+    height: 1.5px;
     background-color :white ;
     bottom: 0;
     left: 0;

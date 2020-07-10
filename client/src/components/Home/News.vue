@@ -13,11 +13,12 @@
                 <div class="text">The most powerful GPU ever created.</div>
           </div>
         </div>
+        
+        </div>
           <div class="card-body">
             <h4 class="card-title">Minecraft with RTX</h4>
             
           </div>
-        </div>
       </div>
       <div class="carousel-item col-md-3">
         <div class="card">
@@ -27,9 +28,10 @@
                 <span class="text">The most powerful GPU ever created.</span>
           </div>
         </div>
+        
+        </div>
         <div class="card-body">
             <h4 class="card-title">Frames wins games.</h4>
-        </div>
         </div>
       </div>
       <div class="carousel-item col-md-3">
@@ -40,11 +42,12 @@
                 <span class="text">The most powerful GPU ever created.</span>
           </div>
         </div>
-          <div class="card-body">
+         
+        </div>
+         <div class="card-body">
             <h4 class="card-title">Titan V</h4>
             
           </div>
-        </div>
       </div>
       <div class="carousel-item col-md-3">
         <div class="card">
@@ -54,11 +57,12 @@
                 <div class="text">The most powerful GPU ever created.</div>
           </div>
           </div>
-          <div class="card-body">
+         
+        </div>
+         <div class="card-body">
             <h4 class="card-title">Work. Play. Create.</h4>
             
           </div>
-        </div>
       </div>
       <div class="carousel-item col-md-3">
         <div class="card">
@@ -68,11 +72,12 @@
                 <div class="text">The most powerful GPU ever created.</div>
           </div>
         </div>
-          <div class="card-body">
+         
+        </div>
+         <div class="card-body">
             <h4 class="card-title">Gaming</h4>
             
           </div>
-        </div>
       </div>
       <div class="carousel-item col-md-3">
         <div class="card">
@@ -82,11 +87,12 @@
                 <div class="text">The most powerful GPU ever created.</div>
           </div>
         </div>
-          <div class="card-body">
+         
+        </div>
+         <div class="card-body">
             <h4 class="card-title">Takniiki Factorry</h4>
             
           </div>
-        </div>
       </div>
       <div class="carousel-item col-md-3">
         <div class="card">
@@ -96,11 +102,12 @@
                 <div class="text">The most powerful GPU ever created.</div>
           </div>
         </div>
-          <div class="card-body">
+         
+        </div>
+         <div class="card-body">
             <h4 class="card-title">RTX Studio</h4>
             
           </div>
-        </div>
       </div>
     </div> 
     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -122,31 +129,37 @@
 export default {
     mounted(){
         window.$(document).ready(function() {
-          window.$("#myCarousel").on("slide.bs.carousel", function(e) {
-            var $e = window.$(e.relatedTarget);
-            var idx = $e.index();
-            var itemsPerSlide = 4;
-            var totalItems = window.$(".carousel-item").length;
+  window.$("#myCarousel.carousel.slide").on("slide.bs.carousel", function(e) {
+      
+    // alert("hello")
+    var $e = window.$(e.relatedTarget);
+    var idx = $e.index();
+    var itemsPerSlide = 4;
+    var totalItems = window.$(".carousel-item").length;
 
-            if (idx >= totalItems - (itemsPerSlide - 1)) {
-              var it = itemsPerSlide - (totalItems - idx);
-              for (var i = 0; i < it; i++) {
-                // append slides to end
-                if (e.direction == "left") {
-                window.$(".carousel-item")
-                    .eq(i)
-                    .appendTo(".carousel-inner");
-                } else {
-                  window.$(".carousel-item")
-                    .eq(i)
-                    .appendTo(window.$(this).find(".carousel-inner"));
-                }
-              }
-            }
-          });
-        });
-
+    if (idx >= totalItems - (itemsPerSlide - 1)) {
+      var it = itemsPerSlide - (totalItems - idx);
+      for (var i = 0; i < it; i++) {
+        // append slides to end
+        if (e.direction == "left") {
+          console.log("hello")
+          window.$(".carousel-item")
+            .eq(i)
+            .appendTo(".carousel-inner");
+        } else {
+          console.log("hello2")
+          window.$(".carousel-item")
+            .eq(0)
+            .appendTo(window.$(this).find(".carousel-inner"));
+        }
+      }
     }
+  });
+});
+     
+}
+ 
+
 }
 </script>
 
@@ -184,7 +197,7 @@ export default {
   /* bottom: 0; */
   left: 0;
   /* right: 0; */
-  height: 68%;
+  height: 100%;
   width: 100%;
   opacity: 0;
   transition: .5s ease;
@@ -195,7 +208,7 @@ export default {
 
 .zoom-effect-container:hover .overlay {
   /* visibility: visible; */
-  opacity: 0.6;
+  opacity: 0.7;
    transform: scale(1.08);
      -webkit-transform: scale(1.08);
 }
@@ -203,8 +216,9 @@ export default {
 .text {
   /* visibility: hidden; */
   font-weight:700;
+  width:75%;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   position: absolute;
   top: 50%;
   left: 50%;
