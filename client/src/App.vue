@@ -207,6 +207,7 @@ export default {
     transition: background 0.5s;
     font-size: 15px;
     padding: 10px 0;
+    /* max-height: 54px; */
   }
 
   .navbar ul li {

@@ -120,6 +120,20 @@ export default {
 
 <style scoped>
 
+.card{
+    /* box-shadow: 0 4px 8px 0 white, 0 6px 12px 0 white; */
+    border-radius:30px ;
+    background:#f2f2f2;
+}
+.card-body{
+    /* box-shadow: 0 4px 8px 0 white, 0 6px 12px 0 white; */
+    border-radius:0 0 30px 30px;
+    background:#f2f2f2;
+}
+.card-img-top{
+  border-radius:30px 30px 0 0;
+}
+
 .before-enter{
   opacity:0;
   transform: translateX(-200px);
@@ -149,6 +163,7 @@ export default {
   background-color:black;
  -webkit-transition: 0.6s ease;
   transition: 0.6s ease;
+  border-radius: 30px;
 }
 
 .zoom-effect-container:hover .overlay {

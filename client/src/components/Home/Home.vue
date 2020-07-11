@@ -47,7 +47,7 @@ export default {
  background-position: center;
  background-repeat: no-repeat;
  background-size: cover;
-
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
  }
 
     
