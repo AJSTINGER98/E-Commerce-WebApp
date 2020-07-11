@@ -6,7 +6,7 @@
 
         <div v-scrollanimation class="horizontal-scrollable my-4">
             <div class="d-flex w-100">
-                <div  class="col-8 col-sm-6 col-md-4 p-0 div-hover">
+                <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
 
                     <div class="img-card w-100">
                         <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
@@ -23,7 +23,7 @@
                     </div>
                     
                 </div>
-                <div v-scrollanimation class="col-8 col-sm-6 col-md-4 p-0 div-hover">
+                <div v-scrollanimation class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
 
                     <div class="img-card w-100">
                         <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
@@ -40,7 +40,7 @@
                     </div>
                     
                 </div>
-                <div v-scrollanimation class="col-8 col-sm-6 col-md-4 p-0 div-hover">
+                <div v-scrollanimation class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
 
                     <div class="img-card w-100">
                         <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
@@ -57,7 +57,7 @@
                     </div>
                     
                 </div>                
-                <div class="col-8 col-sm-6 col-md-4 p-0 div-hover">
+                <div class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
 
                     <div class="img-card w-100">
                         <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
@@ -118,7 +118,7 @@ export default {
     /* Hide scrollbar for Chrome, Safari and Opera */
     .horizontal-scrollable::-webkit-scrollbar {
         /* display: none; */
-        height:3px;
+        height:5px;
         max-width:30px
     }
     .horizontal-scrollable::-webkit-scrollbar-thumb {
@@ -142,7 +142,7 @@ export default {
     
     .div-hover{
         max-width: max-content;
-        margin: 10px 5%;
+        margin: 10px auto;
     }
     .img-card {
         height: 50vh;

@@ -13,7 +13,7 @@
         </div>
       </button>      
       <!-- NAVBAR -->
-      <div class="collapse navbar-collapse container" :class="{'navbar-small' : hasScrolled,}" v-if="checkWidth">
+      <div class="collapse navbar-collapse container" v-if="checkWidth">
         <ul class="navbar-nav mr-0 w-100 nav-body pt-1" >
           <li class="nav-item active">
             <a class="nav-link" href="#" selected><span> HOME</span></a>
@@ -157,7 +157,7 @@ export default {
     this.windowSize();
     
   },
- 
+
   methods: {
     handleScroll(){
       this.updateScroll = window.scrollY; 
