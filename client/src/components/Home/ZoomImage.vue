@@ -24,14 +24,14 @@ export default {
         width: 100vw;
     }
     .image-zoom{
-        background-image: url("../../assets/zoom-img.jpeg");
+        background-image: url("../../assets/zoom-img-2.jpeg");
         /* overflow: hidden; */
         min-height: 100vh;
         /* max-height: 100vh; */
         min-width: 100vw;
         width: auto;
         transform: scale(2.0);
-        background-position: 50% 100%;
+        background-position: 50% 0%;
         background-repeat: no-repeat;
         background-size: cover;
         left: 0;
