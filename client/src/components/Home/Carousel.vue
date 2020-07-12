@@ -1,12 +1,7 @@
 <template>
   <div>
     <div id="carousel-fade" class="carousel carousel-fade fix" data-ride="carousel" data-interval="5000">
-    <!-- <ol class="carousel-indicators">
-        <li data-target="#carousel-fade" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-fade" data-slide-to="1"></li>
-        <li data-target="#carousel-fade" data-slide-to="2"></li>
-    </ol> -->
-
+    
     <div class="carousel-inner embed-responsive embed-responsive-16by9" role="listbox">
       <div class="carousel-item embed-responsive-item active">
         <img src="../../assets/1.jpg" alt="First slide image" class="img-fluid">
@@ -48,9 +43,13 @@
   </div>
 </template>
 
-<script>
+<script>  
+export default {
+  mounted(){
 
-  
+    
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -60,7 +59,6 @@
 }
 .carousel-item img{
   width: 100%;
-  /* transform: scale(2.5); */
   height: auto;
 }
 
@@ -69,6 +67,8 @@
   overflow:hidden;
   height: 100vh;
   width: 100%;
+  /* transform: scale(2.5); */
+
 }
 .carousel.carousel-fade .carousel-item {
     display: block;
@@ -79,6 +79,5 @@
 .carousel.carousel-fade .carousel-item.active {
     opacity: 1 !important;
 }
-
 
 </style>

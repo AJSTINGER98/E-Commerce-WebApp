@@ -161,7 +161,7 @@ export default {
   methods: {
     handleScroll(){
       this.updateScroll = window.scrollY; 
-      if(window.scrollY > 100){
+      if(window.scrollY > 1000){
         this.hasScrolled = true;
       } else{
         this.hasScrolled = false;
@@ -207,6 +207,7 @@ export default {
     transition: background 0.5s;
     font-size: 15px;
     padding: 10px 0;
+    /* max-height: 54px; */
   }
 
   .navbar ul li {
