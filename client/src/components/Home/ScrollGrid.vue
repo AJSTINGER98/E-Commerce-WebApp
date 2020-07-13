@@ -7,20 +7,20 @@
       <div class="row">
           <div class="col-12 col-md-6 col-xl-4 text-container">
               <!-- <div class="scrollbar"></div> -->
-              <div class="d-flex d-inline block mx-4 content text-active justify-content-center" id="content1">
-                  <div class="content-text w-75">
+              <div class="d-flex d-inline block mx-4 content justify-content-center" id="content1">
+                  <div class="content-text ">
                       <h3>Our Moto, Customer Satisfaction</h3>
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores praesentium ipsa velit fuga eum. Architecto, fugiat ullam. Ducimus dolorem ab rerum ratione rem debitis</p>
                   </div>
               </div>
               <div class="d-flex d-inline block mx-4 content justify-content-center" id="content2">
-                  <div class="content-text w-75">
+                  <div class="content-text ">
                       <h3>Our Promise, On Time Delivery</h3>
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores praesentium ipsa velit fuga eum. Architecto, fugiat ullam. Ducimus dolorem ab rerum ratione rem debitis</p>
                   </div>
               </div>
-              <div class="d-flex d-inline block my-4 mx-4 content justify-content-center" id="content3">
-                  <div class="content-text w-75">
+              <div class="d-flex d-inline block mx-4 content justify-content-center" id="content3">
+                  <div class="content-text">
                       <h3>Our Moto, Customer Satisfaction</h3>
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores praesentium ipsa velit fuga eum. Architecto, fugiat ullam. Ducimus dolorem ab rerum ratione rem debitis</p>
                   </div>
@@ -105,7 +105,7 @@ export default {
             }
         
      
-    },
+        },
     mounted(){
         this.windowSize()
         this.animation()
@@ -116,6 +116,7 @@ export default {
 
 <style scoped>
     .background-div{
+        padding-top: 80px;
         max-width: 100vw;
         max-height: 100vh;
         width: 100vw;
@@ -123,6 +124,7 @@ export default {
         background-color: #222222;
         color : #6c757d;
         overflow: hidden;
+        margin: 30px auto;
     }
     .text-container{
         padding: 10px 20px;
@@ -131,6 +133,9 @@ export default {
         margin-top: 20px;
         margin-bottom: 20px;
     }
+    /* .content{
+        transform:scale(10vw);
+    } */
     .image-div{
         overflow: hidden;
         
@@ -138,16 +143,17 @@ export default {
 
     .image-div img{
         position: absolute;
-        top: 20vh;
+        top: 9vh;
     }
 
     @media screen and (max-width: 990px){
 
         .content{
+
             transform: scale(0.75);
         }
         .image-div img{
-            top: 30vh;
+            top: 15vh;
         }
     }
 
