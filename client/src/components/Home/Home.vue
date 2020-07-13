@@ -10,7 +10,8 @@
       <news></news>
     </div>
     <home-div></home-div>
-    <scroll-grid></scroll-grid>
+    <scroll-grid-mobile v-if="check"></scroll-grid-mobile>
+    <scroll-grid v-else></scroll-grid>
     <alternate></alternate>
   </div>
 </template>
@@ -23,8 +24,35 @@ import horizontalList from './HorizontalList.vue';
 import homeDiv from './HomeDiv.vue';
 import alternate from './Alternate.vue';
 import news from './News';
-import scrollGrid from './ScrollGrid.vue'
+import scrollGrid from './ScrollGrid.vue';
+import scrollGridMobile from './ScrollGridMobile.vue'
 export default {
+   data(){
+        return{
+            window:{
+                width: 0,
+                height:0,
+            }
+        }
+    },
+    created(){
+        window.addEventListener('resize',this.windowSize);
+        this.windowSize();
+    },
+    mounted(){
+      this.windowSize()
+    },
+    computed: {
+        check() {
+             return this.window.width < 768 ? true : false;
+      }
+    },
+    methods:{
+      windowSize() {
+            this.window.width = window.innerWidth;
+            this.window.height = window.innerHeight;
+        },
+    },
     components: {
     // carousel,
     zoomImage,
@@ -33,7 +61,8 @@ export default {
     homeDiv,
     alternate,
     news,
-    scrollGrid
+    scrollGrid,
+    scrollGridMobile
   }
 }
 </script>

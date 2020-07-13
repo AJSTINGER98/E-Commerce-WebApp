@@ -1,8 +1,8 @@
 <template>
 <div>
-    <div>
-        
-    </div>
+    <!-- for xs, sm -->
+    
+    <!-- For md, lg, xl -->
   <div class="background-div d-flex align-items-center justify-content-center">
       <div class="row">
           <div class="col-12 col-md-6 col-xl-4 text-container">
@@ -44,70 +44,58 @@
 
 <script>
 export default {
-    data(){
-        return{
-            window:{
-                width: 0,
-                height:0,
-            }
-        }
-    },
   
     methods:{
-        windowSize() {
-            this.window.width = window.innerWidth;
-            this.window.height = window.innerHeight;
-        },
-
         animation(){
             
     
-                new window.ScrollMagic.Scene({triggerElement:'.background-div',
-                                                triggerHook: 'onLeave',
-                                                duration:'2400'})
-                .setPin('.background-div')
-                // .addIndicators('scroll-div')
-                .addTo(window.controller)
-        
-                //CONTENT 
-                for(var i=0;i<3;i++){
-                    new window.ScrollMagic.Scene({triggerElement: `.background-div`,triggerHook:'onLeave',duration:'800',offset:`${i*800}`})
-                    .setClassToggle(`#content${i+1}`,'text-active')
-                    .setTween()
-                    // .addIndicators('Toggle-Text')
-                    .addTo(window.controller)
-                }
-        
-               var tween1 = window.TweenMax.to('#image1',1,{opacity:0, y:'-100%'})
-            //    var tween2 = window.TweenMax.fromTo('#image2',1,{opacity: '0',y:'100%'},{opacity:1, y:'0%',repeat:-1})
-               
-               var tween2 = new window.TimelineMax()
-                            .fromTo('#image2',1,{opacity: '0',y:'100%'},{opacity:1, y:'0%'})
-                            .to('#image2',1,{opacity:0, y:'-100%',delay:1})
-               
-               var tween3 = window.TweenMax.fromTo('#image3',1,{opacity: '0',y:'100%'},{opacity:1, y:'0%'})
-        
-        
-                new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'600',offset: '200'})
-                .setTween(tween1)
-                // .addIndicators('image')
-                .addTo(window.controller)
-         
-                new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'800',offset: '800'})
-                .setTween(tween2)
-                // .addIndicators('image')
-                .addTo(window.controller)
-        
-                new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'600',offset: '1600'})
-                .setTween(tween3)
-                // .addIndicators('image')
+            new window.ScrollMagic.Scene({triggerElement:'.background-div',
+                                            triggerHook: 'onLeave',
+                                            duration:'2400'})
+            .setPin('.background-div')
+            // .addIndicators('scroll-div')
+            .addTo(window.controller)
+    
+            //CONTENT 
+            for(var i=0;i<3;i++){
+                new window.ScrollMagic.Scene({triggerElement: `.background-div`,triggerHook:'onLeave',duration:'800',offset:`${i*800}`})
+                .setClassToggle(`#content${i+1}`,'text-active')
+                .setTween()
+                // .addIndicators('Toggle-Text')
                 .addTo(window.controller)
             }
+    
+            var tween1 = window.TweenMax.to('#image1',1,{opacity:0, y:'-100%'})
+            //  var tween2 = window.TweenMax.fromTo('#image2',1,{opacity: '0',y:'100%'},{opacity:1, y:'0%',repeat:-1})
+            
+            var tween2 = new window.TimelineMax()
+                        .fromTo('#image2',1,{opacity: '0',y:'100%'},{opacity:1, y:'0%'})
+                        .to('#image2',1,{opacity:0, y:'-100%',delay:1})
+            
+            var tween3 = window.TweenMax.fromTo('#image3',1,{opacity: '0',y:'100%'},{opacity:1, y:'0%'})
+    
+    
+            new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'600',offset: '200'})
+            .setTween(tween1)
+            // .addIndicators('image')
+            .addTo(window.controller)
+        
+            new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'800',offset: '800'})
+            .setTween(tween2)
+            // .addIndicators('image')
+            .addTo(window.controller)
+    
+            new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'600',offset: '1600'})
+            .setTween(tween3)
+            // .addIndicators('image')
+            .addTo(window.controller)
+        }
         
      
-        },
+    },
+    
     mounted(){
-        this.windowSize()
+        
         this.animation()
      
     }
@@ -115,6 +103,7 @@ export default {
 </script>
 
 <style scoped>
+    
     .background-div{
         padding-top: 80px;
         max-width: 100vw;
