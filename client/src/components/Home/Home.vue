@@ -10,6 +10,7 @@
       <news></news>
     </div>
     <home-div></home-div>
+    <scroll-grid></scroll-grid>
     <alternate></alternate>
   </div>
 </template>
@@ -20,8 +21,9 @@ import zoomImage from './ZoomImage.vue';
 import homepageBrands from './HomepageBrands.vue';
 import horizontalList from './HorizontalList.vue';
 import homeDiv from './HomeDiv.vue';
-import alternate from './Alternate.vue'
-import news from './News'
+import alternate from './Alternate.vue';
+import news from './News';
+import scrollGrid from './ScrollGrid.vue'
 export default {
     components: {
     // carousel,
@@ -30,7 +32,8 @@ export default {
     horizontalList,
     homeDiv,
     alternate,
-    news
+    news,
+    scrollGrid
   }
 }
 </script>
