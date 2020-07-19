@@ -6,6 +6,7 @@
   <div class="background-div d-flex align-items-center justify-content-center">
       <div class="row">
           <div class="col-12 col-md-6 col-xl-4 text-container">
+            <div class="scroll-bar"></div>
               <!-- <div class="scrollbar"></div> -->
               <div class="d-flex d-inline block mx-4 content justify-content-center" id="content1">
                   <div class="content-text ">
@@ -66,12 +67,11 @@ export default {
             }
     
             var tween1 = window.TweenMax.to('#image1',1,{opacity:0, y:'-100%'})
-            //  var tween2 = window.TweenMax.fromTo('#image2',1,{opacity: '0',y:'100%'},{opacity:1, y:'0%',repeat:-1})
-            
+                        
             var tween2 = new window.TimelineMax()
                         .fromTo('#image2',1,{opacity: '0',y:'100%'},{opacity:1, y:'0%'})
-                        .to('#image2',1,{opacity:0, y:'-100%',delay:1})
-            
+                        .to('#image2',1,{opacity:0, y:'-100%'})
+                        
             var tween3 = window.TweenMax.fromTo('#image3',1,{opacity: '0',y:'100%'},{opacity:1, y:'0%'})
     
     
@@ -88,6 +88,15 @@ export default {
             new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'600',offset: '1600'})
             .setTween(tween3)
             // .addIndicators('image')
+            .addTo(window.controller)
+
+            var tweenScroll = new window.TimelineMax()
+                                .to('.scroll-bar',800,{y: '150%'})
+                                .to('.scroll-bar',800,{y: '350%'})
+
+
+            new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'2400'})
+            .setTween(tweenScroll)
             .addTo(window.controller)
         },
         
@@ -169,5 +178,17 @@ export default {
     }
      .content-text:hover{
          color: white;
+    }
+    .scroll-bar{
+        position: absolute;
+        width: 5px;
+        
+        /* height: 20vh; */
+        background-color: white;
+        left: 3%;
+        margin: 20px 5px;
+        margin-left: 20px;
+        height: 20%;
+        border-radius: 5px 5px 5px 5px;
     }
 </style>
