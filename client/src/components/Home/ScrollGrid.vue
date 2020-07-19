@@ -115,15 +115,16 @@ export default {
         overflow: hidden;
         margin: 30px auto;
     }
+
     .text-container{
         padding: 10px 20px;
     }
-    .content:nth-child(2){
+    .content{
         margin-top: 20px;
         margin-bottom: 20px;
     }
     /* .content{
-        transform:scale(10vw);
+        transform:scale(0.8);
     } */
     .image-div{
         overflow: hidden;
@@ -157,6 +158,6 @@ export default {
         transition: color 0.3s ease;
     }
     .content-text{
-        text-align: center;
+        text-align:start;
     }
 </style>

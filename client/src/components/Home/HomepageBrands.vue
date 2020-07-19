@@ -5,22 +5,28 @@
               <h6 class="text-secondary">Powered By:</h6>
           </div>
           <div class="row d-flex justify-content-around">
-              <div class="d-flex justify-content-center">
+              <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center">
                   <span><i class="fab fa-github fa-4x"></i></span>
               </div>
-              <div class="d-flex justify-content-center">
+              <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center">
                   <span><i class="fab fa-css3 fa-4x"></i></span>
               </div>
-              <div class="d-flex justify-content-center">
+              <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center">
                   <span><i class="fab fa-vuejs fa-4x"></i></span>
               </div>
-              <div class="d-flex justify-content-center">
+              <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center">
                   <span><i class="fab fa-bootstrap fa-4x"></i></span>
               </div>
-              <div class="d-flex justify-content-center">
+              <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center">
                   <span><i class="fab fa-html5 fa-4x"></i></span>
               </div>
-              <div class="d-flex justify-content-center">
+              <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center">
+                  <span><i class="fab fa-google fa-4x"></i></span>
+              </div>
+              <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center">
+                  <span><i class="fab fa-google fa-4x"></i></span>
+              </div>
+              <div class="col-6 col-sm-4 col-md-2 d-flex justify-content-center">
                   <span><i class="fab fa-google fa-4x"></i></span>
               </div>
           </div>
@@ -39,6 +45,11 @@ export default {
 <style scoped>
     .row {
         margin: 40px 30px; 
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+    .smooth-slide{
+        animation: slide-left 0.5s linear;
     }
     @media screen and (max-width: 450px){
         i {
@@ -47,13 +58,14 @@ export default {
     }
 
     .before-enter{
-  opacity:0;
-  transform: translateY(200px);
-  transition: all 1s ease-out
-}
+        opacity:0;
+        transform: translateY(200px);
+        transition: all 1s ease-out
+    }
 
-.enter{
-    opacity:1;
-  transform: translateY(0px);
-}
+    .enter{
+        opacity:1;
+        transform: translateY(0px);
+    }
+
 </style>
