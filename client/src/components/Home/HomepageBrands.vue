@@ -57,15 +57,14 @@ export default {
         }
     }
 
-    .before-enter{
-        opacity:0;
-        transform: translateY(200px);
-        transition: all 1s ease-out
-    }
+.before-enter{
+  opacity:0;
+  /* transform: translateY(200px); */
+  transition: all 1s ease-out
+}
 
-    .enter{
-        opacity:1;
-        transform: translateY(0px);
-    }
-
+.enter{
+    opacity:1;
+  /* transform: translateY(0px); */
+}
 </style>

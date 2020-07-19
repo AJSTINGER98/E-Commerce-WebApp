@@ -13,12 +13,12 @@
 export default {
     mounted(){
         var tween = window.TweenMax.to('.image-zoom',1,{scale:1});
-        new window.ScrollMagic.Scene({ duration: 1000})
+        new window.ScrollMagic.Scene({ duration: 2000})
         .setTween(tween)
         .setPin('.zoom-div')
         .addTo(window.controller)
         var tween2 = window.TweenMax.to('.image-caption',1,{opacity:1,scale:1});
-        var scene = new window.ScrollMagic.Scene({triggerElement: 'image-caption', offset: 200,duration: 500,})
+        var scene = new window.ScrollMagic.Scene({triggerElement: 'image-caption', offset: 900,duration: 500,})
         .setTween(tween2)
         .addTo(window.controller)
         
@@ -32,13 +32,13 @@ export default {
         width: 100vw;
     }
     .image-zoom{
-        background-image: url("../../assets/zoom-img.jpeg");
+        background-image: url("../../assets/2k.jpg");
         /* overflow: hidden; */
         min-height: 100vh;
         /* max-height: 100vh; */
         min-width: 100vw;
         width: auto;
-        transform: scale(2.0);
+        transform: scale(3.0);
         background-position: 50% 50%;
         background-repeat: no-repeat;
         background-size: cover;
@@ -46,7 +46,7 @@ export default {
     }
 
     .image-caption {
-
+        /* background-image: url("../../assets/zoom-img-3.jpeg"); */
         color: white;
         width: 100%;
         height: 100vh;

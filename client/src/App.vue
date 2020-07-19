@@ -39,6 +39,24 @@
               <a class="dropdown-item" href="#">SOMETHING ELSE</a>
             </div>
           </li>
+          <!-- <li class="nav-item dropdown show">
+            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button">
+              DROPDOWN
+            </a>
+            <div class="dropdown-menu show" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">ACTION</a>
+              <a class="dropdown-item" href="#">ANOTHER ACTION</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+            </div>
+          </li> -->
           <div class="div-icons ml-auto d-flex d-inline-block">
             <li class="nav-item">
               <a class="nav-link icons" href="#" @click="isModalVisible = true"><i class="far fa-user fa-lg"></i></a>
@@ -70,6 +88,7 @@
               <a class="dropdown-item py-2 px-4" href="#">SOMETHING ELSE HERE</a>
             </div>
           </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="#">CART</a>
           </li>
@@ -84,39 +103,50 @@
     <home :class="{'blur-effect' : isModalVisible}"></home>
     <component :is="currentAuthPage" v-show="isModalVisible" @close="closeModal()" @change="currentAuthPage = $event"></component> 
     <!-- Footer -->
-<footer class="page-footer font-small special-color-dark pt-4">
+<footer class="background-col page-footer font-small special-color-dark pt-4">
 
   <!-- Footer Elements -->
   <div class="container">
 
     <!-- Social buttons -->
-    <ul class="list-unstyled list-inline text-center">
-      <li class="list-inline-item">
-        <a class="btn-floating btn-fb mx-1">
-          <i class="fab fa-facebook-f"> </i>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="btn-floating btn-tw mx-1">
-          <i class="fab fa-twitter"> </i>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="btn-floating btn-gplus mx-1">
-          <i class="fab fa-google-plus-g"> </i>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="btn-floating btn-li mx-1">
-          <i class="fab fa-linkedin-in"> </i>
-        </a>
-      </li>
-      <li class="list-inline-item">
-        <a class="btn-floating btn-dribbble mx-1">
-          <i class="fab fa-dribbble"> </i>
-        </a>
-      </li>
-    </ul>
+    <ul class="icon">
+  <li>
+    <a class="facebook" href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <i class="fa fa-facebook" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="twitter" href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <i class="fa fa-twitter" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="instagram" href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <i class="fa fa-instagram" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="google" href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <i class="fa fa-google-plus" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
     <!-- Social buttons -->
 
   </div>
@@ -161,7 +191,7 @@ export default {
   methods: {
     handleScroll(){
       this.updateScroll = window.scrollY; 
-      if(window.scrollY > 1000){
+      if(window.scrollY > 2100){
         this.hasScrolled = true;
       } else{
         this.hasScrolled = false;
@@ -199,15 +229,137 @@ export default {
 </script>
 
 <style scoped>
+  .background-col{
+    margin-top: 70px;
+    background-color: rgb(20, 20, 20);
+    padding-bottom: 20px;
+  }
 
+.icon {
+  margin:0 auto;
+  padding:0;
+  display:flex;
+  align-items:center;
+  width:400px;
+}
+.icon li {
+  list-style:none;
+}
+.icon li a {
+  display:block;
+  position:relative;
+  width:50px;
+  height:50px;
+  padding-top:10px;
+  /* line-height:100px; */
+  font-size:20px;
+  text-align:center;
+  text-decoration:none;
+  color:white;
+  margin: 0 30px;
+  transition:.5s;
+}
+.icon li a span {
+  position:absolute;
+  transition: transform .5s;
+}
+.icon li a span:nth-child(1),
+.icon li a span:nth-child(3){
+  width:100%;
+  height:3px;
+  background:white;
+}
+.icon li a span:nth-child(1) {
+  top:0;
+  left:0;
+  transform-origin: right;
+}
+.icon li a:hover span:nth-child(1) {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition:transform .5s;
+}
 
+.icon li a span:nth-child(3) {
+  bottom:0;
+  left:0;
+  transform-origin: left;
+}
+.icon li a:hover span:nth-child(3) {
+  transform: scaleX(0);
+  transform-origin: right;
+  transition:transform .5s;
+}
+
+.icon li a span:nth-child(2),
+.icon li a span:nth-child(4){
+  width:3px;
+  height:100%;
+  /* background:#white; */
+}
+.icon li a span:nth-child(2) {
+  top:0;
+  left:0;
+  transform:scale(0);
+  transform-origin: bottom;
+}
+.icon li a:hover span:nth-child(2) {
+  transform: scale(1);
+  transform-origin: top;
+  transition:transform .5s;
+}
+.icon li a span:nth-child(4) {
+  top:0;
+  right:0;
+  transform:scale(0);
+  transform-origin: top;
+}
+.icon li a:hover span:nth-child(4) {
+  transform: scale(1);
+  transform-origin: bottom;
+  transition:transform .5s;
+}
+
+.facebook:hover {
+  color: #3b5998;
+}
+.facebook:hover span { 
+  background: #3b5998;
+}
+.twitter:hover {
+  color: #1da1f2;
+}
+.twitter:hover span { 
+  background: #1da1f2;
+}
+.instagram:hover {
+  color: #c32aa3;
+}
+.instagram:hover span { 
+  background: #c32aa3;
+}
+.google:hover {
+  color: #dd4b39;
+}
+.google:hover span { 
+  background: #dd4b39;
+}
+.icon li a .twitter {
+  color: #1da1f2;
+}
+.icon li a:hover:nth-child(3) {
+  color: #c32aa3;
+}
+.icon li a:hover:nth-child(4) {
+  color: #dd4b39;
+}
 
   /* NAVBAR STYLING AND ANIMATION */
   .navbar{
     transition: background 0.5s;
     font-size: 15px;
     padding: 10px 0;
-    /* max-height: 54px; */
+    max-height: 65px;
   }
 
   .navbar ul li {

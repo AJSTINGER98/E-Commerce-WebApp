@@ -1,8 +1,8 @@
 <template>
     <div class="main-div d-flex">
       <div v-scrollanimation class="container-fluid justify-content-center">
-        <div id="myCarousel" class="carousel slide mx-4 h-100" data-ride="carousel">
-          <div class="carousel-inner row w-100 mx-auto">
+        <div id="myCarousel" class="carousel slide h-100 w-100" data-ride="carousel">
+          <div class="carousel-inner row mx-auto">
             <transition-group :name="direction" class="w-100 h-100 d-flex justify-content-around align-items-center">
               <div class="carousel-item col-12 col-md-6 col-xl-4 active" v-for="i in currentItem" :key= "i">
                   <div class="card">
@@ -19,15 +19,15 @@
               </div>
             </transition-group>    
           </div> 
+          <a class="carousel-control-prev carousel-arrows" role="button" data-slide="prev" @click="slideLeft">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next carousel-arrows" role="button" data-slide="next" @click="slideRight">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-        <a class="carousel-control-prev carousel-arrows" role="button" data-slide="prev" @click="slideLeft">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next carousel-arrows" role="button" data-slide="next" @click="slideRight">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
   </div>
   
@@ -136,13 +136,13 @@ export default {
 
 .before-enter{
   opacity:0;
-  transform: translateX(-200px);
+  /* transform: translateX(-200px); */
   transition: all 1.5s ease-out
 }
 
 .enter{
   opacity:1;
-  transform: translateX(0px);
+  /* transform: translateX(0px); */
 }
 
 .card-body{
@@ -192,7 +192,13 @@ export default {
 }
 
 .carousel-control-prev, .carousel-control-next{
+    position: absolute;
     width:50px;
+    top: 0;
+
+}
+.carousel-control-prev{
+  left: 0;
 }
 
 .card-title{
