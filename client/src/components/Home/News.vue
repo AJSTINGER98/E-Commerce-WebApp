@@ -136,13 +136,13 @@ export default {
 
 .before-enter{
   opacity:0;
-  transform: translateX(-200px);
+  /* transform: translateX(-200px); */
   transition: all 1.5s ease-out
 }
 
 .enter{
   opacity:1;
-  transform: translateX(0px);
+  /* transform: translateX(0px); */
 }
 
 .card-body{

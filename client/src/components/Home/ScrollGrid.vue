@@ -89,7 +89,7 @@ export default {
             .setTween(tween3)
             // .addIndicators('image')
             .addTo(window.controller)
-        }
+        },
         
      
     },
@@ -105,26 +105,32 @@ export default {
 <style scoped>
     
     .background-div{
-        padding-top: 80px;
+        padding-top: 70px;
         max-width: 100vw;
-        max-height: 100vh;
+        /* max-height: 100vh; */
         width: 100vw;
         height: 100vh;
         background-color: #222222;
         color : #6c757d;
         overflow: hidden;
         margin: 30px auto;
+    
     }
     .text-container{
-        padding: 10px 20px;
+        padding: 0px 20px;
+        /* margin-top:90px */
+
     }
     .content:nth-child(2){
-        margin-top: 20px;
-        margin-bottom: 20px;
+        /* margin-top: 20px; */
+        /* margin-bottom: 20px; */
     }
-    /* .content{
-        transform:scale(10vw);
-    } */
+    .content{
+        transform:scale(0.85);
+    }
+    p{
+        margin:0;
+    }
     .image-div{
         overflow: hidden;
         
@@ -139,7 +145,8 @@ export default {
 
         .content{
 
-            transform: scale(0.75);
+            /* transform: scale(0.75); */
+            margin-bottom: 20px;
         }
         .image-div img{
             top: 15vh;
@@ -155,8 +162,12 @@ export default {
     }
     .content{
         transition: color 0.3s ease;
+        margin-bottom:20px
     }
     .content-text{
-        text-align: center;
+        text-align: left;
+    }
+     .content-text:hover{
+         color: white;
     }
 </style>

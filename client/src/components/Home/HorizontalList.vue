@@ -1,22 +1,22 @@
 <template>
   <div class="py-4">
         <div v-scrollanimation class="container d-flex text-center justify-content-center my-4 ">
-            <h1>FEATURED CATALOG</h1>
+            <h1>Our Latest Products</h1>
         </div>
-        <div v-scrollanimation class="d-none d-md-block middle-btn">
+        <!-- <div v-scrollanimation class="d-none d-md-block middle-btn">
             <button class="hello" style="--content: 'Drag to explore!';">
                 <div class="left"></div>
                   Drag to explore! 
                 <div class="right"></div>
             </button>
-        </div>
+        </div> -->
 
         <div v-scrollanimation id="yourDiv" class="horizontal-scrollable my-4">
             <div class="d-flex w-100">
                 <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
 
                     <div class="img-card w-100">
-                        <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
+                        <img class="card-img" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Card image cap">
 
                     </div>
                     <div class="img-footer">
@@ -33,7 +33,7 @@
                 <div v-scrollanimation class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
 
                     <div class="img-card w-100">
-                        <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
+                        <img class="card-img" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Card image cap">
 
                     </div>
                     <div class="img-footer">
@@ -50,7 +50,7 @@
                 <div v-scrollanimation class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
 
                     <div class="img-card w-100">
-                        <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
+                        <img class="card-img" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Card image cap">
 
                     </div>
                     <div class="img-footer">
@@ -67,7 +67,7 @@
                 <div class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
 
                     <div class="img-card w-100">
-                        <img class="card-img" src="../../assets/try2.png" alt="Card image cap">
+                        <img class="card-img" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Card image cap">
 
                     </div>
                     <div class="img-footer">
@@ -80,7 +80,24 @@
                         </div>
                     </div>
                     
-                </div>                
+                </div>             
+                <div class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
+
+                    <div class="img-card w-100">
+                        <img class="card-img" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Card image cap">
+
+                    </div>
+                    <div class="img-footer">
+                        <div class="upper-div mx-0 ">
+                            <button class="btn">VIEW</button>
+                        </div>
+                        <div class="lower-div mx-0 ">
+                            <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
+                            <h5 class="mb-1 text-weight-bold">$ 50</h5>
+                        </div>
+                    </div>
+                    
+                </div>       
                 
             </div>
         </div>
@@ -156,13 +173,13 @@ slider.addEventListener("mousemove", e => {
     }
     .before-enter{
         opacity:0;
-        transform: translateX(200px);
+        /* transform: translateX(200px); */
         transition: all 1.5s ease-out
     }
 
     .enter{
         opacity:1;
-        transform: translateX(0px);
+        /* transform: translateX(0px); */
     }
 
     /* The heart of the matter */
@@ -205,33 +222,37 @@ slider.addEventListener("mousemove", e => {
         margin: 10px auto;
     }
     .img-card {
-        height: 50vh;
-        width: 100%;
-        min-height: 400px;
-        min-width: 300px;
-        max-width: 350px;
+        /* height: 50vh; */
+        /* width: 100%; */
+        height: 300px;
+        /* min-width: 300px; */
+        /* max-width: 350px; */
+        width:70%;
+        /* height:70%; */
         overflow: hidden;
         cursor: pointer;
+        padding-bottom: 50px
     }
     .img-card img{
         margin: 0;
         padding: 0;
-        height: 80%;
-        min-width: 100%;
+        height: 100%;
+        width: 100%;
         transition: transform 1s ease-in-out;
     }
     .div-hover:hover .img-card img{
-        transform: scale(1.2);
+        /* transform: scale(1.1); */
     }
     
     .img-footer {
-        width: 100%;
-        margin: 0;
+        /* width: 100%; */
+        margin: 0 auto ;
         bottom: 0;
         padding: 2px;
         font-size: 2px;
         color: black;
-        min-width: 300px;
+        width:200px;
+        min-width: 200px;
         max-width: 350px;
     }
     .upper-div{
@@ -252,9 +273,10 @@ slider.addEventListener("mousemove", e => {
         background-position: 50% 100%;    
         color: white;
         transition: all 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-        padding:10px 30px ;
+        padding:10px 60px ;
         border-radius: 0;
-        width: 99%;
+        /* width: 50%; */
+        margin:0 auto;
         animation: slide-out 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     }
     .img-footer .upper-div .btn:hover {
@@ -305,7 +327,6 @@ slider.addEventListener("mousemove", e => {
   border: none;
   background: none;
   cursor: pointer;
-  
   font-family: "Source Code Pro";
   font-weight: 900;
   text-transform: uppercase;
@@ -313,7 +334,7 @@ slider.addEventListener("mousemove", e => {
   color: black;
   
   background-color: #81f;;
-  box-shadow:  hsla(210, 40%, 52%, .4) 2px 2px 22px;
+  /* box-shadow:  hsla(210, 40%, 52%, .4) 2px 2px 22px; */
   border-radius: 4px; 
   z-index: 0;  
   overflow: hidden;   

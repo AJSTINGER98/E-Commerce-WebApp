@@ -2,30 +2,33 @@
   <div>
     <!-- <carousel></carousel> -->
     <zoom-image></zoom-image>
-    <homepage-brands></homepage-brands>
+    <!-- <homepage-brands></homepage-brands> -->
     <div class="container-fluid">
       <horizontal-list></horizontal-list>  
     </div>
     <div class="parallax">
       <news></news>
     </div>
-    <home-div></home-div>
+    <!-- <home-div></home-div> -->
     <scroll-grid-mobile v-if="check"></scroll-grid-mobile>
     <scroll-grid v-else></scroll-grid>
-    <alternate></alternate>
+    <!-- <alternate></alternate> -->
+    <logo></logo>
   </div>
 </template>
 
 <script>
-import carousel from './Carousel.vue';
+// import carousel from './Carousel.vue';
 import zoomImage from './ZoomImage.vue';
-import homepageBrands from './HomepageBrands.vue';
+// import homepageBrands from './HomepageBrands.vue';
 import horizontalList from './HorizontalList.vue';
 import homeDiv from './HomeDiv.vue';
 import alternate from './Alternate.vue';
 import news from './News';
+import logo from './Logo';
 import scrollGrid from './ScrollGrid.vue';
 import scrollGridMobile from './ScrollGridMobile.vue'
+
 export default {
    data(){
         return{
@@ -56,12 +59,13 @@ export default {
     components: {
     // carousel,
     zoomImage,
-    homepageBrands,
+    // homepageBrands,
     horizontalList,
-    homeDiv,
-    alternate,
+    // homeDiv,
+    // alternate,
     news,
     scrollGrid,
+    logo,
     scrollGridMobile
   }
 }
