@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div id="clients">
+  <div v-scrollanimation>
+    <div v-scrollanimation id="clients">
          <div class="d-flex justify-content-center mt-0 pt-0 mb-4">
               <h6 class="text-secondary">Powered By:</h6>
           </div>
@@ -61,11 +61,23 @@ window.$(function(){
 </script>
 
 <style scoped>
+
+.before-enter{
+  opacity:0;
+  /* transform: translateX(-200px); */
+  transition: all 2s ease-out
+}
+
+.enter{
+  opacity:1;
+  /* transform: translateX(0px); */
+}
 /*Logo carousel*/
 #clients {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+  margin-top: 40px;
 }
 
 #clients .clients-wrap {

@@ -1,6 +1,7 @@
 <template>
   <div id="#app">
-    <nav class="navbar navbar-expand-lg fixed-top" :class= "{'background-dark': hasScrolled,'bg-transparent' : !hasScrolled }">
+    <nav class="navbar navbar-expand-lg fixed-top background-dark" :class= "{'background-dark': hasScrolled,'bg-transparent' : !hasScrolled, 'background-dark': navbar() }" >
+      <!--  -->
       <a class="navbar-brand nav-header navbar-mobile" :class="{'nav-header-scroll': hasScrolled}"  href="#"><img src="./assets/nav-logo.png" alt="nav-logo"></a>
       <button :class="{'btn-open': isToggled}" class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" @click="isToggled = !isToggled" >
         <div class="hamburger">
@@ -16,10 +17,13 @@
       <div class="collapse navbar-collapse container" v-if="checkWidth">
         <ul class="navbar-nav mr-0 w-100 nav-body pt-1" >
           <li class="nav-item active">
-            <a class="nav-link" href="#" selected><span> HOME</span></a>
+            <a class="nav-link" href="/" selected><span> HOME</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><span>ABOUT</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact-us"><span>CONTACT US</span></a>
           </li>
           <li class="nav-item dropdown show">
             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button">
@@ -100,7 +104,10 @@
       </div>
     </nav>
     <!-- Login/SignUp Component -->
-    <home :class="{'blur-effect' : isModalVisible}"></home>
+    <router-view :class="{'blur-effect' : isModalVisible}">
+
+    </router-view>
+    <!-- <home :class="{'blur-effect' : isModalVisible}"></home> -->
     <component :is="currentAuthPage" v-show="isModalVisible" @close="closeModal()" @change="currentAuthPage = $event"></component> 
     <!-- Footer -->
 <footer class="background-col page-footer font-small special-color-dark pt-4">
@@ -178,6 +185,7 @@ export default {
         width : 0,
         height : 0
       }
+      
 
     }
   },
@@ -189,9 +197,15 @@ export default {
   },
 
   methods: {
+    navbar(){
+      if(this.$route.fullPath!="/"){
+        this.hasScrolled= true;
+        // console.log("Hello")
+      }
+    },
     handleScroll(){
       this.updateScroll = window.scrollY; 
-      if(window.scrollY > 2100){
+      if(window.scrollY > 400){
         this.hasScrolled = true;
       } else{
         this.hasScrolled = false;

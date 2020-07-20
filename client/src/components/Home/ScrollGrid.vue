@@ -3,8 +3,8 @@
     <!-- for xs, sm -->
     
     <!-- For md, lg, xl -->
-  <div class="background-div d-flex align-items-center justify-content-center">
-      <div class="row">
+  <div v-scrollanimation class="background-div d-flex align-items-center justify-content-center">
+      <div v-scrollanimation class="row">
           <div class="col-12 col-md-6 col-xl-4 text-container">
             <div class="scroll-bar"></div>
               <!-- <div class="scrollbar"></div> -->
@@ -112,6 +112,16 @@ export default {
 </script>
 
 <style scoped>
+.before-enter{
+  opacity:0;
+  /* transform: translateX(-200px); */
+  transition: all 2s ease-out
+}
+
+.enter{
+  opacity:1;
+  /* transform: translateX(0px); */
+}
     
     .background-div{
         padding-top: 70px;
@@ -181,7 +191,7 @@ export default {
     }
     .scroll-bar{
         position: absolute;
-        width: 5px;
+        width: 3px;
         
         /* height: 20vh; */
         background-color: white;

@@ -137,7 +137,7 @@ export default {
 .before-enter{
   opacity:0;
   /* transform: translateX(-200px); */
-  transition: all 1.5s ease-out
+  transition: all 2s ease-out
 }
 
 .enter{

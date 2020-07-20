@@ -2,7 +2,7 @@
   <div class="zoom-div">
       <div class="image-zoom">
           <div class="image-caption">
-              <p class="image-caption-header">Inpired by Modern Technology</p>
+              <p class="image-caption-header">Inspired by Modern Technology</p>
               <p>Taknikki Factorry</p>
           </div>
       </div>

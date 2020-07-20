@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- <carousel></carousel> -->
-    <zoom-image></zoom-image>
+    <carousel></carousel>
+    <!-- <zoom-image></zoom-image> -->
     <!-- <homepage-brands></homepage-brands> -->
     <div class="container-fluid">
       <horizontal-list></horizontal-list>  
@@ -18,8 +18,8 @@
 </template>
 
 <script>
-// import carousel from './Carousel.vue';
-import zoomImage from './ZoomImage.vue';
+import carousel from './Carousel.vue';
+// import zoomImage from './ZoomImage.vue';
 // import homepageBrands from './HomepageBrands.vue';
 import horizontalList from './HorizontalList.vue';
 import homeDiv from './HomeDiv.vue';
@@ -57,8 +57,8 @@ export default {
         },
     },
     components: {
-    // carousel,
-    zoomImage,
+    carousel,
+    // zoomImage,
     // homepageBrands,
     horizontalList,
     // homeDiv,

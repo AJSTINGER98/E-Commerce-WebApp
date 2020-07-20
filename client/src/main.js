@@ -2,25 +2,32 @@ import Vue from 'vue';
 import App from './App.vue';
 import scrollAnimation from './directives/scrollAnimation';
 import jQuery from 'jquery';
-import AOS from 'aos';
-import "aos/dist/aos.css";
 import VueScrollmagic from 'vue-scrollmagic';
+import VueRouter from 'vue-router';
 
+import Home from './components/Home/Home.vue';
+import Contact from './components/ContactUs/Contact.vue';
 
+Vue.use(VueRouter);
 Vue.use(VueScrollmagic);
 
 Vue.directive('scrollanimation', scrollAnimation);
 
-
+const routes = [
+  { path: '/', component: Home },
+  { path: '/contact-us', component: Contact }
+]
 
 window.$ = jQuery;
 
 
 Vue.config.productionTip = false;
+const router = new VueRouter({
+  routes,
+  mode: 'history',
+})
 
 new Vue({
-  created(){
-    AOS.init();
-  },
+  router,
   render: h => h(App),
 }).$mount('#app');

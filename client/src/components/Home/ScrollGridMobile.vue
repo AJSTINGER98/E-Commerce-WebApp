@@ -60,7 +60,7 @@ export default {
 <style scoped>
     .before-enter{
     opacity:0;
-    transform: translateY(200px);
+    transform: translateY(100px);
     transition: all 1.2s ease-out
     }
 
