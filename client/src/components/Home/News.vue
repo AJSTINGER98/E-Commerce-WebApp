@@ -1,7 +1,10 @@
 <template>
     <div class="main-div d-flex">
       <div v-scrollanimation class="container-fluid justify-content-center">
-        <div id="myCarousel" class="carousel slide h-100 w-100" data-ride="carousel">
+        <div class="header w-100 my-4">
+          <h1 class="text-center">RECENT UPDATES</h1>
+        </div>
+        <div id="myCarousel" class="carousel slide h-75 w-100 my-auto" data-ride="carousel">
           <div class="carousel-inner row mx-auto">
             <transition-group :name="direction" class="w-100 h-100 d-flex justify-content-around align-items-center">
               <div class="carousel-item col-12 col-md-6 col-xl-4 active" v-for="i in currentItem" :key= "i">
@@ -193,7 +196,7 @@ export default {
 
 .carousel-control-prev, .carousel-control-next{
     position: absolute;
-    width:50px;
+    width:30px;
     top: 0;
 
 }
@@ -223,9 +226,9 @@ export default {
 /* VUE TRANSITION */
 
 .main-div{
-  height: 100%;
+  height: 800px;
+  min-height: 100%;
   padding-top: 10px;
-  min-height: 500px;
   background-color: rgb(0,0,0,0.7);
 }
 
@@ -282,6 +285,24 @@ export default {
   visibility: hidden;
   position: absolute;
   transform: translateX(-300%);
+}
+
+.header h1{
+  font-size: min(10vw, 4.5rem);
+  padding: 0;
+  font-weight: 700;
+  letter-spacing: 1vw;
+  border-bottom: 2px solid #f2f2f2;
+  border-top: 2px solid #f2f2f2;
+  /* width: max(5vw,50%); */
+  width: 100%;
+  color: #f2f2f2
+}
+.header{
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+  transform: translateZ(20px);
 }
 
 

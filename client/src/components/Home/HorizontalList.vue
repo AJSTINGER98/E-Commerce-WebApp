@@ -1,5 +1,5 @@
 <template>
-  <div class="py-4">
+  <div class="py-4" id="horizontalListContainer">
         <div v-scrollanimation class="container d-flex text-center justify-content-center my-4 ">
             <h1>Our Latest Products</h1>
         </div>
@@ -115,37 +115,40 @@ export default {
 
     }
 }
-window.onload= function() {
-    const slider = document.querySelector("#yourDiv");
-let isDown = false;
-let startX;
-let scrollLeft;
+if(window.location.pathname == '/'){
 
-slider.addEventListener("mousedown", e => {
-  isDown = true;
-  slider.classList.add("active");
-  startX = e.pageX - slider.offsetLeft;
-  scrollLeft = slider.scrollLeft;
-});
-
-slider.addEventListener("mouseleave", () => {
-  isDown = false;
-  slider.classList.remove("active");
-});
-
-slider.addEventListener("mouseup", () => {
-  isDown = false;
-  slider.classList.remove("active");
-});
-
-slider.addEventListener("mousemove", e => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - slider.offsetLeft;
-  const walk = x - startX;
-  slider.scrollLeft = scrollLeft - walk;
-})
-
+    window.onload= function() {
+        const slider = document.querySelector("#yourDiv");
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+    
+        slider.addEventListener("mousedown", e => {
+        isDown = true;
+        slider.classList.add("active");
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+        });
+    
+        slider.addEventListener("mouseleave", () => {
+        isDown = false;
+        slider.classList.remove("active");
+        });
+    
+        slider.addEventListener("mouseup", () => {
+        isDown = false;
+        slider.classList.remove("active");
+        });
+    
+        slider.addEventListener("mousemove", e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = x - startX;
+        slider.scrollLeft = scrollLeft - walk;
+        })
+    
+    }
 }
 // Scroll Horizontally
     // function scrollHorizontally(e) {
@@ -167,6 +170,7 @@ slider.addEventListener("mousemove", e => {
 </script>
 
 <style scoped>
+    
     .middle-btn{
         width:250px;
         margin: 0 auto;
@@ -219,7 +223,8 @@ slider.addEventListener("mousemove", e => {
     
     .div-hover{
         max-width: max-content;
-        margin: 10px auto;
+        margin: 10px 10px;
+
     }
     .img-card {
         /* height: 50vh; */
@@ -231,22 +236,19 @@ slider.addEventListener("mousemove", e => {
         /* height:70%; */
         overflow: hidden;
         cursor: pointer;
-        padding-bottom: 50px
+        padding-bottom: 50px;
     }
     .img-card img{
         margin: 0;
         padding: 0;
-        height: 100%;
+        height: auto;
         width: 100%;
         transition: transform 1s ease-in-out;
     }
-    .div-hover:hover .img-card img{
-        /* transform: scale(1.1); */
-    }
-    
+ 
     .img-footer {
         /* width: 100%; */
-        margin: 0 auto ;
+        margin:10px 0px ;
         bottom: 0;
         padding: 2px;
         font-size: 2px;

@@ -3,24 +3,24 @@
     <!-- for xs, sm -->
     
     <!-- For md, lg, xl -->
-  <div v-scrollanimation class="background-div d-flex align-items-center justify-content-center">
+  <div v-scrollanimation class="background-div d-flex align-items-center justify-content-center" id="scrollGrid">
       <div v-scrollanimation class="row">
           <div class="col-12 col-md-6 col-xl-4 text-container">
             <div class="scroll-bar"></div>
               <!-- <div class="scrollbar"></div> -->
-              <div class="d-flex d-inline block mx-4 content justify-content-center" id="content1">
-                  <div class="content-text ">
+              <div class="d-flex d-inline block mx-4 content justify-content-center" @click="scroll(scrollval+50)" id="content1">
+                  <div class="content-text">
                       <h3>Our Moto, Customer Satisfaction</h3>
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores praesentium ipsa velit fuga eum. Architecto, fugiat ullam. Ducimus dolorem ab rerum ratione rem debitis</p>
                   </div>
               </div>
-              <div class="d-flex d-inline block mx-4 content justify-content-center" id="content2">
+              <div class="d-flex d-inline block mx-4 content justify-content-center" @click="scroll(scrollval+1600)" id="content2">
                   <div class="content-text ">
                       <h3>Our Promise, On Time Delivery</h3>
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores praesentium ipsa velit fuga eum. Architecto, fugiat ullam. Ducimus dolorem ab rerum ratione rem debitis</p>
                   </div>
               </div>
-              <div class="d-flex d-inline block mx-4 content justify-content-center" id="content3">
+              <div class="d-flex d-inline block mx-4 content justify-content-center" @click="scroll(scrollval+3000)" id="content3">
                   <div class="content-text">
                       <h3>Our Moto, Customer Satisfaction</h3>
                       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores praesentium ipsa velit fuga eum. Architecto, fugiat ullam. Ducimus dolorem ab rerum ratione rem debitis</p>
@@ -45,25 +45,43 @@
 
 <script>
 export default {
-  
+    
+    data(){
+        return{
+            scrollval: 0
+        }
+    },
+
     methods:{
         animation(){
             
     
             new window.ScrollMagic.Scene({triggerElement:'.background-div',
                                             triggerHook: 'onLeave',
-                                            duration:'2400'})
+                                            duration:'3200'})
             .setPin('.background-div')
             // .addIndicators('scroll-div')
             .addTo(window.controller)
     
             //CONTENT 
+            var offset = 0
             for(var i=0;i<3;i++){
-                new window.ScrollMagic.Scene({triggerElement: `.background-div`,triggerHook:'onLeave',duration:'800',offset:`${i*800}`})
-                .setClassToggle(`#content${i+1}`,'text-active')
-                .setTween()
-                // .addIndicators('Toggle-Text')
-                .addTo(window.controller)
+                if(i == 0 || i == 2){
+                    new window.ScrollMagic.Scene({triggerElement: `.background-div`,triggerHook:'onLeave',duration:'800',offset:offset})
+                    .setClassToggle(`#content${i+1}`,'text-active')
+                    .setTween()
+                    // .addIndicators('Toggle-Text')
+                    .addTo(window.controller)
+                    offset+= 800
+
+                } else {
+                    new window.ScrollMagic.Scene({triggerElement: `.background-div`,triggerHook:'onLeave',duration:'1600',offset:offset})
+                    .setClassToggle(`#content${i+1}`,'text-active')
+                    .setTween()
+                    // .addIndicators('Toggle-Text')
+                    .addTo(window.controller)
+                    offset += 1600
+                }
             }
     
             var tween1 = window.TweenMax.to('#image1',1,{opacity:0, y:'-100%'})
@@ -80,25 +98,28 @@ export default {
             // .addIndicators('image')
             .addTo(window.controller)
         
-            new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'800',offset: '800'})
+            new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'1600',offset: '800'})
             .setTween(tween2)
             // .addIndicators('image')
             .addTo(window.controller)
     
-            new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'600',offset: '1600'})
+            new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'600',offset: '2400'})
             .setTween(tween3)
             // .addIndicators('image')
             .addTo(window.controller)
 
             var tweenScroll = new window.TimelineMax()
-                                .to('.scroll-bar',800,{y: '150%'})
-                                .to('.scroll-bar',800,{y: '350%'})
+                                .to('.scroll-bar',800,{y: '160%'})
+                                .to('.scroll-bar',800,{y: '330%'})
 
 
-            new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'2400'})
+            new window.ScrollMagic.Scene({triggerElement: '.background-div',triggerHook:'onLeave',duration:'3200'})
             .setTween(tweenScroll)
             .addTo(window.controller)
         },
+        scroll(val){
+            window.scrollTo(0,val);
+        }
         
      
     },
@@ -106,6 +127,8 @@ export default {
     mounted(){
         
         this.animation()
+        this.scrollval = window.$('#scrollGrid').offset().top
+        // console.log(scrollval);
      
     }
 }
@@ -185,9 +208,11 @@ export default {
     }
     .content-text{
         text-align: left;
+        cursor: pointer;
     }
      .content-text:hover{
          color: white;
+         
     }
     .scroll-bar{
         position: absolute;

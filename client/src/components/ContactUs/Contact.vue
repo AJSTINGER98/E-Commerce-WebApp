@@ -80,8 +80,19 @@
                         <button class="btn" @click="show('sales', sales)">Contact Sales</button>
                      </div>
                      <transition name="slide-fade">
-                     <div class="card-body"  v-show="sales">
-                            <h1>Phone Number: 9123912391</h1>
+                     <div class="card-body flip-card"  v-show="sales">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <!-- <img src="../../assets/envelope.png"> -->
+                                </div>
+                                <div class="flip-card-back">
+                                    <h3>Email:</h3> 
+                                    <a href="mailto:amann.jha@gmail.com" class="text-dark">amann.jha@gmail.com</a> 
+                                    <br><br>
+                                    <h3>Phone:</h3> 
+                                    <a href="tel:+91 7003995321" class="text-dark">+91 7003995321</a> 
+                                </div>
+                            </div>
                      </div>
                     </transition>
                 </div>
@@ -149,16 +160,15 @@ export default {
 </script>
 
 <style scoped>
-.map-responsive iframe{
-    /* margin-left:-20px; */
-}
+
     .posi{
-        margin:100px 20px !important;
+        margin:200px 20px !important;
+        /* min-height: 700px; */
     }
     .card{
         border: none;
         background: none;
-        text-align: center
+        text-align: center;
     }
     .container{
         padding-bottom:20px
@@ -210,13 +220,61 @@ export default {
     }
 .slide-fade-enter-active {
   transition: all .8s ease;
+  
+
 }
 .slide-fade-leave-active {
   transition: all .8s ease;
+  
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateY(-30px);
   opacity: 0;
+  /* height: 0px; */
 }
+
+
+
+/* FLIP_CARD */
+.flip-card {
+    display: flex;
+    justify-content: center;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+
+.flip-card-front, .flip-card-back {
+  padding: 30px;
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  color: black;
+  background-image: url('../../assets/envelope.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.flip-card-back {
+  color: black;
+  transform: rotateY(180deg);
+}
+
 </style>

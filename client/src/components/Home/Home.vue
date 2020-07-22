@@ -78,7 +78,7 @@ export default {
  background-image: url("../../assets/parallax.jpg");
  
  /* Set a specific height */
- min-height: 500px;
+ min-height: 800px;
  min-width: 100%; 
  height: auto;
  /* Create the parallax scrolling effect */

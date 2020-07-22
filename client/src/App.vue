@@ -25,24 +25,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/contact-us"><span>CONTACT US</span></a>
           </li>
-          <li class="nav-item dropdown show">
-            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button">
-              DROPDOWN
-            </a>
-            <div class="dropdown-menu show" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">ACTION</a>
-              <a class="dropdown-item" href="#">ANOTHER ACTION</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-              <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-            </div>
-          </li>
+          
           <!-- <li class="nav-item dropdown show">
             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button">
               DROPDOWN
@@ -62,6 +45,24 @@
             </div>
           </li> -->
           <div class="div-icons ml-auto d-flex d-inline-block">
+            <li class="nav-item dropdown show">
+              <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button">
+                DROPDOWN
+              </a>
+              <div class="dropdown-menu show" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">ACTION</a>
+                <a class="dropdown-item" href="#">ANOTHER ACTION</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
+              </div>
+            </li>
             <li class="nav-item">
               <a class="nav-link icons" href="#" @click="isModalVisible = true"><i class="far fa-user fa-lg"></i></a>
             </li>
@@ -76,10 +77,13 @@
       <div class="sidebar" :class="{'sidebar-active' : isToggled}"  v-else>
           <ul class="navbar-nav w-100" >
           <li class="nav-item">
-            <a class="nav-link" href="#" selected>HOME</a>
+            <a class="nav-link" href="/" selected>HOME</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"> ABOUT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact-us">CONTACT US</a>
           </li>
           <li class="nav-item dropdown show">
             <a class="nav-link" href="#" id="navbarDropdown" role="button" @click="toggleDropdown = !toggleDropdown">
@@ -113,7 +117,7 @@
 <footer class="background-col page-footer font-small special-color-dark pt-4">
 
   <!-- Footer Elements -->
-  <div class="container">
+  <div class="container d-flex justify-content-center">
 
     <!-- Social buttons -->
     <ul class="icon">
@@ -253,8 +257,13 @@ export default {
   margin:0 auto;
   padding:0;
   display:flex;
-  align-items:center;
-  width:400px;
+  justify-content: center;
+  width: 400px;
+}
+@media screen and (max-width: 576px){
+  .icon{
+    transform: scale(0.6);
+  }
 }
 .icon li {
   list-style:none;
