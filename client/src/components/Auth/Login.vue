@@ -17,10 +17,15 @@
             <div class="modal-body d-flex justify-content-center">
                 <form class="p-0 w-100 ">
                     <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                        <input type="text" name= "email" class="input-group-text bg-transparent w-100 py-2" placeholder="Email">
+                            <input type="text" required>
+                            <span class="bar"></span>
+                            <label>Email</label>
                     </div>
+
                     <div class="input-group d-flex justify-content-center w-100 my-4 bg-white">
-                        <input type="password" name = "password" class="input-group-text bg-transparent w-100 py-2" placeholder="Password">
+                            <input type="password" required>
+                            <span class="bar"></span>
+                            <label>Password</label>
                     </div>
 
                     <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 bg-white text-center">
@@ -55,6 +60,75 @@ export default {
 </script>
 
 <style scoped>
+
+    .input-group {
+    position: relative;
+    margin: 0 auto;
+        /* text-align:center; */
+
+    }
+
+    input, textarea {
+    font-size: 18px;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-radius: 10%;
+        /* text-align:center; */
+
+    /* border: 1px solid #757575; */
+    }
+
+    input:focus, textarea:focus {
+    outline: none;
+    }
+
+    label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    width:77%;
+    padding-left:5px; 
+    /* padding-left: 32%; */
+    /* padding-right: 32%; */
+    /* padding: 0 auto; */
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+    }
+
+    input:focus ~ label,
+    input:valid ~ label, 
+    textarea:focus ~ label {
+    top: -22px;
+    font-size: 15px;
+    color: black;
+    /* padding-left: 32%; */
+    }
+
+    .bar {
+    position: relative;
+    display:block;
+    width:100%;
+    background:black;
+    height:2px;
+    border-radius: 10px;
+    transform: scaleX(0);
+    transition: all 0.3s ease;
+    }
+
+
+    input:focus ~ .bar,
+    textarea:focus ~ .bar{
+    /*   width: 50%; */
+    transform: scaleX(1);
+    }
+
     .modal-mask {
         position: fixed;
         z-index: 9998;
@@ -78,7 +152,7 @@ export default {
         height: 80vh;
         margin: 0px auto;
         padding: 20px 30px;
-        background-color: #fff;
+        background-color: #f2f2f2;
         border-radius: 2px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
         transition: all 0.5s ease-out;
@@ -100,7 +174,7 @@ export default {
         border-top: 1px solid black;
     }
 
-    .input-group , .input-group-text{
+    /* .input-group , .input-group-text{
         text-align: start;
         border-radius: 0;
         vertical-align: middle;
@@ -108,7 +182,7 @@ export default {
     .input-group:focus , .input-group-text:focus{
         outline: none;
         border: 1px solid black;
-    }
+    } */
 
     .btn {
         border: 1px solid black;

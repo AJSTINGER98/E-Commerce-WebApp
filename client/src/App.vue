@@ -19,9 +19,9 @@
           <li class="nav-item active">
             <a class="nav-link" href="/" selected><span> HOME</span></a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="#"><span>ABOUT</span></a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="/contact-us"><span>CONTACT US</span></a>
           </li>
@@ -108,9 +108,12 @@
       </div>
     </nav>
     <!-- Login/SignUp Component -->
-    <router-view :class="{'blur-effect' : isModalVisible}">
+    <transition name="fade-custom" mode="out-in">
+        <keep-alive>
+      <router-view :class="{'blur-effect' : isModalVisible}"></router-view>
+        </keep-alive>
+    </transition>
 
-    </router-view>
     <!-- <home :class="{'blur-effect' : isModalVisible}"></home> -->
     <component :is="currentAuthPage" v-show="isModalVisible" @close="closeModal()" @change="currentAuthPage = $event"></component> 
     <!-- Footer -->
@@ -247,6 +250,16 @@ export default {
 </script>
 
 <style scoped>
+
+
+.fade-custom-enter-active,
+.fade-custom-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-custom-enter,
+.fade-custom-leave-to {
+  opacity: 0;
+}
   .background-col{
     margin-top: 70px;
     background-color: rgb(20, 20, 20);

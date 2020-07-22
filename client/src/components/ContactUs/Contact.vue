@@ -28,34 +28,27 @@
                    <transition name="slide-fade">
                      <div class="card-body" v-show="support">
                          <form>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Email address</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        <div class="input-group">
+                            <input type="text" required>
+                            <span class="bar"></span>
+                            <label>Name</label>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Example select</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            </select>
+                        <div class="input-group">
+                            <input type="email" required>
+                            <span class="bar"></span>
+                            <label>Email</label>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect2">Example multiple select</label>
-                            <select multiple class="form-control" id="exampleFormControlSelect2">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            </select>
+                        <div class="input-group">
+                            <input type="text" required>
+                            <span class="bar"></span>
+                            <label>Subject</label>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">Example textarea</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <div class="input-group">
+                            <textarea rows="4" cols="50"></textarea>
+                            <span class="bar"></span>
+                            <label>Message</label>
                         </div>
+                        <button class="btn">Submit</button>
                         </form>
                      </div>
                    </transition>
@@ -161,10 +154,88 @@ export default {
 
 <style scoped>
 
+.input-group {
+  position: relative;
+  margin: 40px 30px;
+    /* text-align:center; */
+
+}
+
+input, textarea {
+  font-size: 18px;
+  padding: 10px 10px 10px 10px;
+  display: block;
+  width: 300px;
+  border: none;
+  border-radius: 10px;
+    /* text-align:center; */
+
+  /* border-bottom: 1px solid #757575; */
+}
+
+input:focus, textarea:focus {
+  outline: none;
+}
+
+label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  width:77%;
+  /* padding-left: 32%; */
+  /* padding-right: 32%; */
+  /* padding: 0 auto; */
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+input:focus ~ label,
+input:valid ~ label, 
+textarea:focus ~ label {
+  top: -20px;
+  font-size: 15px;
+  color: black;
+/* padding-left: 32%; */
+}
+
+.bar {
+  position: relative;
+  display:block;
+  width:82%;
+  background:black;
+  height:2px;
+  border-radius: 10px;
+  transform: scaleX(0);
+  transition: all 0.3s ease;
+}
+
+
+input:focus ~ .bar,
+textarea:focus ~ .bar{
+/*   width: 50%; */
+  transform: scaleX(0.967);
+}
+
+
+
+/* input, textarea{
+    outline:none;
+    border: none;
+    border-radius: 8px;
+} */
+
     .posi{
-        margin:200px 20px !important;
-        /* min-height: 700px; */
+        margin:100px 20px !important;
+        
     }
+    /* .card-body{
+        transition: 0.3s ease;
+    } */
     .card{
         border: none;
         background: none;
@@ -192,6 +263,13 @@ export default {
         /* width: 50%; */
         margin:0 auto;
         animation: slide-out 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+           /* border: none; */
+        outline:black;
+    }
+    .btn:focus{
+        /* outline:none; */
+        outline:black;
+        /* border:none; */
     }
     .btn:hover {
         background-position: 100% 100%;
