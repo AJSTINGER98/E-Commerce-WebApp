@@ -62,26 +62,22 @@ export default {
 <style scoped>
 
     .input-group {
-    position: relative;
-    margin: 0 auto;
-        /* text-align:center; */
-
+        position: relative;
+        margin: 0 auto;
     }
 
-    input, textarea {
-    font-size: 18px;
-    padding: 10px 10px 10px 10px;
-    display: block;
-    width: 300px;
-    border: none;
-    border-radius: 10%;
-        /* text-align:center; */
-
-    /* border: 1px solid #757575; */
+    input {
+        font-size: 18px;
+        padding: 10px 10px 10px 10px;
+        display: block;
+        width: 300px;
+        border: none;
+        border-radius: 10%;
+        width: 100%;
     }
 
-    input:focus, textarea:focus {
-    outline: none;
+    input:focus {
+        outline: none;
     }
 
     label {
@@ -94,39 +90,32 @@ export default {
     top: 10px;
     width:77%;
     padding-left:5px; 
-    /* padding-left: 32%; */
-    /* padding-right: 32%; */
-    /* padding: 0 auto; */
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
     }
 
     input:focus ~ label,
-    input:valid ~ label, 
-    textarea:focus ~ label {
-    top: -22px;
-    font-size: 15px;
-    color: black;
-    /* padding-left: 32%; */
+    input:valid ~ label{
+        top: -22px;
+        font-size: 15px;
+        color: black;
     }
 
     .bar {
-    position: relative;
-    display:block;
-    width:100%;
-    background:black;
-    height:2px;
-    border-radius: 10px;
-    transform: scaleX(0);
-    transition: all 0.3s ease;
+        position: relative;
+        display:block;
+        width:100%;
+        background:black;
+        height:2px;
+        border-radius: 10px;
+        transform: scaleX(0);
+        transition: all 0.3s ease;
     }
 
 
-    input:focus ~ .bar,
-    textarea:focus ~ .bar{
-    /*   width: 50%; */
-    transform: scaleX(1);
+    input:focus ~ .bar{
+        transform: scaleX(1);
     }
 
     .modal-mask {
@@ -174,15 +163,7 @@ export default {
         border-top: 1px solid black;
     }
 
-    /* .input-group , .input-group-text{
-        text-align: start;
-        border-radius: 0;
-        vertical-align: middle;
-    }
-    .input-group:focus , .input-group-text:focus{
-        outline: none;
-        border: 1px solid black;
-    } */
+
 
     .btn {
         border: 1px solid black;
