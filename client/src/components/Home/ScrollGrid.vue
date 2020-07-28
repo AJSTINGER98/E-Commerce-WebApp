@@ -48,7 +48,8 @@ export default {
     
     data(){
         return{
-            scrollval: 0
+            scrollval: 0,
+
         }
     },
 
@@ -125,11 +126,9 @@ export default {
     },
     
     mounted(){
-        
+        var vm = this;
         this.animation()
         this.scrollval = window.$('#scrollGrid').offset().top
-        // console.log(scrollval);
-     
     }
 }
 </script>

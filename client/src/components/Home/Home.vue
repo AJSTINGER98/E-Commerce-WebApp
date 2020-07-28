@@ -1,7 +1,7 @@
 <template>
   <div>
     <carousel></carousel>
-    <!-- <zoom-image></zoom-image> -->
+    <!-- <zoom-image :key= "window.width"></zoom-image> -->
     <!-- <homepage-brands></homepage-brands> -->
     <div class="container-fluid">
       <horizontal-list></horizontal-list>  
@@ -11,7 +11,7 @@
     </div>
     <!-- <home-div></home-div> -->
     <scroll-grid-mobile v-if="check"></scroll-grid-mobile>
-    <scroll-grid v-else></scroll-grid>
+    <scroll-grid v-else :key= "window.width"></scroll-grid>
     <!-- <alternate></alternate> -->
     <logo></logo>
   </div>
