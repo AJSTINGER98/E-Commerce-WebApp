@@ -2,7 +2,7 @@
     <div class="row posi">
         <div class="container d-block text-center justify-content-center my-4">
             <h1 class="display-3 my-4" style="letter-spacing: 10px, font-weight: 700px">CONTACT US</h1>
-            <br> <br>
+            <!-- <br> -->
             <h1 class="mb-4">GET YOUR QUESTIONS ANSWERED</h1>
         </div>
         <div class="col-sm-6 col-md-4" 
@@ -56,7 +56,7 @@
                 </div>
          </div>
          <div class="col-sm-6 col-md-4"
-                :class="{'card-container-selected': sales, 'card-container': !sales}">
+                :class="{'card-container-sales': sales, 'card-container': !sales}">
                 <div class="card two">
                     <div class="view overlay">
                         <img class="card-img-top" src="../../assets/sales.png" alt="Card image cap">
@@ -92,7 +92,7 @@
                 </div>
          </div>
           <div class="col-sm-6 col-md-4"
-                :class="{'card-container-selected': reach, 'card-container': !reach}">
+                :class="{'card-container-reach': reach, 'card-container': !reach}">
                 <div class="card">
                     <div class="view overlay">
                         <img class="card-img-top" src="../../assets/reach.png" alt="Card image cap">
@@ -154,6 +154,12 @@ export default {
 </script>
 
 <style scoped>
+.btn:active,
+.btn:focus,
+.btn:focus:active {
+
+  box-shadow: none;
+}
 .card-container{
     height: 500px;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.8s;
@@ -161,6 +167,17 @@ export default {
 .card-container-selected{
     height: 1000px;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow:hidden;
+}
+.card-container-sales{
+    height: 700px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow:hidden;
+}
+.card-container-reach{
+    height: 800px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow:hidden;
 }
 .input-group {
     position: relative;
@@ -203,7 +220,7 @@ input:valid ~ label,
 textarea:focus ~ label {
   top: -20px;
   font-size: 15px;
-  color: black;
+  color: blue;
 
 }
 
@@ -211,7 +228,7 @@ textarea:focus ~ label {
   position: relative;
   display:block;
   width:300px;
-  background:black;
+  background: blue;
   height:2px;
   border-radius: 10px;
   transform: scaleX(0);
@@ -228,8 +245,10 @@ textarea:focus ~ .bar{
 
 
 .posi{
-    margin:100px 20px !important;
-    
+    margin-top:100px !important;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* margin-bottom: 100px; */
 }
 .card{
     border: none;

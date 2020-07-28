@@ -261,7 +261,7 @@ export default {
   opacity: 0;
 }
   .background-col{
-    margin-top: 70px;
+    /* margin-top: 70px; */
     background-color: rgb(20, 20, 20);
     padding-bottom: 20px;
   }

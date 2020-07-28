@@ -170,6 +170,11 @@ if(window.location.pathname == '/'){
 </script>
 
 <style scoped>
+    .btn:active,
+    .btn:focus,
+    .btn:focus:active {
+     box-shadow: none;
+    }
     
     .middle-btn{
         width:250px;

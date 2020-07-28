@@ -1,9 +1,9 @@
 <template>
     <div class="main-div d-flex">
       <div v-scrollanimation class="container-fluid justify-content-center">
-        <div class="header w-100 my-4">
-          <h1 class="text-center">RECENT UPDATES</h1>
-        </div>
+        <!-- <div class="header w-100 my-4">
+          <h1 class="text-center">Recent Updates</h1>
+        </div> -->
         <div id="myCarousel" class="carousel slide h-75 w-100 my-auto" data-ride="carousel">
           <div class="carousel-inner row mx-auto">
             <transition-group :name="direction" class="w-100 h-100 d-flex justify-content-around align-items-center">
@@ -164,8 +164,8 @@ export default {
   opacity: 0;
   transition: .5s ease;
   background-color:black;
- -webkit-transition: 0.6s ease;
-  transition: 0.6s ease;
+ -webkit-transition: 0.9s ease;
+  transition: 0.9s ease;
   border-radius: 20px;
 }
 
@@ -177,7 +177,7 @@ export default {
   transform: scale(1.08);
 }
 .zoom-effect-container{
-  transition: transform 0.6s ease;
+  transition: transform 0.9s ease;
 }
 
 .text {
