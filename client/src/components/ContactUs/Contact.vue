@@ -328,7 +328,9 @@ textarea:focus ~ .bar{
   width: inherit;
   height: inherit;
   -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
   backface-visibility: hidden;
+  
 }
 
 .flip-card-front {
