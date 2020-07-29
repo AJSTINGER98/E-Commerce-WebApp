@@ -14,6 +14,7 @@ Vue.use(VueScrollmagic);
 
 Vue.directive('scrollanimation', scrollAnimation);
 
+
 const routes = [
   { path: '/', component: Home },
   { path: '/contact-us', component: Contact },

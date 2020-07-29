@@ -110,7 +110,8 @@
     <!-- Login/SignUp Component -->
     <transition name="fade-custom" mode="out-in">
         <keep-alive>
-      <router-view :class="{'blur-effect' : isModalVisible}"></router-view>
+          <router-view :class="{'blur-effect' : isModalVisible}" v-if="$route.fullPath.startsWith('/product/')" :key="window.width"></router-view>
+          <router-view :class="{'blur-effect' : isModalVisible}" v-else></router-view>
         </keep-alive>
     </transition>
 
@@ -236,6 +237,7 @@ export default {
     checkWidth() {
       return this.window.width > 990 ? true : false;
     },
+    
   },
 
   components: {

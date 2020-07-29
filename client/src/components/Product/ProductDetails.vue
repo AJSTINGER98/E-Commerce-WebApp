@@ -1,9 +1,45 @@
 <template>
-  <div style="padding:100px 0px">
-      <div class="container fluid">
+  <div style="padding-top: 50px ;overflow-x:hidden">
+      <div class="main-container" style="overflow:hidden">
         <div class="row">
-          <div class="col-md-6 d-none d-md-block"></div>
-          <div class="col-12 col-md-6 justify-content-center">
+          <div class="carousel col-12 d-block d-md-none mt-3">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img class="d-block w-100" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block w-100" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block w-100" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Third slide">
+                    </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+          </div>
+          <div class="image-container col-md-6 d-none d-md-block">
+            <div class="inner-container container">
+              <img src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" 
+                  class="w-100" alt="image1">
+            </div>
+            <div class="inner-container container">
+              <img src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" 
+                  class="w-100" alt="image2">
+            </div>
+            <div class="inner-container container">
+              <img src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" 
+                  class="w-100" alt="image3">
+            </div>
+          </div>
+          <div class="content-div container col-12 col-md-6 justify-content-center">
             <div class="header">
               <h5 class="text-muted">GRAPHICS CARD</h5>
               <h1><strong>RTX 2080</strong> </h1>
@@ -11,7 +47,7 @@
               <br>
               <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sit saepe, asperiores molliti</p>
             </div>
-            <br><br>
+            <br>
             <hr>
             <div class="d-flex justify-content-center">
               <div class="input-group d-flex justify-content-end w-100 my-4 mb-2 bg-white text-center align-items-center">
@@ -27,14 +63,44 @@
 
             </div>
             <br><br>
-            <div class="row">
-              <div class="col-4 justify-content-center">
-                <div class="image">
-                  <!-- <img src="../../assets/fast-delivery-small.png" alt=""> -->
+            <div class="d-flex row d-none d-sm-block justify-content-around">
+              <div class="justify-content-center d-none d-sm-inline-block col-4">
+                <div class="image-logo d-flex justify-content-center p-4">
+                  <i class="fas fa-truck fa-3x"></i>
+                </div>
+                <div class="paragraph-logo py-2">
+                  <p>FAST DELIVERY</p> 
                 </div>
               </div>
-              <div class="col-4"></div>
-              <div class="col-4"></div>
+              <div class="justify-content-center d-none d-sm-inline-block col-4">
+                <div class="image-logo d-flex justify-content-center p-4">
+                  <i class="far fa-check-circle fa-3x"></i>
+                </div>
+                <div class="paragraph-logo py-2">
+                  <p class="pl-2">100% TRUST</p> 
+                </div>
+              </div>
+              <div class="justify-content-center d-none d-sm-inline-block col-4">
+                <div class="image-logo d-flex justify-content-center p-4">
+                  <i class="fas fa-shield-alt fa-3x"></i>
+                </div>
+                <div class="paragraph-logo py-2">
+                  <p>SECURE PAYMENT</p> 
+                </div>
+              </div>
+            </div>
+            <br><br>
+            <hr>
+            <div class="key-features">
+              <h1>Key Features</h1>
+              <div class="list">
+                <ul>
+                  <li><i class="fas fa-check"></i> <strong>GPU ARCHITECTURE</strong> : TURING</li>
+                  <li><i class="fas fa-check"></i> <strong>BOOST CLOCK</strong> : 1800 MHz (OC)</li>
+                  <li><i class="fas fa-check"></i> <strong>FRAME BUFFER</strong> : 8 GB GDDR6</li>
+                  <li><i class="fas fa-check"></i> <strong>MEMORY SPEED</strong> : 14 GBPS</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -51,6 +117,7 @@ export default {
       qtymin : 1,
     };
   },
+
   watch:{
     quantity : function(){
       if(this.quantity > this.qtymax){
@@ -59,12 +126,122 @@ export default {
       else if(this.quantity < this.qtymin){
         this.quantity = this.qtymin;
       }
-    }
+    },
+  },
+  methods:{
+    animation(){
+        if(window.innerWidth >= 768){
+        window.scene1 = new window.ScrollMagic.Scene({
+          triggerElement:'.main-container',
+          triggerHook:'onLeave',
+          duration:'3000'})
+          .setPin('.main-container')
+          .addTo(window.controller);
+        
+        var tween1 = window.TweenMax.to('.image-container',1,{ y:'-200%'})
+    
+        window.scene2 = new window.ScrollMagic.Scene({
+          triggerElement:'.main-container',
+          triggerHook:'onLeave',
+          duration:'3000'
+        })
+        .setTween(tween1)
+        .addTo(window.controller)
+      }
+    },
+  },
+
+  mounted(){
+    this.animation()
+
   }
 }
 </script>
 
 <style scoped>
+/* CAROUSEL */
+.carousel {
+  width: 100%;
+}
+.carousel-control-prev{
+  background: linear-gradient(90deg, rgba(52,51,51,1) 1%, rgba(81,79,79,1) 10%, rgba(255,251,251,0) 100%);
+}
+.carousel-control-next{
+    background: linear-gradient(270deg, rgba(52,51,51,1) 1%, rgba(81,79,79,1) 10%, rgba(255,251,251,0) 100%);
+
+}
+
+/* IMAGE DIV */
+
+.inner-container{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.image-container{
+  margin-top: 50px;
+  padding-top: 50px;
+  justify-content: center;
+  height: 100vh;
+  /* overflow: hidden; */
+}
+
+/* CONTENT DIV */
+  .content-div{
+    transform: scale(0.8);
+    overflow-y: scroll;
+    height: 100vh; 
+  }
+
+.content-div::-webkit-scrollbar {
+    width: 5px;
+    background-color: white;
+} 
+.content-div::-webkit-scrollbar-thumb{
+  background: black;
+  border-radius: 100px;
+}
+
+@media screen and (max-width: 767px) {
+  .content-div{
+    height: auto;
+    transform: scale(0.9);
+    margin: auto auto;
+  }
+}
+
+
+/* KEY FEATURES LIST */
+  .key-feature h1{
+    padding-left: 10px;
+    font-weight: 700;
+  }
+  .list ul{
+    list-style-type: none;
+    padding: 0;
+  }
+  .list ul li{
+    padding: 10px 0px;
+  }
+
+  /* LOGO STYLE */
+  .image-logo{
+
+    color: black;
+    background: transparent;
+    border:1px solid black;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+  }
+
+  .paragraph-logo{
+    text-align: center;
+    position: absolute;
+    left: 5px;
+  }
+
   /* QUANTITY INPUT */
   #Quantity::-webkit-inner-spin-button, 
   #Quantity::-webkit-outer-spin-button { 
@@ -79,12 +256,15 @@ export default {
   }
 
   #Quantity{
-    /* border: none; */
-    /* outline: none; */
+    background: #f2f2f2;
+    border: none;
+    outline: none;
     font-size: 30px;
     text-align: center !important;
     max-width: 80%;
     max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px #888888;
 
   }
 
@@ -122,7 +302,8 @@ export default {
         background-position: 50% 100%;    
         color: white;
         transition: all 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-        padding:10px 60px ;
+        /* padding:10px 60px ; */
+        padding: 0;
         border-radius: 40px;
         /* width: 50%; */
         margin:0 auto;
