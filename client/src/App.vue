@@ -1,5 +1,5 @@
 <template>
-  <div id="#app">
+  <div id="#app" :class="{'scrollDisable': isModalVisible}">
     <nav class="navbar navbar-expand-lg fixed-top background-dark" :class= "{'background-dark': hasScrolled,'bg-transparent' : !hasScrolled, 'background-dark': navbar() }" >
       <!--  -->
       <a class="navbar-brand nav-header navbar-mobile" :class="{'nav-header-scroll': hasScrolled}"  href="#"><img src="./assets/nav-logo.png" alt="nav-logo"></a>
@@ -25,7 +25,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/contact-us"><span>CONTACT US</span></a>
           </li>
-          
+          <li class="nav-item">
+            <a class="nav-link" href="/products"><span>PRODUCTS</span></a>
+          </li>
           <!-- <li class="nav-item dropdown show">
             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button">
               DROPDOWN
@@ -64,10 +66,10 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link icons" href="#" @click="isModalVisible = true"><i class="far fa-user fa-lg"></i></a>
+              <a class="nav-link icons" @click="isModalVisible = true"><i class="far fa-user fa-lg"></i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link icons" href="#"><i class="fas fa-shopping-cart fa-lg"></i></a>
+              <a class="nav-link icons"><i class="fas fa-shopping-cart fa-lg"></i></a>
             </li>
           </div>
         </ul>
@@ -110,7 +112,7 @@
     <!-- Login/SignUp Component -->
     <transition name="fade-custom" mode="out-in">
         <keep-alive>
-      <router-view :class="{'blur-effect' : isModalVisible}"></router-view>
+      <router-view :class="{'blur-effect' : isModalVisible,'scrollDisable': isModalVisible}"></router-view>
         </keep-alive>
     </transition>
 
@@ -250,7 +252,10 @@ export default {
 </script>
 
 <style scoped>
-
+.scrollDisable{
+  overflow-y:hidden;
+  height:100vh
+}
 
 .fade-custom-enter-active,
 .fade-custom-leave-active {

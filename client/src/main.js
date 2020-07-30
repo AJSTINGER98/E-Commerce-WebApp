@@ -8,6 +8,7 @@ import VueRouter from 'vue-router';
 import Home from './components/Home/Home.vue';
 import Contact from './components/ContactUs/Contact.vue';
 import productDetails from './components/Product/ProductDetails.vue';
+import product from './components/Product/Product.vue';
 
 Vue.use(VueRouter);
 Vue.use(VueScrollmagic);
@@ -17,7 +18,8 @@ Vue.directive('scrollanimation', scrollAnimation);
 const routes = [
   { path: '/', component: Home },
   { path: '/contact-us', component: Contact },
-  {path: '/product/id', component: productDetails}
+  {path: '/product/id', component: productDetails},
+  {path: '/products', component: product}
 ];
 
 window.$ = jQuery;

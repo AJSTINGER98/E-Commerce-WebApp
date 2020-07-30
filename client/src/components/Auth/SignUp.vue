@@ -16,16 +16,22 @@
 
             <div class="modal-body d-flex justify-content-center">
                 <form class="p-0 w-100 ">
-                    <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                        <input type="text" name="email" class="input-group-text bg-transparent w-100 py-2" placeholder="Email">
+                     <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
+                            <input type="email" required>
+                            <span class="bar"></span>
+                            <label>Email</label>
                     </div>
       
-                    <div class="input-group d-flex justify-content-center w-100 my-4 bg-white">
-                        <input type="password" name ="newPassword" class="input-group-text bg-transparent w-100 py-2" placeholder="Add New Password">
+                    <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
+                            <input type="password" required>
+                            <span class="bar"></span>
+                            <label>Password</label>
                     </div>
 
-                    <div class="input-group d-flex justify-content-center w-100 my-4 bg-white">
-                        <input type="password" name ="confirmPassword" class="input-group-text bg-transparent w-100 py-2" placeholder="Confirm Password">
+                    <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
+                            <input type="password" required>
+                            <span class="bar"></span>
+                            <label>Confirm Password</label>
                     </div>
 
                     <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 bg-white text-center">
@@ -59,6 +65,63 @@ export default {
 </script>
 
 <style scoped>
+    .input-group {
+        position: relative;
+        margin: 0 auto;
+    }
+
+    input{
+        font-size: 18px;
+        padding: 10px 10px 10px 10px;
+        display: block;
+        width: 300px;
+        border: none;
+        border-radius: 100px;
+        width: 100%;
+        /* margin:5px auto; */
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    width:77%;
+    padding-left:5px; 
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+    }
+
+    input:focus ~ label,
+    input:valid ~ label{
+        top: -22px;
+        font-size: 15px;
+        color: black;
+    }
+
+    .bar {
+        position: relative;
+        display:block;
+        width:100%;
+        background:black;
+        height:2px;
+        border-radius: 10px;
+        transform: scaleX(0);
+        transition: all 0.3s ease;
+    }
+
+
+    input:focus ~ .bar{
+        transform: scaleX(1);
+    }
     .modal-mask {
         position: fixed;
         z-index: 9998;
@@ -82,7 +145,7 @@ export default {
         height: 80vh;
         margin: 0px auto;
         padding: 20px 30px;
-        background-color: #fff;
+        background-color: #f2f2f2;
         border-radius: 2px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
         transition: all 0.5s ease-out;
@@ -96,7 +159,8 @@ export default {
     }
 
     .modal-body {
-        margin:40px 10px;
+        margin:20px 10px;
+        /* margin-bottom:10px */
 
     }
 
@@ -118,7 +182,7 @@ export default {
         border: 1px solid black;
         border-radius: 0;
         background: rgb(0,0,0);
-        background: linear-gradient(90deg, rgba(0,0,0,0) 33.33%, rgba(0,0,0,1) 33.33%, rgba(0,0,0,1) 66.66%, rgba(0,0,0,0) 66.66%);
+        background: linear-gradient(90deg, rgba(0,0,0,0) 33.33%, rgba(0,0,0,1) 33.33%, rgba(0,0,0,1) 66.66%, rgba(242,242,242,1) 66.66%);
         background-size: 300%;
         background-position: 50% 100%;
         transition: all 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
@@ -126,7 +190,7 @@ export default {
         
     }
     .btn:hover{
-
+        background-color: #f2f2f2;
         background-position: 100% 100%;
         animation: slide-in 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
         color: black;

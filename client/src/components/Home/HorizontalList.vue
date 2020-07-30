@@ -11,6 +11,7 @@
             </button>
         </div> -->
 
+
         <div v-scrollanimation id="yourDiv" class="horizontal-scrollable my-4">
             <div class="d-flex w-100">
                 <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
@@ -21,7 +22,7 @@
                     </div>
                     <div class="img-footer">
                         <div class="upper-div mx-0 ">
-                            <button class="btn">VIEW</button>
+                           <a href="/product/id"> <button class="btn">VIEW</button></a>
                         </div>
                         <div class="lower-div mx-0 ">
                             <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
@@ -170,6 +171,7 @@ if(window.location.pathname == '/'){
 </script>
 
 <style scoped>
+    
     .btn:active,
     .btn:focus,
     .btn:focus:active {
@@ -261,6 +263,7 @@ if(window.location.pathname == '/'){
         width:200px;
         min-width: 200px;
         max-width: 350px;
+        max-height:10px;
     }
     .upper-div{
         max-height: 0;

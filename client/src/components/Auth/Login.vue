@@ -17,7 +17,7 @@
             <div class="modal-body d-flex justify-content-center">
                 <form class="p-0 w-100 ">
                     <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                            <input type="text" required>
+                            <input type="email" required>
                             <span class="bar"></span>
                             <label>Email</label>
                     </div>
@@ -128,6 +128,7 @@ export default {
         background-color: rgba(0, 0, 0, 0.5);
         display: table;
         transition: opacity 0.5s ease-out;
+        /* overflow:hidden */
     }
 
     .modal-wrapper {
@@ -156,6 +157,7 @@ export default {
 
     .modal-body {
         margin:40px 10px;
+        margin-bottom:20px
 
     }
 
