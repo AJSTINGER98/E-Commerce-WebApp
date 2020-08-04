@@ -14,10 +14,10 @@
 
         <div v-scrollanimation id="yourDiv" class="horizontal-scrollable my-4">
             <div class="d-flex w-100">
-                <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
+                <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover" v-for="(product,indx) in products" :key="indx">
 
                     <div class="img-card w-100">
-                        <img class="card-img" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Card image cap">
+                        <img class="card-img" :src="product.image" alt="Card image cap">
 
                     </div>
                     <div class="img-footer">
@@ -25,80 +25,12 @@
                            <a href="/product/id"> <button class="btn">VIEW</button></a>
                         </div>
                         <div class="lower-div mx-0 ">
-                            <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
-                            <h5 class="mb-1 text-weight-bold">$ 50</h5>
+                            <h6 class="mb-0 mt-1 text-muted">{{ product.name}}</h6>
+                            <h5 class="mb-1 text-weight-bold">{{`${product.currency} ${product.price}`}}</h5>
                         </div>
                     </div>
                     
                 </div>
-                <div v-scrollanimation class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
-
-                    <div class="img-card w-100">
-                        <img class="card-img" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Card image cap">
-
-                    </div>
-                    <div class="img-footer">
-                        <div class="upper-div mx-0 ">
-                            <button class="btn">VIEW</button>
-                        </div>
-                        <div class="lower-div mx-0 ">
-                            <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
-                            <h5 class="mb-1 text-weight-bold">$ 50</h5>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div v-scrollanimation class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
-
-                    <div class="img-card w-100">
-                        <img class="card-img" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Card image cap">
-
-                    </div>
-                    <div class="img-footer">
-                        <div class="upper-div mx-0 ">
-                            <button class="btn">VIEW</button>
-                        </div>
-                        <div class="lower-div mx-0 ">
-                            <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
-                            <h5 class="mb-1 text-weight-bold">$ 50</h5>
-                        </div>
-                    </div>
-                    
-                </div>                
-                <div class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
-
-                    <div class="img-card w-100">
-                        <img class="card-img" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Card image cap">
-
-                    </div>
-                    <div class="img-footer">
-                        <div class="upper-div mx-0 ">
-                            <button class="btn">VIEW</button>
-                        </div>
-                        <div class="lower-div mx-0 ">
-                            <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
-                            <h5 class="mb-1 text-weight-bold">$ 50</h5>
-                        </div>
-                    </div>
-                    
-                </div>             
-                <div class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover">
-
-                    <div class="img-card w-100">
-                        <img class="card-img" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Card image cap">
-
-                    </div>
-                    <div class="img-footer">
-                        <div class="upper-div mx-0 ">
-                            <button class="btn">VIEW</button>
-                        </div>
-                        <div class="lower-div mx-0 ">
-                            <h6 class="mb-0 mt-1 text-muted">X-BOX CONTROLLER</h6>
-                            <h5 class="mb-1 text-weight-bold">$ 50</h5>
-                        </div>
-                    </div>
-                    
-                </div>       
                 
             </div>
         </div>
@@ -109,7 +41,38 @@
 export default {
     data(){
         return{
-           
+            products:[
+                {
+                    image: 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
+                    name: 'RTX 2080',
+                    price: '2000',
+                    currency: '$'
+                },
+                {
+                    image: 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
+                    name: 'RTX 2080',
+                    price: '2000',
+                    currency: '$'
+                },
+                {
+                    image: 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
+                    name: 'RTX 2080',
+                    price: '2000',
+                    currency: '$'
+                },
+                {
+                    image: 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
+                    name: 'RTX 2080',
+                    price: '2000',
+                    currency: '$'
+                },
+                {
+                    image: 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
+                    name: 'RTX 2080',
+                    price: '2000',
+                    currency: '$'
+                },
+            ]
         }
     },
     methods:{

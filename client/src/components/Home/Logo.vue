@@ -6,15 +6,28 @@
           </div>
         <div class="clients-wrap">
           <ul id="clients-list" class="clearfix">
-            <li><span><i class="fab fa-github fa-4x"></i></span></li>
+            <!-- <li><span><i class="fab fa-github fa-4x"></i></span></li>
             <li><span><i class="fab fa-css3 fa-4x"></i></span></li>
 			<li><span><i class="fab fa-html5 fa-4x"></i></span></li>
           <li><span><i class="fab fa-vuejs fa-4x"></i></span></li>
 			<li><span><i class="fab fa-google fa-4x"></i></span></li>
             <li><span><i class="fab fa-bootstrap fa-4x"></i></span></li>
             <li><span><i class="fab fa-vuejs fa-4x"></i></span></li>
-			<li><span><i class="fab fa-google fa-4x"></i></span></li>
-            <li><span><i class="fab fa-bootstrap fa-4x"></i></span></li>
+			<li><span><i class="fab fa-google fa-4x"></i></span></li> -->
+            <li
+            v-for="brand in brands" :key="brand">
+            <span><i class="fab fa-4x" 
+                      :class="{
+                      'fa-github': brand == 'github',
+                      'fa-google': brand == 'google',
+                      'fa-html5': brand == 'html5',
+                      'fa-css3': brand == 'css3',
+                      'fa-vuejs': brand == 'vuejs',
+                      'fa-bootstrap': brand == 'bootstrap',
+                      'fa-node-js': brand == 'node-js',
+                      'fa-codepen': brand == 'codepen',
+                      'fa-chrome': brand == 'chrome'}"></i></span>
+            </li>
 			
           </ul>
         </div>
@@ -24,6 +37,11 @@
 
 <script>
 export default {
+  data(){
+    return{
+        brands:['github','vuejs','css3','html5','bootstrap','google','node-js','codepen','chrome']
+    }
+  },
     mounted(){
 window.$(function(){
 
