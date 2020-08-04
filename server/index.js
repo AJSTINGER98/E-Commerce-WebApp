@@ -1,14 +1,22 @@
-const express = require('express'),
-          app = express();
-   bodyParser = require("body-parser"),
-   mongoose   = require("mongoose")
-   morgan = require("morgan");
+const express      = require('express'),
+          app      = express(),
+      mongoose     = require("mongoose"),
+      morgan       = require("morgan");
 
+require('dotenv');
 
-mongoose.connect("mongodb://localhost:27017/taknikki_factory", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false} )
+mongoURL = process.env.MONGOURL ||  "mongodb://localhost:27017/taknikki_factory";
+mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false} );
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(morgan("dev"))
+
+// SETUP BODY PARSER
+app.use(express.json());
+
+// Here setting extended to true allows body parser to convert the data of req.body into object and array form where necessary.
+app.use(express.urlencoded({extended: true}));
+
+app.use(morgan("dev"));
+
 
 app.get('/', (req,res) =>{
     res.send('<h1>Hello World</h1>');
