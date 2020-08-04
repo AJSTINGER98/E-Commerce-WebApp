@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="row">
-    <div class="col-md-3 col-sm-6 col-12 container-fluid mtt-100 pr-3">
+    <div class="col-md-3 col-sm-10 col-12 container-fluid mtt-100 pr-3">
      <div class="row d-flex justify-content-center left">
          <div class="col">
              <div class="card">
@@ -378,7 +378,7 @@ export default {
  
     .img-footer {
         /* width: 100%; */
-        margin:10px 0px ;
+        margin:40px 0 0 10px ;
         bottom: 0;
         padding: 2px;
         font-size: 2px;
