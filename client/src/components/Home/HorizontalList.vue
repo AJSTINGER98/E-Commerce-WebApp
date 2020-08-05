@@ -193,7 +193,7 @@ if(window.location.pathname == '/'){
     
     .div-hover{
         max-width: max-content;
-        margin: 10px 10px;
+        margin: 10px -1px;
 
     }
     .img-card {
