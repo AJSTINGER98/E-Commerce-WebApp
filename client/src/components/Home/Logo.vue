@@ -75,9 +75,8 @@ window.$(function(){
 /*Logo carousel*/
 #clients {
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
-  margin-top: 40px;
+  margin: 40px auto;
+
 }
 
 #clients .clients-wrap {
