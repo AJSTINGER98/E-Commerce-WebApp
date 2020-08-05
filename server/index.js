@@ -17,10 +17,13 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(morgan("dev"));
 
+//Requiring Routes
+var homeRoutes= require("./routes/home");
+var productRoutes = require("./routes/products")
 
-app.get('/', (req,res) =>{
-    res.send('<h1>Hello World</h1>');
-});
+app.use(homeRoutes);
+app.use("/products", productRoutes);
+
 
 app.listen(process.env.PORT || 3000, (req,res) =>{
     console.log('Server Running on port 3000');
