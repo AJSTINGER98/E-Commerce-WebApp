@@ -4,15 +4,10 @@
         <div class="row">
           <div class="carousel col-12 d-block d-md-none mt-3">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img class="d-block w-100" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="d-block w-100" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="d-block w-100" src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" alt="Third slide">
+                  <div class="carousel-inner" >
+
+                    <div class="carousel-item" v-for="(image,index) in product.image" :key="index" :class="{'active' : index == 0}">
+                      <img class="d-block w-100" :src="image.src" :alt="image.alt">
                     </div>
                   </div>
                   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -26,24 +21,17 @@
                 </div>
           </div>
           <div class="image-container col-md-6 d-none d-md-block">
-            <div class="inner-container container">
-              <img src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" 
-                  class="w-100" alt="image1">
-            </div>
-            <div class="inner-container container">
-              <img src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" 
-                  class="w-100" alt="image2">
-            </div>
-            <div class="inner-container container">
-              <img src="https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png" 
-                  class="w-100" alt="image3">
+            
+            <div class="inner-container container" v-for="(image,index) in product.image" :key="index">
+              <img :src="image.src" 
+                  class="w-100" :alt="image.alt">
             </div>
           </div>
           <div class="content-div container col-12 col-md-6 justify-content-center">
             <div class="header">
-              <h5 class="text-muted">GRAPHICS CARD</h5>
-              <h1><strong>RTX 2080</strong> </h1>
-              <h3>$ 2000</h3>
+              <h5 class="text-muted">{{ product.type.toUpperCase()}}</h5>
+              <h1><strong>{{ product.name.toUpperCase()}}</strong> </h1>
+              <h3>{{ `${product.currency} ${product.price}` }}</h3>
               <br>
               <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sit saepe, asperiores molliti</p>
             </div>
@@ -95,10 +83,7 @@
               <h1>Key Features</h1>
               <div class="list">
                 <ul>
-                  <li><i class="fas fa-check"></i> <strong>GPU ARCHITECTURE</strong> : TURING</li>
-                  <li><i class="fas fa-check"></i> <strong>BOOST CLOCK</strong> : 1800 MHz (OC)</li>
-                  <li><i class="fas fa-check"></i> <strong>FRAME BUFFER</strong> : 8 GB GDDR6</li>
-                  <li><i class="fas fa-check"></i> <strong>MEMORY SPEED</strong> : 14 GBPS</li>
+                  <li v-for="(feature,index) in product.keyFeatures" :key="index"><i class="fas fa-check"></i> <strong>{{feature.key.toUpperCase()}}</strong> : {{feature.value}}</li>
                 </ul>
               </div>
             </div>
@@ -115,6 +100,59 @@ export default {
       quantity: 1,
       qtymax : 20,
       qtymin : 1,
+      product : {
+        image: [
+          {
+            src : 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
+            alt: 'image-1'
+          },
+          {
+            src : 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
+            alt: 'image-2'
+          },
+          {
+            src : 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
+            alt: 'image-3'
+          },
+          {
+            src : 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
+            alt: 'image-3'
+          },
+          {
+            src : 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
+            alt: 'image-3'
+          },
+          {
+            src : 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
+            alt: 'image-3'
+          },
+          
+        ],
+        type: 'graphics card',
+        name: 'rtx 2080',
+        price: '2000',
+        currency: '$',
+        maxq : 15,
+        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sit saepe, asperiores molliti',
+        keyFeatures:[
+          {
+            key: 'gpu architecture',
+            value: 'TURING'
+          },
+          {
+            key: 'boost clock',
+            value: '1800 MHz (OC)'
+          },
+          {
+            key: 'frame buffer',
+            value: '8 GB GDDR6'
+          },
+          {
+            key: 'memory speed',
+            value: '14 GBPS'
+          },
+        ]
+      }
     };
   },
 
@@ -134,16 +172,17 @@ export default {
         window.scene1 = new window.ScrollMagic.Scene({
           triggerElement:'.main-container',
           triggerHook:'onLeave',
-          duration:'3000'})
+          duration:1000*this.product.image.length})
           .setPin('.main-container')
           .addTo(window.controller);
         
-        var tween1 = window.TweenMax.to('.image-container',1,{ y:'-200%'})
+        var yTrans = 100*(this.product.image.length-1);
+        var tween1 = window.TweenMax.to('.image-container',1,{ y:`-${yTrans}%`})
     
         window.scene2 = new window.ScrollMagic.Scene({
           triggerElement:'.main-container',
           triggerHook:'onLeave',
-          duration:'3000'
+          duration:1000*this.product.image.length
         })
         .setTween(tween1)
         .addTo(window.controller)
@@ -153,7 +192,7 @@ export default {
 
   mounted(){
     this.animation()
-
+    this.qtymax = this.product.maxq < 20 ? this.product.maxq : 20
   }
 }
 </script>
