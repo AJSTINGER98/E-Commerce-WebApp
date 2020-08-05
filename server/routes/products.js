@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+Products     = require("./models/products");
 
 router.get('/', (req,res) =>{
     res.json({
