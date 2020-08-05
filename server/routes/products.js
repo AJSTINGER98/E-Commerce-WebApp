@@ -1,6 +1,6 @@
-var express = require("express");
-var router = express.Router();
-Products     = require("./models/products");
+const express      = require("express");
+const router       = express.Router();
+const Products     = require("../models/products");
 
 router.get('/', (req,res) =>{
     res.json({

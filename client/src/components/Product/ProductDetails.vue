@@ -94,7 +94,11 @@
 </template>
 
 <script>
+//  import axios from 'axios';
+
+
 export default {
+
   data(){
     return{
       quantity: 1,
@@ -193,6 +197,13 @@ export default {
   mounted(){
     this.animation()
     this.qtymax = this.product.maxq < 20 ? this.product.maxq : 20
+     
+     this.$http
+      .get(this.$api+'products/nvidia')
+      .then(response => {
+        console.log(response.data.page)
+        // console.log(baseURL)
+      });
   }
 }
 </script>
