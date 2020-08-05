@@ -3,7 +3,7 @@ const express      = require('express'),
       mongoose     = require("mongoose"),
       morgan       = require("morgan");
 
-require('dotenv');
+    require('dotenv').config({ path: '.env' });
 
 mongoURL = process.env.MONGOURL ||  "mongodb://localhost:27017/taknikki_factory";
 mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false} );
