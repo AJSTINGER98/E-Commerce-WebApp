@@ -1,10 +1,10 @@
 <template>
     <div class="main-div d-flex">
-      <div v-scrollanimation class="container-fluid justify-content-center">
+      <div v-scrollanimation class="container-fluid justify-content-center h-100">
         <!-- <div class="header w-100 my-4">
           <h1 class="text-center">Recent Updates</h1>
         </div> -->
-        <div id="myCarousel" class="carousel slide h-75 w-100 my-auto" data-ride="carousel">
+        <div id="myCarousel" class="carousel slide h-100 w-100 my-auto" data-ride="carousel">
           <div class="carousel-inner row mx-auto">
             <transition-group :name="direction" class="w-100 h-100 d-flex justify-content-around align-items-center">
               <div class="carousel-item col-12 col-md-6 col-xl-4 active" v-for="i in currentItem" :key= "i">
@@ -226,10 +226,11 @@ export default {
 /* VUE TRANSITION */
 
 .main-div{
-  height: 800px;
+  height: 600px;
   min-height: 100%;
   padding-top: 10px;
   background-color: rgb(0,0,0,0.7);
+  align-items: center;
 }
 
 .row{
