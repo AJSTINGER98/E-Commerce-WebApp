@@ -15,9 +15,15 @@ router.get('/:category', (req,res) =>{
 });
 
 router.get('/:category/:id', (req,res) =>{
-    res.json({
-        page: 'This is the product page of an individual product of brand ' +req.params.category
-    });
+    Products.findById({type: req.params.category,_id: req.params.id}, function(err,prodOne){
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log(prodOne)
+            res.json({prodOne})
+        }
+    })
 });
 
 
