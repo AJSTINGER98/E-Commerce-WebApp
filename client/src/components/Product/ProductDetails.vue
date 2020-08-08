@@ -1,5 +1,5 @@
 <template>
-  <div style="padding-top: 50px ;overflow-x:hidden">
+  <div v-if="wait" style="padding-top: 50px ;overflow-x:hidden">
       <div class="main-container" style="overflow:hidden">
         <div class="row">
           <div class="carousel col-12 d-block d-md-none mt-3">
@@ -105,59 +105,7 @@ export default {
       quantity: 1,
       qtymax : 20,
       qtymin : 1,
-      product : {
-        image: [
-          {
-            src : 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
-            alt: 'image-1'
-          },
-          {
-            src : 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
-            alt: 'image-2'
-          },
-          {
-            src : 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
-            alt: 'image-3'
-          },
-          {
-            src : 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
-            alt: 'image-3'
-          },
-          {
-            src : 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
-            alt: 'image-3'
-          },
-          {
-            src : 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
-            alt: 'image-3'
-          },
-          
-        ],
-        type: 'graphics card',
-        name: 'rtx 2080',
-        price: '2000',
-        currency: '$',
-        maxq : 15,
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sit saepe, asperiores molliti',
-        keyFeatures:[
-          {
-            key: 'gpu architecture',
-            value: 'TURING'
-          },
-          {
-            key: 'boost clock',
-            value: '1800 MHz (OC)'
-          },
-          {
-            key: 'frame buffer',
-            value: '8 GB GDDR6'
-          },
-          {
-            key: 'memory speed',
-            value: '14 GBPS'
-          },
-        ]
-      }
+      product : {}
     };
   },
 
@@ -180,7 +128,7 @@ export default {
   methods:{
     animation(){
         if(window.innerWidth >= 768){
-          console.log("In animation")
+          // console.log("In animation")
         window.scene1 = new window.ScrollMagic.Scene({
           triggerElement:'.main-container',
           triggerHook:'onLeave',
@@ -198,29 +146,23 @@ export default {
         })
         .setTween(tween1)
         .addTo(window.controller)
-        console.log("In animation")
+        // console.log("In animation")
       }
     },
   },
 
-  mounted(){
-
-
-    
-    
-  },
   created(){
+    // console.log(this.product)
     this.$http
       .get(`${this.$api}products/nvidia/5f2bf6e03fbeaa7a274f0b27`)
       .then(response => {
-        console.log(response.data.prodOne)
         this.product =response.data.prodOne
-        console.log(this.product.image.length)
         this.wait= true;
-        // console.log(baseURL)
-      });
+        this.$nextTick(() => this.animation());
+         });
+           this.qtymax = this.product.maxq < 20 ? this.product.maxq : 20
+      }
   }
-}
 </script>
 
 <style scoped>
