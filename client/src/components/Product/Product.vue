@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-if="products">
   <div class="row">
     <div class="col-md-3 col-sm-10 col-12 container-fluid mtt-100 pr-3">
      <div class="row d-flex justify-content-center left">
@@ -56,7 +56,7 @@
                 <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover" v-for="(product,index) in products" :key="index">
 
                     <div class="img-card w-100">
-                        <img class="card-img" :src="product.image" alt="Card image cap">
+                        <img class="card-img" :src="product.image[0].src" alt="Card image cap">
 
                     </div>
                     <div class="img-footer">
@@ -64,8 +64,8 @@
                             <button class="btn">View</button>
                         </div>
                         <div class="lower-div mx-0 ">
-                            <h6 class="mb-0 mt-1 text-muted">{{ product.name}}</h6>
-                            <h5 class="mb-1 text-weight-bold">{{ product.price}}</h5>
+                            <h6 class="mb-0 mt-1 text-muted">{{ product.name.toUpperCase()}}</h6>
+                            <h5 class="mb-1 text-weight-bold">{{ product.currency }}{{product.price}}</h5>
                         </div>
                     </div>
                     
@@ -81,64 +81,77 @@
 export default {
     data(){
         return{
-            products: [
-                {
-                    image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                    name:  "RTX 2080",
-                    price: "$ 50"
-                },
-                 {
-                    image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                    name:  "RTX 2080",
-                    price: "$ 50"
-                },
-                 {
-                    image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                    name:  "RTX 2080",
-                    price: "$ 50"
-                },
-                 {
-                    image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                    name:  "RTX 2080",
-                    price: "$ 50"
-                },
-                 {
-                    image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                    name:  "RTX 2080",
-                    price: "$ 50"
-                },
-                 {
-                    image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                    name:  "RTX 2080",
-                    price: "$ 50"
-                },
-                 {
-                    image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                    name:  "RTX 2080",
-                    price: "$ 50"
-                },
-                 {
-                    image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                    name:  "RTX 2080",
-                    price: "$ 50"
-                },
-                 {
-                    image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                    name:  "RTX 2080",
-                    price: "$ 50"
-                },
-                 {
-                    image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                    name:  "RTX 2080",
-                    price: "$ 50"
-                },
+            products:{
+
+            }
+                // {
+                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
+                //     name:  "RTX 2080",
+                //     price: "$ 50"
+                // },
+                //  {
+                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
+                //     name:  "RTX 2080",
+                //     price: "$ 50"
+                // },
+                //  {
+                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
+                //     name:  "RTX 2080",
+                //     price: "$ 50"
+                // },
+                //  {
+                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
+                //     name:  "RTX 2080",
+                //     price: "$ 50"
+                // },
+                //  {
+                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
+                //     name:  "RTX 2080",
+                //     price: "$ 50"
+                // },
+                //  {
+                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
+                //     name:  "RTX 2080",
+                //     price: "$ 50"
+                // },
+                //  {
+                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
+                //     name:  "RTX 2080",
+                //     price: "$ 50"
+                // },
+                //  {
+                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
+                //     name:  "RTX 2080",
+                //     price: "$ 50"
+                // },
+                //  {
+                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
+                //     name:  "RTX 2080",
+                //     price: "$ 50"
+                // },
+                //  {
+                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
+                //     name:  "RTX 2080",
+                //     price: "$ 50"
+                // },
 
 
-            ]
+            // ]
         }
-    }
+    },
+    created(){
+    // console.log(this.product)
+    this.$http
+      .get(`${this.$api}products/`)
+      .then(response => {
+        // console.log(response.data.prodOne)
+        this.products =response.data.allProducts
+        // console.log(this.products)
+      })
 
 }
+}
+
 </script>
 
 <style scoped>
@@ -420,7 +433,7 @@ export default {
 }
 
 /* Media queries for responsiveness */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .mt-100 {
     /* background-color: lightblue; */
     margin-top:0px

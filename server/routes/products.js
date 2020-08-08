@@ -3,9 +3,15 @@ const router       = express.Router();
 const Products     = require("../models/products");
 
 router.get('/', (req,res) =>{
-    res.json({
-        page: 'This is the All Products Page',
-    });
+    Products.find({},{currency:1,price:1,image:1,name:1, _id:1},(err, allProducts)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log(allProducts)
+            res.json({allProducts})
+        }
+    })
 });
 
 router.get('/:category', (req,res) =>{
