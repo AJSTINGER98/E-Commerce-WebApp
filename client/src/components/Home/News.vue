@@ -10,12 +10,12 @@
               <div class="carousel-item col-12 col-md-6 col-xl-4 active" v-for="i in currentItem" :key= "i">
                   <div class="card">
                   <div class="zoom-effect-container">
-                    <img class="card-img-top img-fluid" :src="content[i].image" alt="Card image cap">
+                    <img class="card-img-top img-fluid" :src="news[i].image.src" alt="Card image cap">
                     <div class="overlay">
-                          <div class="text">{{ content[i].comment}}</div>
+                          <div class="text">{{ news[i].content}}</div>
                     </div>
                     <div class="card-body">
-                      <h4 class="card-title">{{ content[i].title }}</h4>
+                      <h4 class="card-title">{{ news[i].title }}</h4>
                     </div>
                   </div>
                   </div>
@@ -40,43 +40,7 @@
 export default {
   data() {
     return {
-      content: [
-        {
-        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/geforce-minecraft-rtx-nv-sfg-295x166.jpg',
-        comment: 'The most powerful GPU ever created.',
-        title: 'Minecraft with RTX'
-        },
-        {
-        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/mfg/geforce-magma-nvidia-sfg-295x166.jpg',
-        comment: 'The most powerful GPU ever created.',
-        title: 'Frames wins games.'
-        },
-        {
-        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/geforce-laptop-refresh-2020-sfg-295x166@2x.jpg',
-        comment: 'The most powerful GPU ever created.',
-        title: 'Titan V'
-        },
-        {
-        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/geforce-gsync-nv-sfg-295x166.jpg',
-        comment: 'The most powerful GPU ever created.',
-        title: 'Work. Play. Create.'
-        },
-        {
-        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/apache-spark-3-sfg-295x166.jpg',
-        comment: 'The most powerful GPU ever created.',
-        title: 'Gaming'
-        },
-        {
-        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/ai-for-dev-recsys-sfg-295x166.jpg',
-        comment: 'The most powerful GPU ever created.',
-        title: 'Takniiki Factorry'
-        },
-        {
-        image:'https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/sfg/nvidia-quadro-experience-sfg-295x166-dtm.jpg',
-        comment: 'The most powerful GPU ever created.',
-        title: 'RTX Studio'
-        },
-      ],
+      news: [],
       itemLength: 7,
       itemCount: 5,
       currentItem: [0,1,2,3,4],
@@ -117,6 +81,16 @@ export default {
         vm.slideRight();
       },vm.interval);
     });
+  },
+  created(){
+    this.$http.get(`${this.$api}news`)
+                .then( response =>{
+                    this.news = response.data.news
+                })
+                .catch(err=>{
+                    console.log(err);
+                    this.news = [];
+         });
   }
 }
 </script>

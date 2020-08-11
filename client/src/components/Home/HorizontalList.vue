@@ -17,7 +17,7 @@
                 <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover" v-for="(product,indx) in products" :key="indx">
 
                     <div class="img-card w-100">
-                        <img class="card-img" :src="product.image" alt="Card image cap">
+                        <img class="card-img" :src="product.image[0].src" alt="Card image cap">
 
                     </div>
                     <div class="img-footer">
@@ -25,7 +25,7 @@
                            <a href="/product/id"> <button class="btn">VIEW</button></a>
                         </div>
                         <div class="lower-div mx-0 ">
-                            <h6 class="mb-0 mt-1 text-muted">{{ product.name}}</h6>
+                            <h6 class="mb-0 mt-1 text-muted">{{ product.name.toUpperCase()}}</h6>
                             <h5 class="mb-1 text-weight-bold">{{`${product.currency} ${product.price}`}}</h5>
                         </div>
                     </div>
@@ -46,18 +46,18 @@ export default {
     },
     methods:{
         fillList(){
-            this.$http.get(`${api}products/latest`)
+           
+        }
+    },
+    created(){
+         this.$http.get(`${this.$api}products/latest`)
                 .then( response =>{
                     this.products = response.data.latestProducts
                 })
                 .catch(err=>{
                     console.log(err);
-                    products = [];
-                });
-        }
-    },
-    created(){
-        this.fillList();
+                    this.products = [];
+         });
     }
 }
 if(window.location.pathname == '/'){
@@ -174,7 +174,7 @@ if(window.location.pathname == '/'){
     
     .div-hover{
         max-width: max-content;
-        margin: 10px -1px;
+        margin: 10px -5px;
 
     }
     .img-card {

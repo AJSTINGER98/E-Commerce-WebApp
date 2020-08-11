@@ -29,7 +29,7 @@ router.get('/latest', (req,res)=>{
         else{
             res.json({latestProducts})
         }
-})
+    })
 })
 
 // Particular Category
