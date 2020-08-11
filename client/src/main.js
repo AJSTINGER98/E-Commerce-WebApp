@@ -10,15 +10,17 @@ import Home from './components/Home/Home.vue';
 import Contact from './components/ContactUs/Contact.vue';
 import productDetails from './components/Product/ProductDetails.vue';
 import product from './components/Product/Product.vue';
+import InfiniteLoading from 'vue-infinite-loading';
 
 
 Vue.use(VueRouter);
 Vue.use(VueScrollmagic);
+Vue.use(InfiniteLoading);
 
 Vue.directive('scrollanimation', scrollAnimation);
 
 Vue.prototype.$http = axios;
-Vue.prototype.$api = 'http://localhost:3000/'
+Vue.prototype.$api = 'http://localhost:3000/';
 
 const routes = [
   { path: '/', component: Home },
