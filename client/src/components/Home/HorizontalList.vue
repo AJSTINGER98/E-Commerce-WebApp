@@ -41,42 +41,23 @@
 export default {
     data(){
         return{
-            products:[
-                {
-                    image: 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
-                    name: 'RTX 2080',
-                    price: '2000',
-                    currency: '$'
-                },
-                {
-                    image: 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
-                    name: 'RTX 2080',
-                    price: '2000',
-                    currency: '$'
-                },
-                {
-                    image: 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
-                    name: 'RTX 2080',
-                    price: '2000',
-                    currency: '$'
-                },
-                {
-                    image: 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
-                    name: 'RTX 2080',
-                    price: '2000',
-                    currency: '$'
-                },
-                {
-                    image: 'https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png',
-                    name: 'RTX 2080',
-                    price: '2000',
-                    currency: '$'
-                },
-            ]
+            products: []
         }
     },
     methods:{
-
+        fillList(){
+            this.$http.get(`${api}products/latest`)
+                .then( response =>{
+                    this.products = response.data.latestProducts
+                })
+                .catch(err=>{
+                    console.log(err);
+                    products = [];
+                });
+        }
+    },
+    created(){
+        this.fillList();
     }
 }
 if(window.location.pathname == '/'){
