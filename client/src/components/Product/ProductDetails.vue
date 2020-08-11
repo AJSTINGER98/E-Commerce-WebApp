@@ -145,17 +145,6 @@ export default {
       }
     },
   },
-
-  mounted(){
-    if(this.product){
-      // this.animation()
-     
-    }
-      
-
-    
-    
-  },
   created(){
     // console.log(this.product)
     this.$http
