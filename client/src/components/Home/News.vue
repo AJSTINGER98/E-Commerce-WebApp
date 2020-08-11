@@ -1,5 +1,5 @@
 <template>
-    <div class="main-div d-flex">
+    <div v-if="wait" class="main-div d-flex">
       <div v-scrollanimation class="container-fluid justify-content-center h-100">
         <!-- <div class="header w-100 my-4">
           <h1 class="text-center">Recent Updates</h1>
@@ -10,7 +10,7 @@
               <div class="carousel-item col-12 col-md-6 col-xl-4 active" v-for="i in currentItem" :key= "i">
                   <div class="card">
                   <div class="zoom-effect-container">
-                    <img class="card-img-top img-fluid" :src="news[i].image.src" alt="Card image cap">
+                    <img class="card-img-top img-fluid" :src="news[i].image" alt="Card image cap">
                     <div class="overlay">
                           <div class="text">{{ news[i].content}}</div>
                     </div>
@@ -40,7 +40,12 @@
 export default {
   data() {
     return {
-      news: [],
+      news: [
+        {
+          image:''
+        }
+      ],
+      wait: false,
       itemLength: 7,
       itemCount: 5,
       currentItem: [0,1,2,3,4],
@@ -85,7 +90,9 @@ export default {
   created(){
     this.$http.get(`${this.$api}news`)
                 .then( response =>{
-                    this.news = response.data.news
+                  // console.log(response.data.news[2].image)
+                  this.news = response.data.news
+                  this.$nextTick(() => this.wait="True");
                 })
                 .catch(err=>{
                     console.log(err);

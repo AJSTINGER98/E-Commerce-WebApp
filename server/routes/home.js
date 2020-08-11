@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+const News     = require("../models/news");
 
 router.get('/', (req,res) =>{
     res.json({
@@ -9,11 +10,11 @@ router.get('/', (req,res) =>{
 
 router.get('/news',(req,res) =>{
     var query = News.find({}).sort({_id:-1}).limit(7);
-    query.exec((err,News)=>{
-        if(err || !News){
+    query.exec((err, news)=>{
+        if(err || !news){
             console.log('No News to show');
         } else{
-            res.json({News});
+            res.json({news});
         }
     });
 });
