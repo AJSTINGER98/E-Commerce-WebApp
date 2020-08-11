@@ -105,8 +105,7 @@ export default {
       quantity: 1,
       qtymax : 20,
       qtymin : 1,
-      product : {
-      }
+      product : {}
     };
   },
 
@@ -117,6 +116,12 @@ export default {
       }
       else if(this.quantity < this.qtymin){
         this.quantity = this.qtymin;
+      }
+    },
+    wait: function(){
+      if(this.wait){
+        this.animation()
+        this.qtymax = this.product.maxq < 20 ? this.product.maxq : 20
       }
     },
   },

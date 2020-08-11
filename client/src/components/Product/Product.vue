@@ -1,10 +1,10 @@
 <template>
 <div v-if="products">
   <div class="row">
-    <div class="col-md-3 col-sm-10 col-12 container-fluid mtt-100 pr-3">
-     <div class="row d-flex justify-content-center left">
+    <div class="col-md-3 col-sm-10 col-12 container-fluid mtt-100 pr-3 filter-parent"> 
+     <div class="row d-flex justify-content-center left filter-div">
          <div class="col">
-             <div class="sticky-top">
+             <!-- <div class="sticky-top"> -->
              <div class="card">
                  <article class="filter-group">
                      <header class="card-header"> <a href="#" data-toggle="collapse" data-target="#collapse_aside1" data-abc="true" aria-expanded="false" class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
@@ -47,7 +47,7 @@
                  </article>
 
              </div>
-            </div>
+            <!-- </div> -->
          </div>
      </div>
  </div>
@@ -69,7 +69,12 @@
                         </div>
                     </div>
                     
-                </div>                           
+                </div>
+                <br> <br>
+                <infinite-loading @infinite="infiniteHandler" spinner="waveDots" class="d-flex w-100 justify-content-center">
+                            <div class="text-red" slot="no-more"></div>
+                            <div class="text-red" slot="no-results"></div>
+                </infinite-loading>                           
             </div>
         </div>
   </div>
@@ -78,83 +83,49 @@
 </template>
 
 <script>
+
 export default {
     data(){
         return{
-            products:{
-
-            }
-                // {
-                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                //     name:  "RTX 2080",
-                //     price: "$ 50"
-                // },
-                //  {
-                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                //     name:  "RTX 2080",
-                //     price: "$ 50"
-                // },
-                //  {
-                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                //     name:  "RTX 2080",
-                //     price: "$ 50"
-                // },
-                //  {
-                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                //     name:  "RTX 2080",
-                //     price: "$ 50"
-                // },
-                //  {
-                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                //     name:  "RTX 2080",
-                //     price: "$ 50"
-                // },
-                //  {
-                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                //     name:  "RTX 2080",
-                //     price: "$ 50"
-                // },
-                //  {
-                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                //     name:  "RTX 2080",
-                //     price: "$ 50"
-                // },
-                //  {
-                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                //     name:  "RTX 2080",
-                //     price: "$ 50"
-                // },
-                //  {
-                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                //     name:  "RTX 2080",
-                //     price: "$ 50"
-                // },
-                //  {
-                //     image: "https://cnet1.cbsistatic.com/img/aJE3TOIiSEqz_oFN80Y_1dQ0ucg=/1092x0/2019/08/16/99be5eac-2d91-4011-8c5e-89f328d88e67/geforce-rtx-2080-ti-web-tech-shot-630-u2x.png",
-                //     name:  "RTX 2080",
-                //     price: "$ 50"
-                // },
-
-
-            // ]
-        }
+            page: 1,
+            products:[],
+        };
+    },
+    // components: {
+    //     infiniteLoading : InfiniteLoading,
+    // },
+    methods: {
+        infiniteHandler($state) {
+            setTimeout(() => {
+                this.$http
+                    .get(`${this.$api}products/`,{params: {page: this.page}})
+                    .then(response => {
+                        // console.log(response.data.prodOne)
+                        // this.products =response.data.allProducts
+                        console.log(response.data);
+                        if (response.data.allProducts && response.data.allProducts.length > 0) {
+                            this.page += 1;
+                            this.products.push(...response.data.allProducts);
+                            $state.loaded();
+                            console.log(response.data.allProducts);
+                        } else {
+                            $state.complete();
+                        }
+                 });
+            }, 1000);
+        },
+    },
+    mounted(){
     },
     created(){
-    // console.log(this.product)
-    this.$http
-      .get(`${this.$api}products/`)
-      .then(response => {
-        // console.log(response.data.prodOne)
-        this.products =response.data.allProducts
-        // console.log(this.products)
-      })
 
-}
+    }
 }
 
 </script>
 
 <style scoped>
+
     .btn-medium:active,
     .btn-medium:focus,
     .btn-medium:focus:active {
@@ -172,6 +143,7 @@ export default {
 
     .container-fluid{
         margin-bottom:20px;
+        /* min-height:100vh; */
     }
     .fix{
         /* display:flex; */
@@ -494,4 +466,15 @@ export default {
         margin-top:10px
     }
 }
+
+@media screen and (min-width: 768px) { 
+    .container-fluid{
+    min-height: 100vh;
+    }
+    .filter-div{
+        position:fixed;
+    }
+
+}
+
 </style>
