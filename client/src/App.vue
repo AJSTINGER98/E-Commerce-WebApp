@@ -17,16 +17,16 @@
       <div class="collapse navbar-collapse container" v-if="checkWidth">
         <ul class="navbar-nav mr-0 w-100 nav-body pt-1" >
           <li class="nav-item active">
-            <a class="nav-link" href="/" selected><span> HOME</span></a>
+            <router-link to="/" class="nav-link"><span>HOME</span></router-link>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="#"><span>ABOUT</span></a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="/contact-us"><span>CONTACT US</span></a>
+            <router-link to="/contact-us" class="nav-link"><span>CONTACT US</span></router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/products"><span>PRODUCTS</span></a>
+            <router-link to="/products" class="nav-link"><span>PRODUCTS</span></router-link>
           </li>
           <!-- <li class="nav-item dropdown show">
             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button">
@@ -79,13 +79,14 @@
       <div class="sidebar" :class="{'sidebar-active' : isToggled}"  v-else>
           <ul class="navbar-nav w-100" >
           <li class="nav-item">
-            <a class="nav-link" href="/" selected>HOME</a>
+            <router-link class= "nav-link" to="/">HOME</router-link>
+            <!-- <a class="nav-link" href="/">HOME</a> -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> ABOUT</a>
+            <router-link class="nav-link" to="/products">PRODUCTS</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact-us">CONTACT US</a>
+            <router-link class="nav-link" to="/contact-us">CONTACT US</router-link>
           </li>
           <li class="nav-item dropdown show">
             <a class="nav-link" href="#" id="navbarDropdown" role="button" @click="toggleDropdown = !toggleDropdown">
@@ -110,11 +111,9 @@
       </div>
     </nav>
     <!-- Login/SignUp Component -->
-    <transition name="fade-custom" mode="out-in">
-        <keep-alive>
+    <transition name="page" mode="out-in">
           <router-view :class="{'blur-effect' : isModalVisible}" v-if="$route.fullPath.startsWith('/product/')" :key="window.width"></router-view>
           <router-view :class="{'blur-effect' : isModalVisible}" v-else></router-view>
-        </keep-alive>
     </transition>
 
     <!-- <home :class="{'blur-effect' : isModalVisible}"></home> -->
@@ -233,7 +232,6 @@ export default {
       this.window.height = window.innerHeight;
     },
     
-    
   },
   computed : {
     checkWidth() {
@@ -260,14 +258,18 @@ export default {
   height:100vh
 }
 
-.fade-custom-enter-active,
-.fade-custom-leave-active {
-  transition: opacity 0.5s;
+
+.page-enter-active,
+.page-leave-active{
+    transition: opacity .5s;
 }
-.fade-custom-enter,
-.fade-custom-leave-to {
-  opacity: 0;
+
+.page-enter,
+.page-leave-to{
+    opacity: 0
 }
+
+
   .background-col{
     /* margin-top: 70px; */
     background-color: rgb(20, 20, 20);
@@ -400,7 +402,7 @@ export default {
 
   /* NAVBAR STYLING AND ANIMATION */
   .navbar{
-    transition: background 0.5s;
+    transition: background-color 0.5s;
     font-size: 15px;
     padding: 10px 0;
     max-height: 65px;
@@ -520,7 +522,9 @@ export default {
   }
 
   /* SIDEBAR DROPDOWN ANIMATION */
-
+  .sidebar .dropdown-sign{
+    font-family: 'Montserrat Alternates', sans-serif;
+  }
   .sidebar-dropdown-active{
     max-height: 50vh;
     transition: max-height 1.2s ease-in-out;

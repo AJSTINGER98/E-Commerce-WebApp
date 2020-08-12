@@ -61,7 +61,7 @@
                     </div>
                     <div class="img-footer">
                         <div class="upper-div mx-0 ">
-                            <button class="btn">View</button>
+                            <a href="/product/id"> <button class="btn">VIEW</button></a>
                         </div>
                         <div class="lower-div mx-0 ">
                             <h6 class="mb-0 mt-1 text-muted">{{ product.name.toUpperCase()}}</h6>
@@ -100,14 +100,11 @@ export default {
                 this.$http
                     .get(`${this.$api}products/`,{params: {page: this.page}})
                     .then(response => {
-                        // console.log(response.data.prodOne)
-                        // this.products =response.data.allProducts
-                        console.log(response.data);
+                       
                         if (response.data.allProducts && response.data.allProducts.length > 0) {
                             this.page += 1;
                             this.products.push(...response.data.allProducts);
                             $state.loaded();
-                            console.log(response.data.allProducts);
                         } else {
                             $state.complete();
                         }
