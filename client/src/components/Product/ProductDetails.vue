@@ -29,6 +29,7 @@
           </div>
           <div class="content-div container col-12 col-md-6 justify-content-center">
             <div class="header">
+              <h5 class="text-muted">{{ product.brand.toUpperCase()}}</h5>
               <h5 class="text-muted">{{ product.type.toUpperCase()}}</h5>
               <h1><strong>{{ product.name.toUpperCase()}}</strong> </h1>
               <h3>{{ `${product.currency} ${product.price}` }}</h3>
@@ -153,7 +154,7 @@ export default {
   created(){
     // console.log(this.product)
     this.$http
-      .get(`${this.$api}products/nvidia/5f2bf6e03fbeaa7a274f0b27`)
+      .get(`${this.$api}products/amd/graphics%20card/5f33dad73f75ec2094be05ac`)
       .then(response => {
         this.product =response.data.prodOne
         this.wait= true;

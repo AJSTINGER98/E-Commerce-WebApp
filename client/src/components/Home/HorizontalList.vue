@@ -21,10 +21,11 @@
 
                     </div>
                     <div class="img-footer">
-                        <div class="upper-div mx-0 ">
+                        <div class="upper-div mx-0 w-100 justify-content-center ">
                            <a href="/product/id"> <button class="btn">VIEW</button></a>
                         </div>
                         <div class="lower-div mx-0 ">
+                            <h6 class="mb-0 mt-1 text-muted">{{ product.brand.toUpperCase()}}</h6>
                             <h6 class="mb-0 mt-1 text-muted">{{ product.name.toUpperCase()}}</h6>
                             <h5 class="mb-1 text-weight-bold">{{`${product.currency} ${product.price}`}}</h5>
                         </div>
@@ -199,7 +200,7 @@ if(window.location.pathname == '/'){
  
     .img-footer {
         /* width: 100%; */
-        margin:10px 0px ;
+        margin:10px auto ;
         bottom: 0;
         padding: 2px;
         font-size: 2px;
@@ -215,7 +216,7 @@ if(window.location.pathname == '/'){
         transition: all 0.5s ease-in-out;
     }
     .lower-div{
-        max-height: 60px;
+        max-height: 80px;
         overflow: hidden;
         transition: all 0.5s ease-in-out;
     }
