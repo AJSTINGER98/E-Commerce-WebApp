@@ -153,8 +153,9 @@ export default {
   },
   created(){
     // console.log(this.product)
+    
     this.$http
-      .get(`${this.$api}products/amd/graphics%20card/5f33dad73f75ec2094be05ac`)
+      .get(`${this.$api}products/${this.$route.params.id}`)
       .then(response => {
         this.product =response.data.prodOne
         this.wait= true;

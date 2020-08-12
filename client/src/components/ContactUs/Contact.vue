@@ -175,7 +175,7 @@ export default {
     overflow:hidden;
 }
 .card-container-reach{
-    height: 1000px;
+    height: 800px;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     overflow:hidden;
 }

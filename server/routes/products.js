@@ -40,14 +40,11 @@ router.get('/latest', (req,res)=>{
     })
 })
 
-// Particular Category
-router.get('/:category', (req,res) =>{
-    
-});
 
 // Particular Product
-router.get('/:brand/:category/:id', (req,res) =>{
-    Products.findById({brand: req.params.brand, type: req.params.category,_id: req.params.id}, function(err,prodOne){
+router.get('/:id', (req,res) =>{
+
+    Products.findById(req.params.id, function(err,prodOne){
         if(err){
             console.log(err);
         }

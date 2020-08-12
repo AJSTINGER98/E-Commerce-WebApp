@@ -61,7 +61,7 @@
                     </div>
                     <div class="img-footer">
                         <div class="upper-div mx-0 ">
-                            <a href="/product/id"> <button class="btn">VIEW</button></a>
+                            <router-link :to="{ name: 'productDetails', params: { id:product._id }}"> <button class="btn">VIEW</button></router-link>
                         </div>
                         <div class="lower-div mx-0 ">
                             <h6 class="mb-0 mt-1 text-muted">{{ product.brand.toUpperCase()}}</h6>
