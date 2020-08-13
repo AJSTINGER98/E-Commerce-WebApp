@@ -17,11 +17,10 @@ router.get('/', (req,res) =>{
     if(req.query.brand && req.query.brand!="" ){
         query.brand= req.query.brand
     }
-
-    
     var distinctProd={}
 
-    Products.find(query,{currency:1,price:1,image:1,name:1, _id:1, brand:1},{skip: (itemsPerPage * (pageNum-1)), limit: itemsPerPage},(err, allProducts)=>{
+    mongoQ= Products.find(query,{currency:1,price:1,image:1,name:1, _id:1, brand:1},{skip: (itemsPerPage * (pageNum-1)), limit: itemsPerPage}).sort({_id:-1});
+    mongoQ.exec(function(err, allProducts){
         if(err){
             console.log(err);
         }
@@ -31,11 +30,12 @@ router.get('/', (req,res) =>{
                 res.json({allProducts,distinct});
             
         }
+
+    })
+        
     });
-});
 //Filter Distinct Values
 router.get("/distinct", (req,res)=>{
-    // db.sInsert.aggregate( [ {"$group": { "_id": { post_id: "$post_id", post_message: "$post_message" } } } ]);
 
     Promise.all([
         Products.find().distinct('brand'),

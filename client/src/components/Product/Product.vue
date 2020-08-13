@@ -7,20 +7,17 @@
              <!-- <div class="sticky-top"> -->
              <div class="card">
                  <article class="filter-group">
-                     <header class="card-header"> <a href="#" data-toggle="collapse" data-target="#collapse_aside1" data-abc="true" aria-expanded="false" class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
+                     <header class="card-header"> 
+                        <a href="#" data-toggle="collapse" data-target="#collapse_aside1" data-abc="true" aria-expanded="false" class="collapsed"> <i class="icon-control fa fa-chevron-down"></i>
                              <h6 class="title">Categories </h6>
-                         </a> </header>
+                         </a> 
+                    </header>
                      <div class="filter-content collapse" id="collapse_aside1" style="">
                          <div class="card-body">
-                             <ul class="list-menu">
-                                
-                            <span v-for="(type,index) in allBrands" :key="index">
-                                <input type="checkbox" :id="index">
-                                    <label class="ml-2" :for="index">  {{type.toUpperCase()}}</label><br>
-                            </span>
-                                
-                            
-                             </ul>
+                             <label class="checkbox-btn mr-2" v-for="(type,index) in allCategory" :key="index"> 
+                                 <input type="checkbox" :value="type" v-model="categoryArray"> 
+                             <span class="btn btn-light"> {{type.toUpperCase()}} </span> 
+                            </label> 
                          </div>
                      </div>
                  </article>
@@ -31,8 +28,8 @@
                      <div class="filter-content collapse" id="collapse_aside2" style="">
                          <div class="card-body"> <input type="range" class="custom-range" min="0" max="100" name="">
                              <div class="form-row">
-                                 <div class="form-group col-md-6"> <label>Min</label> <input class="form-control" placeholder="$0" type="number"> </div>
-                                 <div class="form-group text-right col-md-6"> <label>Max</label> <input class="form-control" placeholder="$1,0000" type="number"> </div>
+                                 <div class="form-group col-md-6"> <label>Min</label> <input class="form-control" :placeholder="'$'+allPrice[0]" type="number"> </div>
+                                 <div class="form-group text-right col-md-6"> <label>Max</label> <input class="form-control" :placeholder="'$'+allPrice[allPrice.length-1]" type="number"> </div>
                              </div> 
                              <button class="btn-medium xs-margin-bottom-five">Apply Now</button>
                              <!-- <a class="btn" style="z-index:10000;">Apply Now</a> -->
@@ -45,8 +42,8 @@
                          </a> </header>
                      <div class="filter-content collapse" id="collapse_aside3" style="">
                          <div class="card-body"> 
-                             <label class="checkbox-btn" v-for="(brand,index) in allBrands" :key="index"> 
-                                 <input type="checkbox"> 
+                             <label class="checkbox-btn mr-2" v-for="(brand,index) in allBrands" :key="index"> 
+                                 <input type="checkbox" :value="brand" v-model="brandArray"> 
                              <span class="btn btn-light"> {{brand.toUpperCase()}} </span> 
                             </label> 
                         </div>
@@ -79,7 +76,7 @@
                     
                 </div>
                 <br> <br>
-                <infinite-loading @infinite="infiniteHandler" spinner="waveDots" class="d-flex w-100 justify-content-center">
+                <infinite-loading ref="infiniteLoading" @infinite="infiniteHandler" spinner="waveDots" class="d-flex w-100 justify-content-center">
                             <div class="text-red" slot="no-more"></div>
                             <div class="text-red" slot="no-results"></div>
                 </infinite-loading>                           
@@ -100,8 +97,8 @@ export default {
             allBrands: [],
             allCategory: [],
             allPrice:[],
-            category:[],
-            brand: [],
+            categoryArray:[],
+            brandArray: [],
             rows: false
         };
     },
@@ -110,11 +107,14 @@ export default {
     // },
     methods: {
         infiniteHandler($state) {
+
             setTimeout(() => {
+                // this.page=1
                 this.$http
-                    .get(`${this.$api}products/`,{params: {page: this.page, category: this.category, brand: this.brand}})
+                    .get(`${this.$api}products/`,{params: {page: this.page, category: this.categoryArray, brand: this.brandArray}})
                     .then(response => {
-                       
+                        // this.page=1
+                        console.log($state)
                         if (response.data.allProducts && response.data.allProducts.length > 0) {
                             this.page += 1;
                             if(response.data.allProducts.length<5){
@@ -128,10 +128,21 @@ export default {
                  });
             }, 1000);
         },
-
-        filter(e){
-            console.log(e)
-        }
+    },
+    watch:{
+        brandArray:function(){
+            console.log(this.brandArray)
+            this.products=[]
+            this.page=1
+            this.$refs.infiniteLoading.stateChanger.reset();
+            // console.log(this.products)            
+        },
+        categoryArray: function(){
+            this.products=[]
+            this.page=1
+            this.$refs.infiniteLoading.stateChanger.reset();
+        },
+        
     },
     mounted(){
 
@@ -143,7 +154,7 @@ export default {
         this.allBrands =response.data.brand
         this.allCategory= response.data.type
         this.allPrice = response.data.price
-        console.log(this.allBrands, this.allCategory, this.allPrice)
+        // console.log(typeof(this.allPrice[0]))
          });
            
       }
