@@ -9,6 +9,7 @@ router.get('/', (req,res) =>{
     if(req.query.page){
         pageNum = req.query.page;
     }
+    var distinct= {}
     var query={}
     if(req.query.category && req.query.category!=""){
         query.type=req.query.category
@@ -17,16 +18,35 @@ router.get('/', (req,res) =>{
         query.brand= req.query.brand
     }
 
+    
+    var distinctProd={}
+
     Products.find(query,{currency:1,price:1,image:1,name:1, _id:1, brand:1},{skip: (itemsPerPage * (pageNum-1)), limit: itemsPerPage},(err, allProducts)=>{
         if(err){
             console.log(err);
         }
         else{
-            console.log(allProducts);
-            res.json({allProducts});
+            
+                console.log(allProducts);
+                res.json({allProducts,distinct});
+            
         }
     });
 });
+//Filter Distinct Values
+router.get("/distinct", (req,res)=>{
+    // db.sInsert.aggregate( [ {"$group": { "_id": { post_id: "$post_id", post_message: "$post_message" } } } ]);
+
+    Promise.all([
+        Products.find().distinct('brand'),
+        Products.find().distinct('type'),
+        Products.find().distinct('price')
+      ]).then( ([ brand, type, price ]) => {
+        res.json({brand, type,price});
+      });
+})
+
+
 // Latest Products
 router.get('/latest', (req,res)=>{
     query= Products.find({},{currency:1,price:1,image:1,name:1, _id:1,brand:1}).sort({_id:-1}).limit(8);
@@ -39,7 +59,6 @@ router.get('/latest', (req,res)=>{
         }
     })
 })
-
 
 // Particular Product
 router.get('/:id', (req,res) =>{

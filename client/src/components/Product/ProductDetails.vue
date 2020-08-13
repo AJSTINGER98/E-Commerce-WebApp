@@ -167,6 +167,7 @@ export default {
 </script>
 
 <style scoped>
+
 /* CAROUSEL */
 .carousel {
   width: 100%;
@@ -342,5 +343,6 @@ export default {
         }
 
     }
+
 
 </style>
