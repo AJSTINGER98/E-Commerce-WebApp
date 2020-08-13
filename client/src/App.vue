@@ -207,9 +207,11 @@ export default {
 
   methods: {
     navbar(){
-      if(this.$route.fullPath!="/"){
-        this.hasScrolled= true;
+      if(this.$route.fullPath =="/" && this.updateScroll < 400){
+        this.hasScrolled= false;
         // console.log("Hello")
+      } else {
+        this.hasScrolled = true;
       }
     },
     handleScroll(){
@@ -246,7 +248,7 @@ export default {
     signUp,
   },
   mounted() {
-  
+    this.navbar()
   }
 }
 </script>

@@ -57,6 +57,7 @@
  </div>
  <div class="col-md-9 container-fluid mt-100 right"> 
     <div class="row prod">
+            <transition-group name='fade' tag="div" class="row prod">
                 <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover" v-for="(product,index) in products" :key="index">
 
                     <div class="img-card w-100">
@@ -75,6 +76,7 @@
                     </div>
                     
                 </div>
+            </transition-group>
                 <br> <br>
                 <infinite-loading ref="infiniteLoading" @infinite="infiniteHandler" spinner="waveDots" class="d-flex w-100 justify-content-center">
                             <div class="text-red" slot="no-more"></div>
@@ -162,6 +164,14 @@ export default {
 </script>
 
 <style scoped>
+    
+    .fade-enter{
+        opacity:0;
+    }
+    .fade-enter-active{
+        transition: opacity 0.5s ease;
+    }
+
 
 
     .btn-medium:active,

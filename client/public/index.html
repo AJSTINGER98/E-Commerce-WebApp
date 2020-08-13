@@ -12,9 +12,33 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    
     <script src="https://kit.fontawesome.com/3682869d0d.js" crossorigin="anonymous"></script>
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="css/app.css">
+    <!-- <link rel="stylesheet" href="./css/app.css"> -->
 
     <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <style>
+
+      @media(max-width:767px)
+      {
+      .content{
+          margin-top: 100px;
+          margin-bottom: 40px;
+      }  
+
+      }
+      body,html {
+          margin: 0;
+          padding: 0;
+          overflow-x: hidden;
+          scroll-behavior: smooth;
+          font-family: 'Roboto Condensed', sans-serif;
+          background-color: #f2f2f2;
+          outline: none;
+      }
+      .carousel-caption{
+          top: 30%
+      }
+    </style>
 
   </head>
   <body>

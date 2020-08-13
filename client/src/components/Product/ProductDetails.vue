@@ -1,5 +1,5 @@
 <template>
-  <div v-if="wait" style="padding-top: 50px ;overflow-x:hidden">
+  <div id="productDetailsDiv" v-if="wait" style="padding-top: 50px ;overflow-x:hidden">
       <div class="main-container" style="overflow:hidden">
         <div class="row">
           <div class="carousel col-12 d-block d-md-none mt-3">
@@ -39,7 +39,7 @@
             <br>
             <hr>
             <div class="d-flex justify-content-center">
-              <div class="input-group d-flex justify-content-end w-100 my-4 mb-2 bg-white text-center align-items-center">
+              <div class="input-group d-flex justify-content-end w-100 my-4 mb-2 text-center align-items-center">
                 <button class="btn w-100 py-2 h-75" id="addCartBtn"><i class="fas fa-shopping-cart fa-fw"></i> Add To Cart</button>
               </div>
               <div class="quantity-input d-flex justify-content-center my-4 mb-2 ml-2 mr-0 align-items-center">
@@ -167,7 +167,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* CAROUSEL */
 .carousel {
   width: 100%;
@@ -205,7 +204,7 @@ export default {
 
 .content-div::-webkit-scrollbar {
     width: 5px;
-    background-color: white;
+    background-color: #f2f2f2;
 } 
 .content-div::-webkit-scrollbar-thumb{
   background: black;
@@ -265,7 +264,7 @@ export default {
   }
 
   #Quantity{
-    background: #f2f2f2;
+    background: white;
     border: none;
     outline: none;
     font-size: 30px;

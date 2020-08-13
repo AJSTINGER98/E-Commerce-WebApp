@@ -1,5 +1,5 @@
 <template>
-  <div class="py-4" id="horizontalListContainer">
+  <div class="py-4" id="horizontalListContainer" style="min-height: 630px">
         <div v-scrollanimation class="container d-flex text-center justify-content-center my-4 ">
             <h1>Our Latest Products</h1>
         </div>

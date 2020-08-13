@@ -25,8 +25,8 @@ Vue.prototype.$api = 'http://localhost:3000/';
 const routes = [
   { path: '/', component: Home, name: 'home' },
   { path: '/contact-us', component: Contact, name: 'contact' },
-  {path: '/product/:id', component: productDetails, name: 'productDetails'},
-  {path: '/products', component: product, name: 'product'}
+  {path: '/products/:id', component: productDetails, name: 'productDetails'},
+  {path: '/products',  component: product, name: 'product'}
 ];
 
 window.$ = jQuery;
@@ -36,6 +36,9 @@ Vue.config.productionTip = false;
 const router = new VueRouter({
   routes,
   mode: 'history',
+  scrollBehavior (to, from, savedPosition){
+    return {x:0 , y:0};
+  }
 });
 
 new Vue({
