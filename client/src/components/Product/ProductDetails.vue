@@ -167,9 +167,13 @@ export default {
 </script>
 
 <style scoped>
+<<<<<<< HEAD
 /* #productDetailsDiv{
   font-family: 'Roboto Condensed', sans-serif;
 } */
+=======
+
+>>>>>>> 8dc89abc34b1e15d8a2348477d7537af35e7c07f
 /* CAROUSEL */
 .carousel {
   width: 100%;
@@ -345,5 +349,6 @@ export default {
         }
 
     }
+
 
 </style>

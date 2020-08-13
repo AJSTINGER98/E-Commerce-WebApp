@@ -13,11 +13,13 @@
                      <div class="filter-content collapse" id="collapse_aside1" style="">
                          <div class="card-body">
                              <ul class="list-menu">
-                                 <li><a href="#" data-abc="true">Graphics Card </a></li>
-                                 <li><a href="#" data-abc="true">Mouse & Keyboards </a></li>
-                                 <li><a href="#" data-abc="true">Processor </a></li>
-                                 <li><a href="#" data-abc="true">RAM</a></li>
-                                 <li><a href="#" data-abc="true">Accessories </a></li>
+                                
+                            <span v-for="(type,index) in allBrands" :key="index">
+                                <input type="checkbox" :id="index">
+                                    <label class="ml-2" :for="index">  {{type.toUpperCase()}}</label><br>
+                            </span>
+                                
+                            
                              </ul>
                          </div>
                      </div>
@@ -42,7 +44,12 @@
                              <h6 class="title">Brand </h6>
                          </a> </header>
                      <div class="filter-content collapse" id="collapse_aside3" style="">
-                         <div class="card-body"> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> Nvidia </span> </label> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> Logitech </span> </label> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> Madz Catz </span> </label> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> Steelseries </span> </label> <label class="checkbox-btn"> <input type="checkbox"> <span class="btn btn-light"> AMD </span> </label> </div>
+                         <div class="card-body"> 
+                             <label class="checkbox-btn" v-for="(brand,index) in allBrands" :key="index"> 
+                                 <input type="checkbox"> 
+                             <span class="btn btn-light"> {{brand.toUpperCase()}} </span> 
+                            </label> 
+                        </div>
                      </div>
                  </article>
 
@@ -61,7 +68,7 @@
 
                     </div>
                     <div class="img-footer">
-                        <div class="upper-div mx-0 ">
+                        <div class="upper-div mx-0">
                             <router-link :to="{ name: 'productDetails', params: { id:product._id }}"> <button class="btn">VIEW</button></router-link>
                         </div>
                         <div class="lower-div mx-0 ">
@@ -92,8 +99,12 @@ export default {
         return{
             page: 1,
             products:[],
-            category:"",
-            brand: ""
+            allBrands: [],
+            allCategory: [],
+            allPrice:[],
+            category:[],
+            brand: [],
+            rows: false
         };
     },
     // components: {
@@ -108,7 +119,10 @@ export default {
                        
                         if (response.data.allProducts && response.data.allProducts.length > 0) {
                             this.page += 1;
-                            this.products.push(...response.data.allProducts);
+                            if(response.data.allProducts.length<5){
+                                this.rows = true
+                            }
+                            this.products.push(...response.data.allProducts)
                             $state.loaded();
                         } else {
                             $state.complete();
@@ -116,15 +130,26 @@ export default {
                  });
             }, 1000);
         },
+
+        filter(e){
+            console.log(e)
+        }
     },
     mounted(){
 
     },
     created(){
-
-    }
-}
-
+        this.$http
+      .get(`${this.$api}products/distinct`)
+      .then(response => {
+        this.allBrands =response.data.brand
+        this.allCategory= response.data.type
+        this.allPrice = response.data.price
+        console.log(this.allBrands, this.allCategory, this.allPrice)
+         });
+           
+      }
+  }
 </script>
 
 <style scoped>
@@ -135,6 +160,7 @@ export default {
     .fade-enter-active{
         transition: opacity 0.5s ease;
     }
+
 
 
     .btn-medium:active,
@@ -326,13 +352,13 @@ export default {
         margin: 0;
         padding: 0;
         height: auto;
-        /* width: 100%; */
+        max-width: 100%;
         transition: transform 1s ease-in-out;
     }
  
     .img-footer {
         /* width: 100%; */
-        margin:40px 0 0 10px ;
+        margin:40px auto auto 10px ;
         bottom: 0;
         padding: 2px;
         font-size: 2px;
