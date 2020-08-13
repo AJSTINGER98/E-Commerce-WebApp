@@ -2,9 +2,9 @@ const express      = require('express'),
           app      = express(),
       mongoose     = require("mongoose"),
       morgan       = require("morgan");
-      var cors = require('cors')
+      var cors = require('cors');
 
-      app.use(cors()) 
+      app.use(cors()); 
 
 require('dotenv').config({ path: '.env' });
 
@@ -22,7 +22,7 @@ app.use(morgan("dev"));
 
 //Requiring Routes
 var homeRoutes= require("./routes/home");
-var productRoutes = require("./routes/products")
+var productRoutes = require("./routes/products");
 
 app.use(homeRoutes);
 app.use("/products", productRoutes);

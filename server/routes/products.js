@@ -9,7 +9,15 @@ router.get('/', (req,res) =>{
     if(req.query.page){
         pageNum = req.query.page;
     }
-    Products.find({},{currency:1,price:1,image:1,name:1, _id:1},{skip: (itemsPerPage * (pageNum-1)), limit: itemsPerPage},(err, allProducts)=>{
+    var query={}
+    if(req.query.category && req.query.category!=""){
+        query.type=req.query.category
+    }
+    if(req.query.brand && req.query.brand!="" ){
+        query.brand= req.query.brand
+    }
+
+    Products.find(query,{currency:1,price:1,image:1,name:1, _id:1, brand:1},{skip: (itemsPerPage * (pageNum-1)), limit: itemsPerPage},(err, allProducts)=>{
         if(err){
             console.log(err);
         }
@@ -21,7 +29,7 @@ router.get('/', (req,res) =>{
 });
 // Latest Products
 router.get('/latest', (req,res)=>{
-    query= Products.find({},{currency:1,price:1,image:1,name:1, _id:1}).sort({_id:-1}).limit(8);
+    query= Products.find({},{currency:1,price:1,image:1,name:1, _id:1,brand:1}).sort({_id:-1}).limit(8);
     query.exec(function(err, latestProducts) {
         if (err) { 
             console.log(err)
@@ -32,16 +40,11 @@ router.get('/latest', (req,res)=>{
     })
 })
 
-// Particular Category
-router.get('/:category', (req,res) =>{
-    res.json({
-        page: 'This is the Products Page of '+req.params.category+ ' brand',
-    });
-});
 
 // Particular Product
-router.get('/:category/:id', (req,res) =>{
-    Products.findById({type: req.params.category,_id: req.params.id}, function(err,prodOne){
+router.get('/:id', (req,res) =>{
+
+    Products.findById(req.params.id, function(err,prodOne){
         if(err){
             console.log(err);
         }

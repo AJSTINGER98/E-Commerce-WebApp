@@ -23,10 +23,10 @@ Vue.prototype.$http = axios;
 Vue.prototype.$api = 'http://localhost:3000/';
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/contact-us', component: Contact },
-  {path: '/product/id', component: productDetails},
-  {path: '/products', component: product}
+  { path: '/', component: Home, name: 'home' },
+  { path: '/contact-us', component: Contact, name: 'contact' },
+  {path: '/products/:id', component: productDetails, name: 'productDetails'},
+  {path: '/products',  component: product, name: 'product'}
 ];
 
 window.$ = jQuery;

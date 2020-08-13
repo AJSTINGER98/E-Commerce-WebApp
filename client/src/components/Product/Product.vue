@@ -62,9 +62,10 @@
                     </div>
                     <div class="img-footer">
                         <div class="upper-div mx-0 ">
-                            <a href="/product/id"> <button class="btn">VIEW</button></a>
+                            <router-link :to="{ name: 'productDetails', params: { id:product._id }}"> <button class="btn">VIEW</button></router-link>
                         </div>
                         <div class="lower-div mx-0 ">
+                            <h6 class="mb-0 mt-1 text-muted">{{ product.brand.toUpperCase()}}</h6>
                             <h6 class="mb-0 mt-1 text-muted">{{ product.name.toUpperCase()}}</h6>
                             <h5 class="mb-1 text-weight-bold">{{ product.currency }}{{product.price}}</h5>
                         </div>
@@ -91,6 +92,8 @@ export default {
         return{
             page: 1,
             products:[],
+            category:"",
+            brand: ""
         };
     },
     // components: {
@@ -100,7 +103,7 @@ export default {
         infiniteHandler($state) {
             setTimeout(() => {
                 this.$http
-                    .get(`${this.$api}products/`,{params: {page: this.page}})
+                    .get(`${this.$api}products/`,{params: {page: this.page, category: this.category, brand: this.brand}})
                     .then(response => {
                        
                         if (response.data.allProducts && response.data.allProducts.length > 0) {
@@ -349,7 +352,7 @@ export default {
         transition: all 0.5s ease-in-out;
     }
     .lower-div{
-        max-height: 60px;
+        max-height: 80px;
         overflow: hidden;
         transition: all 0.5s ease-in-out;
     }
@@ -433,7 +436,7 @@ export default {
       height: auto;
   }
   .div-hover{
-      margin-bottom:60px;
+      margin-bottom:90px;
   }
   .mtt-100{
       margin-bottom:60px;
@@ -460,9 +463,9 @@ export default {
         padding-left:180px
     }
 }
-@media only screen and (max-width: 512px){
+@media only screen and (max-width: 575px){
     img{
-      width:90%;
+      width:80%;
       height: auto;
   }
   .prod{
@@ -470,6 +473,9 @@ export default {
   }
 }
 @media screen and (max-width: 400px) { 
+    img{
+      width:90%;
+    }
     .img-footer{
         margin-top:10px
     }

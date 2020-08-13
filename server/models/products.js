@@ -8,6 +8,7 @@ var productSchema = new mongoose.Schema({
         }, 
     ],
     type: String,
+    brand: String,
     name: String,
     price: Number,
     currency: String,
