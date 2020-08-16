@@ -34,7 +34,7 @@
                             <label>Confirm Password</label>
                     </div>
 
-                    <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 bg-white text-center">
+                    <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 text-center">
                         <button class="btn w-100 py-2">SUBMIT</button>
                     </div>
             

@@ -69,7 +69,7 @@
               <a class="nav-link icons" @click="isModalVisible = true"><i class="far fa-user fa-lg"></i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link icons"><i class="fas fa-shopping-cart fa-lg"></i></a>
+              <a class="nav-link icons" @click="isModalVisible = true, currentPage='cart'"><i class="fas fa-shopping-cart fa-lg"></i></a>
             </li>
           </div>
         </ul>
@@ -101,7 +101,7 @@
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="#">CART</a>
+            <a class="nav-link" href="#" @click="isModalVisible = true, currentPage='cart'" >CART</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" @click="isModalVisible = true">LOGIN</a>
@@ -117,7 +117,7 @@
     </transition>
 
     <!-- <home :class="{'blur-effect' : isModalVisible}"></home> -->
-    <component :is="currentAuthPage" v-show="isModalVisible" @close="closeModal()" @change="currentAuthPage = $event"></component> 
+    <component :is="currentPage" v-show="isModalVisible" @close="closeModal()" @change="currentPage = $event"></component> 
     <!-- Footer -->
 <footer class="background-col page-footer font-small special-color-dark pt-4">
 
@@ -178,6 +178,7 @@
 import home from './components/Home/Home.vue';
 import login from './components/Auth/Login.vue';
 import signUp from './components/Auth/SignUp.vue';
+import cart from './components/Cart/Cart.vue';
 
 
 
@@ -189,7 +190,7 @@ export default {
       isToggled : false,
       updateScroll : window.scrollY,
       isModalVisible : false,
-      currentAuthPage : 'login',
+      currentPage : 'login',
       window : {
         width : 0,
         height : 0
@@ -226,7 +227,7 @@ export default {
       this.isModalVisible = false;
       var vm = this;
       setTimeout(() => {
-        vm.currentAuthPage = 'login';
+        vm.currentPage = 'login';
       },1000)
     },
     windowSize() {
@@ -246,6 +247,7 @@ export default {
     home,
     login,
     signUp,
+    cart,
   },
   mounted() {
     this.navbar()

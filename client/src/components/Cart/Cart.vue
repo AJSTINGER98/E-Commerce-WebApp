@@ -1,5 +1,5 @@
 <template>
-    <transition name="fade">
+  <transition name="fade">
         <div class="modal-mask">
           <div class="modal-wrapper">
             <div class="modal-container">
@@ -9,38 +9,43 @@
             </button>
             <div class="mr-0">
                 <div class="container d-flex justify-content-center mt-4">
-                    <h2>LOGIN</h2>
+                    <h2>YOUR CART</h2>
                 </div>
                 
             </div>
 
             <div class="modal-body d-flex justify-content-center">
-                <form class="p-0 w-100 ">
-                    <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                            <input type="email" required>
-                            <span class="bar"></span>
-                            <label>Email</label>
-                    </div>
+                <div class="p-0 w-100 cart-list">
+                    <div class="row my-2">
+                        <div class="image-container col-4 p-0">
+                            <img class = "prod-image" src="../../assets/try2.png" alt="">
+                        </div>
+                        <div class="info-container col-8 pr-0">
+                            <div class=" mb-1 d-flex d-inline-block align-items-center w-100">
+                                <h6 class="m-0">Name:</h6>
+                                <div class="w-100 pl-2"><strong>XBOX CONTROLLER</strong></div>
+                            </div>
+                            <div class=" my-3 d-flex d-inline-block align-items-center w-100">
+                                <h6 class="m-0"> Qty:</h6>
+                                <div class="w-100 px-2"><span class="mr-2" style="cursor:pointer"> &#43;</span> 40 <span class="ml-2" style="cursor:pointer">&#8722;</span></div>
+                            </div>
+                            <div class=" mt-1 d-flex d-inline-block align-items-center w-100">
+                                <h6 class="m-0">Price:</h6>
+                                <div class="w-100 pl-2"><strong>$1200</strong></div>
+                                <div class="float-right mr-4"><button class="btn btn-outline-danger" style="border-radius:10px"><i class="fas fa-trash"></i></button></div>
+                            </div>
+                        </div>
 
-                    <div class="input-group d-flex justify-content-center w-100 my-4 bg-white">
-                            <input type="password" required>
-                            <span class="bar"></span>
-                            <label>Password</label>
                     </div>
-
-                    <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 text-center">
-                        <button class="btn w-100 py-2" id="loginSubmit">SUBMIT</button>
-                    </div>
-            
-                </form>
+                    <hr>
+                </div>
             </div>
 
             <div class="modal-footer">
                 <div class="container-fluid text-center">
-                    <span class="text-secondary "> <a href="#" class="text-dark">Forgot Password?</a></span>
-                </div>
-                <div class="container-fluid text-center">
-                    <span class="text-secondary "> New User? <a href= "#" class="text-dark" @click="$emit('change','signUp')">Sign Up</a></span>
+                    <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 text-center">
+                        <button class="btn w-50 py-2 float-right" id="loginSubmit">CHECKOUT</button>
+                    </div>
                 </div>
             </div>
             </div>
@@ -51,6 +56,13 @@
 
 <script>
 export default {
+    data(){
+        return {
+
+        };
+    },
+
+
     methods:{
         close(){
             this.$emit('close');
@@ -61,62 +73,29 @@ export default {
 
 <style scoped>
 
-    .input-group {
-        position: relative;
-        margin: 0 auto;
+    .prod-image{
+        width: 80%;
+        height: auto;
+        display: flex;
+        align-items: center;
     }
 
-    input {
-        font-size: 18px;
-        padding: 10px 10px 10px 10px;
-        display: block;
-        width: 300px;
-        border: none;
-        border-radius: 10%;
-        width: 100%;
+    .cart-list{
+        overflow-y: scroll;
+        /* overflow-x:hidden; */
+        max-height: 100%;
     }
 
-    input:focus {
-        outline: none;
-    }
-
-    label {
-    color: #999;
-    font-size: 18px;
-    font-weight: normal;
-    position: absolute;
-    pointer-events: none;
-    left: 5px;
-    top: 10px;
-    width:77%;
-    padding-left:5px; 
-    transition: 0.2s ease all;
-    -moz-transition: 0.2s ease all;
-    -webkit-transition: 0.2s ease all;
-    }
-
-    input:focus ~ label,
-    input:valid ~ label{
-        top: -22px;
-        font-size: 15px;
-        color: black;
-    }
-
-    .bar {
-        position: relative;
-        display:block;
-        width:100%;
-        background:black;
-        height:2px;
-        border-radius: 10px;
-        transform: scaleX(0);
-        transition: all 0.3s ease;
+    .cart-list::-webkit-scrollbar {
+        display: none;
     }
 
 
-    input:focus ~ .bar{
-        transform: scaleX(1);
+    .cart-list {
+        -ms-overflow-style: none;  
+        scrollbar-width: none;  
     }
+
 
     .modal-mask {
         position: fixed;
@@ -128,26 +107,30 @@ export default {
         background-color: rgba(0, 0, 0, 0.5);
         display: table;
         transition: opacity 0.5s ease-out;
-        /* overflow:hidden */
+        overflow:hidden
     }
 
     .modal-wrapper {
-        display: table-cell;
-        vertical-align: middle;
-        padding: 0;
+        display: flex;
+        align-items: center;
+        /* padding-top: 10vh; */
+        height: 100%;
+        max-height : 90vh;
+        /* overflow: hidden; */
     }
 
     .modal-container {
         width: 80%;
-        height: 80vh;
+        height: 90vh;
         margin: 0px auto;
-        padding: 20px 30px;
+        padding: 10px 20px;
         background-color: #f2f2f2;
         border-radius: 2px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
         transition: all 0.5s ease-out;
-        max-width: 450px;
-        max-height: 600px;
+        max-width: 550px;
+        max-height: 700px;
+        /* overflow: hidden; */
     }
 
     .modal-header {
@@ -157,10 +140,11 @@ export default {
 
     .modal-body {
         margin:40px 10px;
-        margin-bottom:20px
-
+        margin-bottom:20px;
+        min-height: 50vh;
+        max-height: 50vh;
+        display: block;
     }
-
     .modal-footer {
         border-top: 1px solid black;
     }
@@ -209,8 +193,5 @@ export default {
     .fade-enter-active, .fade-leave-active {
         transition: opacity 0.5s;
     }
-
-
-
 
 </style>
