@@ -23,9 +23,11 @@ app.use(morgan("dev"));
 //Requiring Routes
 var homeRoutes= require("./routes/home");
 var productRoutes = require("./routes/products");
+var orderRoutes = require("./routes/order")
 
 app.use(homeRoutes);
 app.use("/products", productRoutes);
+app.use("/orders", orderRoutes);
 
 
 app.listen(process.env.PORT || 3000, (req,res) =>{
