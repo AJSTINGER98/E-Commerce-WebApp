@@ -58,7 +58,7 @@
  <div class="col-md-9 container-fluid mt-100 right"> 
     <div class="row prod" :key="products">
             <transition-group name='fade' tag="div" class="row prod">
-                <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover" v-for="(product,index) in products" :key="index">
+                <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover" v-for="(product) in products" :key="product._id">
 
                     <div class="img-card w-100">
                         <img class="card-img" :src="product.image[0].src" alt="Card image cap">
@@ -369,7 +369,7 @@ export default {
  
     .img-footer {
         /* width: 100%; */
-        margin:40px auto auto 10px ;
+        margin:40px 20px 10px ;
         bottom: 0;
         padding: 2px;
         font-size: 2px;

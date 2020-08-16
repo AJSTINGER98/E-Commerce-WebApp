@@ -40,7 +40,7 @@
             <hr>
             <div class="d-flex justify-content-center">
               <div class="input-group d-flex justify-content-end w-100 my-4 mb-2 text-center align-items-center">
-                <button class="btn w-100 py-2 h-75" id="addCartBtn"><i class="fas fa-shopping-cart fa-fw"></i> Add To Cart</button>
+                <button class="btn w-100 py-2 h-75" id="addCartBtn" @click="addToCart()"><i class="fas fa-shopping-cart fa-fw"></i> Add To Cart</button>
               </div>
               <div class="quantity-input d-flex justify-content-center my-4 mb-2 ml-2 mr-0 align-items-center">
                 <input type="number" id="Quantity" v-model="quantity" max ="20" min="1">
@@ -150,6 +150,21 @@ export default {
         // console.log("In animation")
       }
     },
+    addToCart(){
+       this.$http.post(`${this.$api}orders`, {
+         data:{
+          name: this.product.name,
+          image: this.product.image.src,
+          item: this.product._id,
+          quantity: this.quantity,
+          price: this.product.price
+        }
+        },
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+    }
   },
   created(){
     // console.log(this.product)
