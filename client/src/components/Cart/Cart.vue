@@ -15,34 +15,40 @@
             </div>
 
             <div class="modal-body d-flex justify-content-center">
-                <div class="p-0 w-100 cart-list">
-                    <div class="row my-2" v-for="order in orders" :key="order._id">
+                <div class="p-0 w-100 cart-list" v-if="orders.length > 0">
+                    <div v-for="(order,index) in orders" :key="order.item_id">
+                    <hr v-if="index>0">
+                    <div class="row my-2"  >
                         <div class="image-container col-4 p-0">
                             <img class = "prod-image" :src="order.image" alt="">
                         </div>
                         <div class="info-container col-8 pr-0">
                             <div class=" mb-1 d-flex d-inline-block align-items-center w-100">
                                 <h6 class="m-0">Name:</h6>
-                                <div class="w-100 pl-2"><strong>{{ order.name }}</strong></div>
+                                <div class="w-100 pl-2" style="cursor:pointer" @click="$emit('close')"><strong><router-link tag="span" :to="{ name: 'productDetails', params: { id:order.item_id }}">{{ order.name }}</router-link></strong></div>
                             </div>
                             <div class=" my-3 d-flex d-inline-block align-items-center w-100">
                                 <h6 class="m-0"> Qty:</h6>
-                                <div class="w-100 px-2"><span class="mr-2" style="cursor:pointer"> &#43;</span> {{ order.quantity }} <span class="ml-2" style="cursor:pointer">&#8722;</span></div>
+                                <div class="w-100 px-2"><span class="mr-2" style="cursor:pointer" @click="order.quantity++"> &#43;</span> {{ order.quantity }} <span class="ml-2" style="cursor:pointer" @click="order.quantity>1?order.quantity-- : 1">&#8722;</span></div>
                             </div>
                             <div class=" mt-1 d-flex d-inline-block align-items-center w-100">
                                 <h6 class="m-0">Price:</h6>
                                 <div class="w-100 pl-2"><strong>{{ order.price}}</strong></div>
-                                <div class="float-right mr-4"><button class="btn btn-outline-danger" style="border-radius:10px"><i class="fas fa-trash"></i></button></div>
+                                <div class="float-right mr-4" @click="deleteOrder(order.item_id,index)"><button class="btn btn-outline-danger" style="border-radius:10px"><i class="fas fa-trash"></i></button></div>
                             </div>
                         </div>
 
+                   
                     </div>
-                    <hr>
+                    </div>
+                </div>
+                <div v-else>
+                    <p>Your cart is empty !! Shop Now</p>
                 </div>
             </div>
 
             <div class="modal-footer">
-                <div class="container-fluid text-center">
+                <div class="container-fluid text-center" v-if="orders.length>0">
                     <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 text-center">
                         <button class="btn w-50 py-2 float-right" id="loginSubmit">CHECKOUT</button>
                     </div>
@@ -67,6 +73,16 @@ export default {
     methods:{
         close(){
             this.$emit('close');
+        },
+        deleteOrder(item_id,index){
+            this.orders.splice(index,1);
+            this.$http.delete(`${this.$api}orders/${item_id}`)
+                .then(response =>{
+                    console.log('Item Deleted');
+                })
+                .catch(error =>{
+                    console.log('error occured');
+                });
         }
     },
     created(){

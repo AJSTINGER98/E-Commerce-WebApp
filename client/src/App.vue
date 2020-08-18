@@ -65,10 +65,10 @@
                 <a class="dropdown-item" href="#">SOMETHING ELSE</a>
               </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" style="cursor:pointer">
               <a class="nav-link icons" @click="isModalVisible = true"><i class="far fa-user fa-lg"></i></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" style="cursor:pointer"> 
               <a class="nav-link icons" @click="isModalVisible = true, currentPage='cart'"><i class="fas fa-shopping-cart fa-lg"></i></a>
             </li>
           </div>
