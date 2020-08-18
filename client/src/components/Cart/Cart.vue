@@ -2,7 +2,7 @@
   <transition name="fade">
         <div class="modal-mask">
           <div class="modal-wrapper">
-            <div class="modal-container">
+            <div class="modal-container" v-if="wait">
 
             <button type="button" class="close modal-default-button" @click="$emit('close')" data-dismiss="modal" aria-label="Close" >
                 <span aria-hidden="true">&times;</span>
@@ -16,22 +16,22 @@
 
             <div class="modal-body d-flex justify-content-center">
                 <div class="p-0 w-100 cart-list">
-                    <div class="row my-2">
+                    <div class="row my-2" v-for="order in orders" :key="order._id">
                         <div class="image-container col-4 p-0">
-                            <img class = "prod-image" src="../../assets/try2.png" alt="">
+                            <img class = "prod-image" :src="order.image" alt="">
                         </div>
                         <div class="info-container col-8 pr-0">
                             <div class=" mb-1 d-flex d-inline-block align-items-center w-100">
                                 <h6 class="m-0">Name:</h6>
-                                <div class="w-100 pl-2"><strong>XBOX CONTROLLER</strong></div>
+                                <div class="w-100 pl-2"><strong>{{ order.name }}</strong></div>
                             </div>
                             <div class=" my-3 d-flex d-inline-block align-items-center w-100">
                                 <h6 class="m-0"> Qty:</h6>
-                                <div class="w-100 px-2"><span class="mr-2" style="cursor:pointer"> &#43;</span> 40 <span class="ml-2" style="cursor:pointer">&#8722;</span></div>
+                                <div class="w-100 px-2"><span class="mr-2" style="cursor:pointer"> &#43;</span> {{ order.quantity }} <span class="ml-2" style="cursor:pointer">&#8722;</span></div>
                             </div>
                             <div class=" mt-1 d-flex d-inline-block align-items-center w-100">
                                 <h6 class="m-0">Price:</h6>
-                                <div class="w-100 pl-2"><strong>$1200</strong></div>
+                                <div class="w-100 pl-2"><strong>{{ order.price}}</strong></div>
                                 <div class="float-right mr-4"><button class="btn btn-outline-danger" style="border-radius:10px"><i class="fas fa-trash"></i></button></div>
                             </div>
                         </div>
@@ -58,7 +58,8 @@
 export default {
     data(){
         return {
-
+            orders : [],
+            wait: false
         };
     },
 
@@ -67,6 +68,17 @@ export default {
         close(){
             this.$emit('close');
         }
+    },
+    created(){
+        this.$http.get(`${this.$api}orders`)
+                    .then(response =>{
+                        this.orders = response.data.foundOrder.items;
+                        this.wait = true;
+                    })
+                    .catch(error =>{
+                        console.log(error);
+                        this.order = [];
+                    });
     }
 }
 </script>

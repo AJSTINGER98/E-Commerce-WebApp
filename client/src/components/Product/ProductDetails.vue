@@ -154,7 +154,7 @@ export default {
        this.$http.post(`${this.$api}orders`, {
          data:{
           name: this.product.name,
-          image: this.product.image.src,
+          image: this.product.image[0].src,
           item: this.product._id,
           quantity: this.quantity,
           price: this.product.price
