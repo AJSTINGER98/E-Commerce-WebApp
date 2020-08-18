@@ -23,7 +23,7 @@ app.use(morgan("dev"));
 //Requiring Routes
 var homeRoutes= require("./routes/home");
 var productRoutes = require("./routes/products");
-var orderRoutes = require("./routes/order")
+var orderRoutes = require("./routes/order");
 
 app.use(homeRoutes);
 app.use("/products", productRoutes);
