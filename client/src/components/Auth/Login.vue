@@ -17,19 +17,19 @@
             <div class="modal-body d-flex justify-content-center">
                 <form class="p-0 w-100 ">
                     <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                            <input type="email" required>
+                            <input type="email" required v-model="email">
                             <span class="bar"></span>
                             <label>Email</label>
                     </div>
 
                     <div class="input-group d-flex justify-content-center w-100 my-4 bg-white">
-                            <input type="password" required>
+                            <input type="password" required v-model="password">
                             <span class="bar"></span>
                             <label>Password</label>
                     </div>
 
                     <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 text-center">
-                        <button class="btn w-100 py-2" id="loginSubmit">SUBMIT</button>
+                        <button class="btn w-100 py-2" id="loginSubmit" @click="login">SUBMIT</button>
                     </div>
             
                 </form>
@@ -51,10 +51,44 @@
 
 <script>
 export default {
+    data() {
+    return {
+        name:'',
+      email: '',
+      password: '',
+      error: '',
+    }
+  },
     methods:{
         close(){
             this.$emit('close');
-        }
+        },
+          login() {
+      let user = {
+        email: this.email,
+        password: this.password
+      }
+    //   console.log(user);
+      this.$http.post(`${this.$api}user/login`, user)
+        .then(res => {
+          //if successfull
+          if (res.status === 200) {
+            localStorage.setItem('token', res.data.token);
+             this.$http.get(`${this.$api}user/user`, { headers: { token: localStorage.getItem('token')}})
+                .then(res => {
+                    this.name = res.data.user.name;
+                    console.log(res.data)
+                    // this.email = res.data.user.email;
+                    // console.log(res)
+                })
+            console.log(res)
+            // this.$router.push('/');
+          }
+        }, err => {
+          console.log(err.response);
+          this.error = err.response.data.error
+        })
+    }
     }
 }
 </script>

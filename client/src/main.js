@@ -27,6 +27,7 @@ const routes = [
   { path: '/contact-us', component: Contact, name: 'contact' },
   {path: '/products/:id', component: productDetails, name: 'productDetails'},
   {path: '/products',  component: product, name: 'product'}
+
 ];
 
 window.$ = jQuery;

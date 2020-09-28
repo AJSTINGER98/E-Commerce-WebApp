@@ -68,6 +68,7 @@
             <li class="nav-item" style="cursor:pointer">
               <a class="nav-link icons" @click="isModalVisible = true"><i class="far fa-user fa-lg"></i></a>
             </li>
+            
             <li class="nav-item" style="cursor:pointer"> 
               <a class="nav-link icons" @click="isModalVisible = true, currentPage='cart'"><i class="fas fa-shopping-cart fa-lg"></i></a>
             </li>
@@ -117,7 +118,9 @@
     </transition>
 
     <!-- <home :class="{'blur-effect' : isModalVisible}"></home> -->
-    <component :is="currentPage" v-show="isModalVisible" @close="closeModal()" @change="currentPage = $event"></component> 
+    <keep-alive>
+          <component :is="currentPage" v-show="isModalVisible" @close="closeModal()" @change="currentPage = $event"></component> 
+    </keep-alive>
     <!-- Footer -->
 <footer class="background-col page-footer font-small special-color-dark pt-4">
 

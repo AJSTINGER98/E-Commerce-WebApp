@@ -24,11 +24,12 @@ app.use(morgan("dev"));
 var homeRoutes= require("./routes/home");
 var productRoutes = require("./routes/products");
 var orderRoutes = require("./routes/order");
+var userRoutes = require("./routes/user");
 
 app.use(homeRoutes);
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
-
+app.use("/user", userRoutes);
 
 app.listen(process.env.PORT || 3000, (req,res) =>{
     console.log('Server Running on port 3000');

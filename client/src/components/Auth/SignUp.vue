@@ -17,13 +17,13 @@
             <div class="modal-body d-flex justify-content-center">
                 <form class="p-0 w-100 ">
                      <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                            <input type="email" required>
+                            <input type="email" required v-model="email">
                             <span class="bar"></span>
                             <label>Email</label>
                     </div>
       
                     <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                            <input type="password" required>
+                            <input type="password" required v-model="password">
                             <span class="bar"></span>
                             <label>Password</label>
                     </div>
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 text-center">
-                        <button class="btn w-100 py-2">SUBMIT</button>
+                        <button class="btn w-100 py-2" @click="signup">SUBMIT</button>
                     </div>
             
                 </form>
@@ -54,12 +54,36 @@
 
 <script>
 export default {
+    data() {
+    return {
+      name: '',
+      email: '',
+      password: '',
+      error: '',
+    }
+  },
  
 
     methods:{
         close(){
             this.$emit('close');
-        }
+        },
+        signup() {
+      let newUser = {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      }
+      this.$http.post(`${this.$api}user/signup`, newUser)
+        .then(res => {
+          this.error = res.title;
+          console.log(this.error)
+        //   this.$router.push('/login');
+        }, err => {
+          console.log(err.response)
+          this.error = err.response.data.error
+        })
+    }
     }
 }
 </script>

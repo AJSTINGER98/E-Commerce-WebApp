@@ -58,14 +58,14 @@
  <div class="col-md-9 container-fluid mt-100 right"> 
     <div class="row prod" :key="products">
             <transition-group name='fade' tag="div" class="row prod">
-                <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover" v-for="(product) in products" :key="product._id">
+                <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover text-center" v-for="(product) in products" :key="product._id">
 
                     <div class="img-card w-100">
                         <img class="card-img" :src="product.image[0].src" alt="Card image cap">
 
                     </div>
-                    <div class="img-footer">
-                        <div class="upper-div mx-0">
+                    <div class="img-footer mx-auto">
+                        <div class="upper-div mx-0 text-center">
                             <router-link :to="{ name: 'productDetails', params: { id:product._id }}"> <button class="btn">VIEW</button></router-link>
                         </div>
                         <div class="lower-div mx-0 ">
@@ -381,7 +381,7 @@ export default {
     }
     .upper-div{
         max-height: 0;
-        max-width:80%;
+        /* max-width:80%; */
         position: relative;
         margin-top:-40px;
         margin-bottom:10px;
@@ -454,6 +454,9 @@ export default {
 
 /* Media queries for responsiveness */
 @media only screen and (max-width: 767px) {
+    .right{
+        padding-left:0px;
+    }
   .mt-100 {
     /* background-color: lightblue; */
     margin-top:0px
