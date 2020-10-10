@@ -53,18 +53,22 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
+
 export default {
     data() {
     return {
-      name: '',
-      email: '',
-      password: '',
-      error: '',
+        userData: {},
+        name: '',
+        email: '',
+        password: '',
+        error: '',
     }
   },
  
 
     methods:{
+        ...mapMutations(['setData']),
         close(){
             this.$emit('close');
         },
@@ -76,13 +80,29 @@ export default {
       }
       this.$http.post(`${this.$api}user/signup`, newUser)
         .then(res => {
-          this.error = res.title;
-          console.log(this.error)
+          console.log(res);
+          if (res.status === 200) {
+            localStorage.setItem('token', res.data.token);
+             this.$http.get(`${this.$api}user/user`, { headers: { token: localStorage.getItem('token')}})
+                .then(resp => {
+                    console.log(resp.data)
+                    this.userData.user = resp.data.user
+                    this.userData.token = res.data.token 
+                    this.setData(this.userData);
+                    this.close();
+
+                }).catch(err =>{
+                    console.log(err);
+                })
+            // console.log(res)
+            // this.$router.push('/');
+          }
         //   this.$router.push('/login');
-        }, err => {
-          console.log(err.response)
-          this.error = err.response.data.error
-        })
+        }).catch(err=> {
+        //   console.log(err.response.data)
+          alert(err.response.data.error)
+        //   this.error = err.response.data.error
+        });
     }
     }
 }

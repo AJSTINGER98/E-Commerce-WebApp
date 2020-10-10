@@ -12,6 +12,8 @@ import productDetails from './components/Product/ProductDetails.vue';
 import product from './components/Product/Product.vue';
 import InfiniteLoading from 'vue-infinite-loading';
 
+import { store } from './store/store';
+
 
 Vue.use(VueRouter);
 Vue.use(VueScrollmagic);
@@ -44,5 +46,6 @@ const router = new VueRouter({
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app');
