@@ -50,16 +50,20 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
     data() {
     return {
-        name:'',
-      email: '',
-      password: '',
-      error: '',
+        userData : {},
+        email: null,
+        password: null
     }
   },
     methods:{
+
+        ...mapMutations(['setData']),
+
         close(){
             this.$emit('close');
         },
@@ -75,16 +79,20 @@ export default {
           if (res.status === 200) {
             localStorage.setItem('token', res.data.token);
              this.$http.get(`${this.$api}user/user`, { headers: { token: localStorage.getItem('token')}})
-                .then(res => {
-                    this.name = res.data.user.name;
-                    console.log(res.data)
-                    // this.email = res.data.user.email;
-                    // console.log(res)
+                .then(resp => {
+                    // console.log(resp.data)
+                    this.userData.user = resp.data.user
+                    this.userData.token = res.data.token 
+                    this.setData(this.userData);
+                    this.close();
+
+                }).catch(err =>{
+                    console.log('User Not Found');
                 })
-            console.log(res)
+            // console.log(res)
             // this.$router.push('/');
           }
-        }, err => {
+        }).catch(err => {
           console.log(err.response);
           this.error = err.response.data.error
         })

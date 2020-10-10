@@ -64,13 +64,15 @@
                 <a class="dropdown-item" href="#">SOMETHING ELSE</a>
                 <a class="dropdown-item" href="#">SOMETHING ELSE</a>
               </div>
-            </li>
-            <li class="nav-item" style="cursor:pointer">
-              <a class="nav-link icons" @click="isModalVisible = true"><i class="far fa-user fa-lg"></i></a>
-            </li>
-            
+            </li>        
             <li class="nav-item" style="cursor:pointer"> 
               <a class="nav-link icons" @click="isModalVisible = true, currentPage='cart'"><i class="fas fa-shopping-cart fa-lg"></i></a>
+            </li>
+            <li class="nav-item" style="cursor:pointer" v-if="!isAuthenticated">
+              <a class="nav-link icons" @click="isModalVisible = true,currentPage='login'"><i class="far fa-user fa-lg"></i></a>
+            </li>
+            <li class="nav-item" style="cursor:pointer" v-else>
+              <a class="nav-link icons" @click="logout()"><i class="fas fa-sign-out-alt fa-lg"></i></a>
             </li>
           </div>
         </ul>
@@ -104,8 +106,11 @@
           <li class="nav-item">
             <a class="nav-link" href="#" @click="isModalVisible = true, currentPage='cart'" >CART</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" @click="isModalVisible = true">LOGIN</a>
+          <li class="nav-item" v-if="!isAuthenticated">
+            <a class="nav-link" href="#" @click="isModalVisible = true, currentPage='login'">LOGIN</a>
+          </li>
+          <li class="nav-item" v-else>
+            <a class="nav-link" href="#" @click="logout()">LOGOUT</a>
           </li>
       
         </ul>
@@ -118,9 +123,9 @@
     </transition>
 
     <!-- <home :class="{'blur-effect' : isModalVisible}"></home> -->
-    <keep-alive>
-          <component :is="currentPage" v-show="isModalVisible" @close="closeModal()" @change="currentPage = $event"></component> 
-    </keep-alive>
+  
+    <component :is="currentPage" v-show="isModalVisible" @close="closeModal()" @change="currentPage = $event"></component> 
+    
     <!-- Footer -->
 <footer class="background-col page-footer font-small special-color-dark pt-4">
 
@@ -182,6 +187,8 @@ import home from './components/Home/Home.vue';
 import login from './components/Auth/Login.vue';
 import signUp from './components/Auth/SignUp.vue';
 import cart from './components/Cart/Cart.vue';
+import {mapGetters} from 'vuex';
+import {mapMutations} from 'vuex';
 
 
 
@@ -193,7 +200,7 @@ export default {
       isToggled : false,
       updateScroll : window.scrollY,
       isModalVisible : false,
-      currentPage : 'login',
+      currentPage : '',
       window : {
         width : 0,
         height : 0
@@ -210,6 +217,9 @@ export default {
   },
 
   methods: {
+    
+    ...mapMutations(['removeData']),
+
     navbar(){
       if(this.$route.fullPath =="/" && this.updateScroll < 400){
         this.hasScrolled= false;
@@ -230,16 +240,21 @@ export default {
       this.isModalVisible = false;
       var vm = this;
       setTimeout(() => {
-        vm.currentPage = 'login';
+        vm.currentPage = '';
       },1000)
     },
     windowSize() {
       this.window.width = window.innerWidth;
       this.window.height = window.innerHeight;
     },
+
+    logout(){
+      this.removeData();
+    }
     
   },
   computed : {
+    ...mapGetters(['isAuthenticated']),
     checkWidth() {
       return this.window.width > 990 ? true : false;
     },
