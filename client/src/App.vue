@@ -65,13 +65,19 @@
                 <a class="dropdown-item" href="#">SOMETHING ELSE</a>
               </div>
             </li>
-            <li class="nav-item" style="cursor:pointer">
+            <li class="nav-item" style="cursor:pointer" v-if="!loggedIn">
               <a class="nav-link icons" @click="isModalVisible = true"><i class="far fa-user fa-lg"></i></a>
             </li>
-            
+            <li class="nav-item" style="cursor:pointer" v-else @click="logout">
+              <a class="nav-link icons"><i class="fa fa-sign-out fa-lg"></i></a>
+            </li>
+             <!-- <li class="nav-item" v-if="logeddIn">
+               <p>Welcome {{data.name.toUpperCase() }} </p> 
+             </li> -->
             <li class="nav-item" style="cursor:pointer"> 
               <a class="nav-link icons" @click="isModalVisible = true, currentPage='cart'"><i class="fas fa-shopping-cart fa-lg"></i></a>
             </li>
+
           </div>
         </ul>
       </div>
@@ -197,7 +203,9 @@ export default {
       window : {
         width : 0,
         height : 0
-      }
+      },
+      data:[],
+      loggedIn: false,
       
 
     }
@@ -206,6 +214,7 @@ export default {
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize',this.windowSize);
     this.windowSize();
+
     
   },
 
@@ -237,6 +246,11 @@ export default {
       this.window.width = window.innerWidth;
       this.window.height = window.innerHeight;
     },
+    logout(){
+      localStorage.clear();
+      console.log("user logged out")
+      this.loggedIn=false
+    }
     
   },
   computed : {
@@ -254,6 +268,13 @@ export default {
   },
   mounted() {
     this.navbar()
+    if (localStorage.getItem('token') != null) {
+      this.data= JSON.parse(localStorage.getItem('userData'))
+      this.loggedIn=true
+      console.log("In App.vue component")
+      console.log(this.data)
+    }
+    
   }
 }
 </script>

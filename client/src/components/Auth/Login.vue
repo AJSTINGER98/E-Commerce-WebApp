@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="input-group d-flex justify-content-center w-100 my-4 bg-white">
-                            <input type="password" required v-model="password">
+                            <input type="text" required v-model="password">
                             <span class="bar"></span>
                             <label>Password</label>
                     </div>
@@ -57,32 +57,30 @@ export default {
       email: '',
       password: '',
       error: '',
+      data:[]
     }
   },
     methods:{
         close(){
             this.$emit('close');
         },
-          login() {
+    login() {
       let user = {
         email: this.email,
         password: this.password
       }
-    //   console.log(user);
       this.$http.post(`${this.$api}user/login`, user)
         .then(res => {
           //if successfull
           if (res.status === 200) {
             localStorage.setItem('token', res.data.token);
-             this.$http.get(`${this.$api}user/user`, { headers: { token: localStorage.getItem('token')}})
+             this.$http.get(`${this.$api}user/data`, { headers: { token: localStorage.getItem('token')}})
                 .then(res => {
-                    this.name = res.data.user.name;
+                    this.data= res.data
+                    localStorage.setItem('userData', JSON.stringify(this.data));
                     console.log(res.data)
-                    // this.email = res.data.user.email;
-                    // console.log(res)
                 })
             console.log(res)
-            // this.$router.push('/');
           }
         }, err => {
           console.log(err.response);

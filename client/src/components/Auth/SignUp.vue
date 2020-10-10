@@ -16,6 +16,12 @@
 
             <div class="modal-body d-flex justify-content-center">
                 <form class="p-0 w-100 ">
+                    
+                    <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
+                            <input type="text" v-model="name" required>
+                            <span class="bar"></span>
+                            <label>Name</label>
+                    </div>
                      <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
                             <input type="email" required v-model="email">
                             <span class="bar"></span>
@@ -26,12 +32,6 @@
                             <input type="password" required v-model="password">
                             <span class="bar"></span>
                             <label>Password</label>
-                    </div>
-
-                    <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                            <input type="password" required>
-                            <span class="bar"></span>
-                            <label>Confirm Password</label>
                     </div>
 
                     <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 text-center">

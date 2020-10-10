@@ -38,21 +38,21 @@ router.post('/login', (req, res, next) => {
       //incorrect password
       if (!bcrypt.compareSync(req.body.password, user.password)) {
         return res.status(401).json({
-          tite: 'login failed',
+          title: 'login failed',
           error: 'invalid credentials'
         })
       }
       //IF ALL IS GOOD create a token and send to frontend
       let token = jwt.sign({ userId: user._id}, 'secretkey');
       return res.status(200).json({
-        title: 'login sucess',
+        title: 'login success',
         token: token
       })
     })
   })
   
   //grabbing user info
-router.get('/user', (req, res, next) => {
+router.get('/data', (req, res, next) => {
 
     let token = req.headers.token; //token
     jwt.verify(token, 'secretkey', (err, decoded) => {
@@ -64,11 +64,9 @@ router.get('/user', (req, res, next) => {
       User.findOne({ _id: decoded.userId }, (err, user) => {
         if (err) return console.log(err)
         return res.status(200).json({
-          title: 'user grabbed',
-          user: {
-            email: user.email,
-            name: user.name
-          }
+          name: user.name,
+          email: user.email,
+          id: user._id
         })
       })
   
