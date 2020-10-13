@@ -67,13 +67,6 @@ router.get('/data', (req, res, next) => {
       User.findOne({ _id: decoded.userId }, (err, user) => {
         if (err) return console.log(err);
         return res.status(200).json({
-<<<<<<< HEAD
-          name: user.name,
-          email: user.email,
-          id: user._id
-        })
-      })
-=======
           title: 'user grabbed',
           user: {
             email: user.email,
@@ -81,7 +74,6 @@ router.get('/data', (req, res, next) => {
           }
         });
       });
->>>>>>> d2f2a797ad804aac1e55b5e0bb965887f53f7217
   
     });
   });

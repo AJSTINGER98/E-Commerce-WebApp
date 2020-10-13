@@ -68,12 +68,16 @@
             <li class="nav-item" style="cursor:pointer"> 
               <a class="nav-link icons" @click="isModalVisible = true, currentPage='cart'"><i class="fas fa-shopping-cart fa-lg"></i></a>
             </li>
+            <li class="nav-item" v-if="isAuthenticated">
+              <p lass="nav-link icons" style="margin-top:7px;">Welcome, {{data.name.toUpperCase()}}</p>
+            </li>
             <li class="nav-item" style="cursor:pointer" v-if="!isAuthenticated">
               <a class="nav-link icons" @click="isModalVisible = true,currentPage='login'"><i class="far fa-user fa-lg"></i></a>
             </li>
             <li class="nav-item" style="cursor:pointer" v-else>
               <a class="nav-link icons" @click="logout()"><i class="fas fa-sign-out-alt fa-lg"></i></a>
             </li>
+
           </div>
         </ul>
       </div>
@@ -109,7 +113,9 @@
           <li class="nav-item" v-if="!isAuthenticated">
             <a class="nav-link" href="#" @click="isModalVisible = true, currentPage='login'">LOGIN</a>
           </li>
+          
           <li class="nav-item" v-else>
+            
             <a class="nav-link" href="#" @click="logout()">LOGOUT</a>
           </li>
       
@@ -257,7 +263,7 @@ export default {
     
   },
   computed : {
-    ...mapGetters(['isAuthenticated']),
+    ...mapGetters(['isAuthenticated','sendData']),
     checkWidth() {
       return this.window.width > 990 ? true : false;
     },
@@ -272,14 +278,23 @@ export default {
   },
   mounted() {
     this.navbar()
-    if (localStorage.getItem('token') != null) {
-      this.data= JSON.parse(localStorage.getItem('userData'))
-      this.loggedIn=true
-      console.log("In App.vue component")
-      console.log(this.data)
+    // if (localStorage.getItem('token') != null) {
+    //   this.data= JSON.parse(localStorage.getItem('userData'))
+    //   this.loggedIn=true
+    //   console.log("In App.vue component")
+    //   console.log(this.data)
+    // }
+    
+    },
+    watch:{
+      sendData(){
+      console.log(this.sendData)
+      this.data=this.sendData
+      console.log(this.data.name)
+      },
+      
     }
     
-  }
 }
 </script>
 

@@ -82,8 +82,8 @@ export default {
         .then(res => {
           console.log(res);
           if (res.status === 200) {
-            localStorage.setItem('token', res.data.token);
-             this.$http.get(`${this.$api}user/user`, { headers: { token: localStorage.getItem('token')}})
+            // localStorage.setItem('token', res.data.token);
+             this.$http.get(`${this.$api}user/data`, { headers: { token: res.data.token}})
                 .then(resp => {
                     console.log(resp.data)
                     this.userData.user = resp.data.user
