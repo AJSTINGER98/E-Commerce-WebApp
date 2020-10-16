@@ -27,8 +27,8 @@ Vue.prototype.$api = 'http://localhost:3000/';
 const routes = [
   { path: '/', component: Home, name: 'home' },
   { path: '/contact-us', component: Contact, name: 'contact' },
-  {path: '/products/:id', component: productDetails, name: 'productDetails'},
-  {path: '/products',  component: product, name: 'product'}
+  {path: '/products/:id', component: productDetails, name: 'productDetails',props: true},
+  {path: '/products',  component: product, name: 'product',props: true}
 
 ];
 

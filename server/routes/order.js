@@ -7,7 +7,8 @@ router.post('/', (req,res)=>{
     // item=JSON.parse(req.body)r
     // console.log(req.body.data)
     var newOrder={name: req.body.data.name, image:req.body.data.image, item_id: req.body.data.item, quantity: req.body.data.quantity, price:req.body.data.price};
-    Order.findOneAndUpdate({owner:'123456789'},{$push: {items:newOrder}},{safe:true, upsert:true},function(err, orderData){
+    var userId= req.headers._id
+    Order.findOneAndUpdate({owner:userId},{$push: {items:newOrder}},{safe:true, upsert:true},function(err, orderData){
         if(err){
             console.log(err);
         }
@@ -20,6 +21,8 @@ router.post('/', (req,res)=>{
 
 //Fetch orders for My Cart
 router.get('/', (req,res)=>{
+    var userId = req.headers._id
+    // console.log(req.headers)
     Order.findOne({owner:'123456789'}, function(err,foundOrder){
         if(err){
             console.log(err);

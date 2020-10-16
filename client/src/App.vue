@@ -26,7 +26,8 @@
             <router-link to="/contact-us" class="nav-link"><span>CONTACT US</span></router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/products" class="nav-link"><span>PRODUCTS</span></router-link>
+            <router-link :to="{ name: 'product', 
+           params: { userId: data.id }}" class="nav-link"><span>PRODUCTS</span></router-link>
           </li>
           <!-- <li class="nav-item dropdown show">
             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button">
@@ -130,7 +131,7 @@
 
     <!-- <home :class="{'blur-effect' : isModalVisible}"></home> -->
   
-    <component :is="currentPage" v-show="isModalVisible" @close="closeModal()" @change="currentPage = $event"></component> 
+    <component :is="currentPage" :userId ="data.id" v-show="isModalVisible" @close="closeModal()" @change="currentPage = $event"></component> 
     
     <!-- Footer -->
 <footer class="background-col page-footer font-small special-color-dark pt-4">
@@ -221,7 +222,7 @@ export default {
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize',this.windowSize);
     this.windowSize();
-    console.log(this.data.name)
+    // console.log(this.data.name)
 
     
   },
@@ -289,9 +290,9 @@ export default {
     },
     watch:{
       sendData(){
-      console.log(this.sendData)
+      // console.log(this.sendData)
       this.data=this.sendData
-      console.log(this.data.name)
+      console.log(this.data.id)
       },
       
     }

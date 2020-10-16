@@ -15,7 +15,7 @@
             </div>
 
             <div class="modal-body d-flex justify-content-center">
-                <div class="p-0 w-100 cart-list" v-if="orders.length > 0">
+                <div class="p-0 w-100 cart-list" v-if="orders.length > 0 && isAuthenticated">
                     <div v-for="(order,index) in orders" :key="index">
                     <hr v-if="index>0">
                     <div class="row my-2"  >
@@ -61,13 +61,17 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
     data(){
         return {
             orders : [],
-            wait: false
+            wait: false,
+            userData: [],
+           
         };
     },
+     props: ['userId'],
 
 
     methods:{
@@ -86,7 +90,8 @@ export default {
         }
     },
     created(){
-        this.$http.get(`${this.$api}orders`)
+        // console.log(this.userId)
+        this.$http.get(`${this.$api}orders`,{ headers: { _id: this.userId}})
                     .then(response =>{
                         this.orders = response.data.foundOrder.items;
                         this.wait = true;
@@ -95,7 +100,11 @@ export default {
                         console.log(error);
                         this.order = [];
                     });
-    }
+    },
+    computed : {
+    ...mapGetters(['isAuthenticated','sendData']),
+    },
+
 }
 </script>
 

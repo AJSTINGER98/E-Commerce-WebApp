@@ -73,31 +73,32 @@ export default {
             this.$emit('close');
         },
         signup() {
-        if(this.name & this.email & this.password){
+        if(this.name && this.email && this.password){
             let newUser = {
-        name: this.name,
-        email: this.email,
-        password: this.password
-      }
-      this.$http.post(`${this.$api}user/signup`, newUser)
-        .then(res => {
-          console.log(res);
-          if (res.status === 200) {
-            // localStorage.setItem('token', res.data.token);
-             this.$http.get(`${this.$api}user/data`, { headers: { token: res.data.token}})
-                .then(resp => {
-                    console.log(resp.data)
-                    this.userData.user = resp.data.user
-                    this.userData.token = res.data.token 
-                    this.setData(this.userData);
-                    this.close();
+            name: this.name,
+            email: this.email,
+            password: this.password
+            }
+            this.$http.post(`${this.$api}user/signup`, newUser)
+            .then(res => {
+            console.log(res);
+            if (res.status === 200) {
+                // localStorage.setItem('token', res.data.token);
+                this.$http.get(`${this.$api}user/data`, { headers: { token: res.data.token}})
+                    .then(resp => {
+                        console.log(resp.data)
+                        this.userData.user = resp.data.user
+                        this.userData.token = res.data.token 
+                        this.setData(this.userData);
+                        this.close();
 
-                }).catch(err =>{
-                    console.log(err);
-                })
-            // console.log(res)
+                    }).catch(err =>{
+                        console.log(err);
+                    })
+                // console.log(res)
             // this.$router.push('/');
           }
+          
         //   this.$router.push('/login');
         }).catch(err=> {
         //   console.log(err.response.data)

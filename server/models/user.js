@@ -9,7 +9,12 @@ const userSchema = new Schema({
   },
   password: String,
   phone: Number,
-  address: String,
+  address: [{
+    location: String,
+    pincode: Number,
+    city: String,
+    state: String,
+  }]
 })
 
 const User = mongoose.model('User', userSchema);

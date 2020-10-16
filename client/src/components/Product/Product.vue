@@ -66,7 +66,7 @@
                     </div>
                     <div class="img-footer mx-auto">
                         <div class="upper-div mx-0 text-center">
-                            <router-link :to="{ name: 'productDetails', params: { id:product._id }}"> <button class="btn">VIEW</button></router-link>
+                            <router-link :userId="userId" :to="{ name: 'productDetails', params: { id:product._id, userId: userId }}"> <button class="btn">VIEW</button></router-link>
                         </div>
                         <div class="lower-div mx-0 ">
                             <h6 class="mb-0 mt-1 text-muted">{{ product.brand.toUpperCase()}}</h6>
@@ -104,6 +104,7 @@ export default {
             rows: false
         };
     },
+    props: ['userId'],
     // components: {
     //     infiniteLoading : InfiniteLoading,
     // },
@@ -116,7 +117,7 @@ export default {
                     .get(`${this.$api}products/`,{params: {page: this.page, category: this.categoryArray, brand: this.brandArray}})
                     .then(response => {
                         // this.page=1
-                        console.log($state)
+                        // console.log($state)
                         if (response.data.allProducts && response.data.allProducts.length > 0) {
                             this.page += 1;
                             if(response.data.allProducts.length<5){
@@ -150,6 +151,7 @@ export default {
 
     },
     created(){
+        console.log(this.userId)
         this.$http
       .get(`${this.$api}products/distinct`)
       .then(response => {

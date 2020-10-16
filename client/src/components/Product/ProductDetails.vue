@@ -109,7 +109,7 @@ export default {
       product : {}
     };
   },
-
+  props:['userId'],
   watch:{
     quantity : function(){
       if(this.quantity > this.qtymax){
@@ -159,7 +159,7 @@ export default {
           quantity: this.quantity,
           price: this.product.price
         }
-        },
+        },{ headers: { _id: this.userId}}
         )
         .then(function (response) {
           console.log(response);
@@ -168,7 +168,7 @@ export default {
   },
   created(){
     // console.log(this.product)
-    
+    console.log(this.userId)
     this.$http
       .get(`${this.$api}products/${this.$route.params.id}`)
       .then(response => {

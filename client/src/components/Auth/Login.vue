@@ -60,7 +60,7 @@ export default {
         password: null
     }
   },
-    methods:{
+methods:{
 
         ...mapMutations(['setData']),
 
@@ -69,7 +69,7 @@ export default {
         },
     login() {
     
-    if(this.email & this.password){
+    if(this.email && this.password){
       let user = {
         email: this.email,
         password: this.password
