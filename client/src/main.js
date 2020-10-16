@@ -6,6 +6,7 @@ import VueScrollmagic from 'vue-scrollmagic';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 
+
 import Home from './components/Home/Home.vue';
 import Contact from './components/ContactUs/Contact.vue';
 import productDetails from './components/Product/ProductDetails.vue';

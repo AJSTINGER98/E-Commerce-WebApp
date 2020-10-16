@@ -27,7 +27,7 @@
           </li>
           <li class="nav-item">
             <router-link :to="{ name: 'product', 
-           params: { userId: data.id }}" class="nav-link"><span>PRODUCTS</span></router-link>
+           params: { userId: userData.id }}" class="nav-link"><span>PRODUCTS</span></router-link>
           </li>
           <!-- <li class="nav-item dropdown show">
             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button">
@@ -70,7 +70,7 @@
               <a class="nav-link icons" @click="isModalVisible = true, currentPage='cart'"><i class="fas fa-shopping-cart fa-lg"></i></a>
             </li>
             <li class="nav-item" v-if="isAuthenticated">
-              <p lass="nav-link icons" style="margin-top:7px;">Welcome, {{data.name.toUpperCase()}}</p>
+              <p lass="nav-link icons" style="margin-top:7px;">Welcome, {{ userData.name.toUpperCase() }}</p>
             </li>
             <li class="nav-item" style="cursor:pointer" v-if="!isAuthenticated">
               <a class="nav-link icons" @click="isModalVisible = true,currentPage='login'"><i class="far fa-user fa-lg"></i></a>
@@ -115,8 +115,7 @@
             <a class="nav-link" href="#" @click="isModalVisible = true, currentPage='login'">LOGIN</a>
           </li>
           
-          <li class="nav-item" v-else>
-            
+          <li class="nav-item" v-else>       
             <a class="nav-link" href="#" @click="logout()">LOGOUT</a>
           </li>
       
@@ -131,7 +130,7 @@
 
     <!-- <home :class="{'blur-effect' : isModalVisible}"></home> -->
   
-    <component :is="currentPage" :userId ="data.id" v-show="isModalVisible" @close="closeModal()" @change="currentPage = $event"></component> 
+    <component :is="currentPage" :userId ="userData.id" v-show="isModalVisible" @close="closeModal()" @change="currentPage = $event"></component> 
     
     <!-- Footer -->
 <footer class="background-col page-footer font-small special-color-dark pt-4">
@@ -212,7 +211,9 @@ export default {
         width : 0,
         height : 0
       },
-      data:[],
+      userData:[{
+        id: ''
+      }],
       loggedIn: false,
       
 
@@ -222,8 +223,11 @@ export default {
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize',this.windowSize);
     this.windowSize();
-    // console.log(this.data.name)
-
+    if(this.isAuthenticated){
+      console.log(this.sendData)
+      this.userData=this.sendData
+      console.log(this.userDate)
+    }
     
   },
 
@@ -261,6 +265,7 @@ export default {
 
     logout(){
       this.removeData();
+      this.userData.id=''
     }
     
   },
@@ -286,13 +291,15 @@ export default {
     //   console.log("In App.vue component")
     //   console.log(this.data)
     // }
+ 
+    // console.log(this.isAuthenticated)
     
     },
     watch:{
       sendData(){
-      // console.log(this.sendData)
-      this.data=this.sendData
-      console.log(this.data.id)
+        console.log(this.sendData)
+        this.userData=this.sendData
+        // console.log(this.userDat)
       },
       
     }

@@ -23,7 +23,7 @@ router.post('/', (req,res)=>{
 router.get('/', (req,res)=>{
     var userId = req.headers._id
     // console.log(req.headers)
-    Order.findOne({owner:'123456789'}, function(err,foundOrder){
+    Order.findOne({owner:userId}, function(err,foundOrder){
         if(err){
             console.log(err);
         }

@@ -78,7 +78,7 @@ methods:{
         .then(res => {
           //if successfull
           if (res.status === 200) {
-            // localStorage.setItem('token', res.data.token);
+            localStorage.setItem('token', res.data.token);
              this.$http.get(`${this.$api}user/data`, { headers: { token: res.data.token}})
                 .then(resp => {
                     // console.log(resp.data)
