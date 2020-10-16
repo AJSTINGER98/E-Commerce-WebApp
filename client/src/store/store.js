@@ -1,15 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
+// import Cookies from 'js-cookie';
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
+ 
   state: {
     user: null,
     token: null
   },
   getters:{
     isAuthenticated(state){
+        console.log(state);
         if(state.user != null && state.token != null){
             return true;
         }
@@ -30,5 +34,8 @@ export const store = new Vuex.Store({
         state.user = null;
         state.token = null;
     }
-  }
+  },
+  plugins: [
+    createPersistedState()
+  ],
 });

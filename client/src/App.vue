@@ -69,7 +69,7 @@
               <a class="nav-link icons" @click="isModalVisible = true, currentPage='cart'"><i class="fas fa-shopping-cart fa-lg"></i></a>
             </li>
             <li class="nav-item" v-if="isAuthenticated">
-              <p lass="nav-link icons" style="margin-top:7px;">Welcome, {{data.name.toUpperCase()}}</p>
+              <p lass="nav-link icons" style="margin-top:7px;">Welcome, {{ userData.name.toUpperCase() }}</p>
             </li>
             <li class="nav-item" style="cursor:pointer" v-if="!isAuthenticated">
               <a class="nav-link icons" @click="isModalVisible = true,currentPage='login'"><i class="far fa-user fa-lg"></i></a>
@@ -114,8 +114,7 @@
             <a class="nav-link" href="#" @click="isModalVisible = true, currentPage='login'">LOGIN</a>
           </li>
           
-          <li class="nav-item" v-else>
-            
+          <li class="nav-item" v-else>       
             <a class="nav-link" href="#" @click="logout()">LOGOUT</a>
           </li>
       
@@ -211,7 +210,7 @@ export default {
         width : 0,
         height : 0
       },
-      data:[],
+      userData:[],
       loggedIn: false,
       
 
@@ -221,7 +220,11 @@ export default {
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize',this.windowSize);
     this.windowSize();
-
+    if(this.isAuthenticated){
+      console.log(this.sendData)
+      this.userData=this.sendData
+      console.log(this.userDate)
+    }
     
   },
 
@@ -284,13 +287,15 @@ export default {
     //   console.log("In App.vue component")
     //   console.log(this.data)
     // }
+ 
+    // console.log(this.isAuthenticated)
     
     },
     watch:{
       sendData(){
-      console.log(this.sendData)
-      this.data=this.sendData
-      console.log(this.data.name)
+        console.log(this.sendData)
+        this.userData=this.sendData
+        console.log(this.userDate)
       },
       
     }
