@@ -16,7 +16,7 @@
 
             <div class="modal-body d-flex justify-content-center">
                 <div class="p-0 w-100 cart-list" v-if="orders.length > 0">
-                    <div v-for="(order,index) in orders" :key="order.item_id">
+                    <div v-for="(order,index) in orders" :key="index">
                     <hr v-if="index>0">
                     <div class="row my-2"  >
                         <div class="image-container col-4 p-0">
@@ -33,7 +33,7 @@
                             </div>
                             <div class=" mt-1 d-flex d-inline-block align-items-center w-100">
                                 <h6 class="m-0">Price:</h6>
-                                <div class="w-100 pl-2"><strong>{{ order.price}}</strong></div>
+                                <div class="w-100 pl-2"><strong> Rs {{ (order.price*order.quantity).toLocaleString() }}</strong></div>
                                 <div class="float-right mr-4" @click="deleteOrder(order.item_id,index)"><button class="btn btn-outline-danger" style="border-radius:10px"><i class="fas fa-trash"></i></button></div>
                             </div>
                         </div>

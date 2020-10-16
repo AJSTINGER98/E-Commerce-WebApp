@@ -23,13 +23,13 @@
                             <label>Name</label>
                     </div>
                      <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                            <input type="email" required v-model="email">
+                            <input type="email" v-model="email" required>
                             <span class="bar"></span>
                             <label>Email</label>
                     </div>
       
                     <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                            <input type="password" required v-model="password">
+                            <input type="password" v-model="password" required>
                             <span class="bar"></span>
                             <label>Password</label>
                     </div>
@@ -73,38 +73,39 @@ export default {
             this.$emit('close');
         },
         signup() {
-        let newUser = {
-            name: this.name,
-            email: this.email,
-            password: this.password
-        }
-        this.$http.post(`${this.$api}user/signup`, newUser)
-            .then(res => {
-            console.log(res);
-            if (res.status === 200) {
-                // console.log(res)
-                // localStorage.setItem('token', res.data.token);
-                this.$http.get(`${this.$api}user/data`, { headers: { token: res.data.token}})
-                    .then(resp => {
-                        console.log(resp.data);
-                        this.userData.user = resp.data.user
-                        this.userData.token = res.data.token 
-                        this.setData(this.userData);
-                        this.close();
+        if(this.name & this.email & this.password){
+            let newUser = {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      }
+      this.$http.post(`${this.$api}user/signup`, newUser)
+        .then(res => {
+          console.log(res);
+          if (res.status === 200) {
+            // localStorage.setItem('token', res.data.token);
+             this.$http.get(`${this.$api}user/data`, { headers: { token: res.data.token}})
+                .then(resp => {
+                    console.log(resp.data)
+                    this.userData.user = resp.data.user
+                    this.userData.token = res.data.token 
+                    this.setData(this.userData);
+                    this.close();
 
-                    }).catch(err =>{
-                        console.log(err);
-                    })
-                // console.log(res)
-                // this.$router.push('/');
-            }
-            //   this.$router.push('/login');
-            }).catch(err=> {
-            //   console.log(err.response.data)
-                alert(err.response.data.error)
-            //   this.error = err.response.data.error
-            });
-        }
+                }).catch(err =>{
+                    console.log(err);
+                })
+            // console.log(res)
+            // this.$router.push('/');
+          }
+        //   this.$router.push('/login');
+        }).catch(err=> {
+        //   console.log(err.response.data)
+          alert(err.response.data.error)
+        //   this.error = err.response.data.error
+        });
+    }
+    }
     }
 }
 </script>
@@ -213,12 +214,12 @@ export default {
         border-top: 1px solid black;
     }
 
-    .input-group , .input-group-text{
+    .input-group , .input-group-text, .input-group-email, .input-group-password{
         text-align: start;
         border-radius: 0;
         vertical-align: middle;
     }
-    .input-group:focus , .input-group-text:focus{
+    .input-group:focus , .input-group-text:focus, .input-group-email:focus, .input-group-text:focus{
         outline: none;
         border: 1px solid black;
     }

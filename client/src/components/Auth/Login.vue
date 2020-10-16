@@ -68,6 +68,8 @@ export default {
             this.$emit('close');
         },
     login() {
+    
+    if(this.email && this.password){
       let user = {
         email: this.email,
         password: this.password
@@ -95,6 +97,7 @@ export default {
           console.log(err.response);
           this.error = err.response.data.error
         })
+    }
     }
     }
 }
