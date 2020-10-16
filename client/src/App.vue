@@ -221,6 +221,7 @@ export default {
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize',this.windowSize);
     this.windowSize();
+    console.log(this.data.name)
 
     
   },

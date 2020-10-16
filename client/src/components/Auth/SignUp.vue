@@ -23,13 +23,13 @@
                             <label>Name</label>
                     </div>
                      <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                            <input type="email" required v-model="email">
+                            <input type="email" v-model="email" required>
                             <span class="bar"></span>
                             <label>Email</label>
                     </div>
       
                     <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                            <input type="password" required v-model="password">
+                            <input type="password" v-model="password" required>
                             <span class="bar"></span>
                             <label>Password</label>
                     </div>
@@ -73,7 +73,8 @@ export default {
             this.$emit('close');
         },
         signup() {
-      let newUser = {
+        if(this.name & this.email & this.password){
+            let newUser = {
         name: this.name,
         email: this.email,
         password: this.password
@@ -103,6 +104,7 @@ export default {
           alert(err.response.data.error)
         //   this.error = err.response.data.error
         });
+    }
     }
     }
 }
@@ -212,12 +214,12 @@ export default {
         border-top: 1px solid black;
     }
 
-    .input-group , .input-group-text{
+    .input-group , .input-group-text, .input-group-email, .input-group-password{
         text-align: start;
         border-radius: 0;
         vertical-align: middle;
     }
-    .input-group:focus , .input-group-text:focus{
+    .input-group:focus , .input-group-text:focus, .input-group-email:focus, .input-group-text:focus{
         outline: none;
         border: 1px solid black;
     }

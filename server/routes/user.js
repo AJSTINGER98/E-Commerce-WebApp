@@ -69,8 +69,11 @@ router.get('/data', (req, res, next) => {
         return res.status(200).json({
           title: 'user grabbed',
           user: {
+            id: user._id,
             email: user.email,
-            name: user.name
+            name: user.name,
+            phone: user.phone,
+            address: user.address
           }
         });
       });

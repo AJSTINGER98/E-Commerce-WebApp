@@ -56,7 +56,7 @@
      </div>
  </div>
  <div class="col-md-9 container-fluid mt-100 right"> 
-    <div class="row prod" :key="products">
+    <div class="row prod">
             <transition-group name='fade' tag="div" class="row prod">
                 <div  class="col-8 col-sm-6 col-md-4 col-xl-3 p-0 div-hover text-center" v-for="(product) in products" :key="product._id">
 
