@@ -68,6 +68,7 @@ export default {
             orders : [],
             wait: false,
             userData: [],
+            // userId: null,
            
         };
     },
@@ -89,8 +90,12 @@ export default {
                 });
         }
     },
+    computed : {
+    ...mapGetters(['isAuthenticated','sendData']),
+    },
     created(){
-        // console.log(this.userId)
+        console.log(this.userId)
+        // this.userId = this.sendData.user ? this.sendData.user.id : null;
         this.$http.get(`${this.$api}orders`,{ headers: { _id: this.userId}})
                     .then(response =>{
                         this.orders = response.data.foundOrder.items;
@@ -101,9 +106,7 @@ export default {
                         this.order = [];
                     });
     },
-    computed : {
-    ...mapGetters(['isAuthenticated','sendData']),
-    },
+
 
 }
 </script>

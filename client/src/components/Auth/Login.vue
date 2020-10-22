@@ -15,7 +15,7 @@
             </div>
 
             <div class="modal-body d-flex justify-content-center">
-                <form class="p-0 w-100 ">
+                <form class="p-0 w-100 " @submit.prevent>
                     <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
                             <input type="email" required v-model="email">
                             <span class="bar"></span>
@@ -68,7 +68,7 @@ methods:{
             this.$emit('close');
         },
     login() {
-    
+        console.log('hello')
     if(this.email && this.password){
       let user = {
         email: this.email,
@@ -77,15 +77,19 @@ methods:{
       this.$http.post(`${this.$api}user/login`, user)
         .then(res => {
           //if successfull
+          console.log('hello2')
           if (res.status === 200) {
+              console.log('hello3')
             localStorage.setItem('token', res.data.token);
              this.$http.get(`${this.$api}user/data`, { headers: { token: res.data.token}})
                 .then(resp => {
-                    // console.log(resp.data)
+                    console.log('hello4')
+                    console.log(resp.data)
                     this.userData.user = resp.data.user
                     this.userData.token = res.data.token 
                     this.setData(this.userData);
                     this.close();
+                    
 
                 }).catch(err =>{
                     console.log('User Not Found');

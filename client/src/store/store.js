@@ -13,13 +13,14 @@ export const store = new Vuex.Store({
   },
   getters:{
     isAuthenticated(state){
-        console.log(state);
+        // console.log(state);
         if(state.user != null && state.token != null){
             return true;
         }
         return false;
     },
     sendData(state){
+        console.log(state.user);
         return state.user;
     }
   },
