@@ -9,8 +9,9 @@ const express      = require('express'),
 require('dotenv').config({ path: '.env' });
 
 mongoURL = process.env.MONGOURL ||  "mongodb://localhost:27017/taknikki_factory";
-mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false} );
+mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false,useCreateIndex:true} );
 app.set("view engine", "ejs");
+
 
 // SETUP BODY PARSER
 app.use(express.json());

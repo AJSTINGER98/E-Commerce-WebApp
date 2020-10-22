@@ -9,17 +9,35 @@ router.post('/', (req,res)=>{
     // console.log(req.body.data)
     var newOrder={name: req.body.data.name, image:req.body.data.image, item_id: req.body.data.item, quantity: req.body.data.quantity, price:req.body.data.price};
     var userId= mongoose.Types.ObjectId(req.headers._id);
-    Order.findOneAndUpdate({owner:userId},{$push: {items:newOrder}},{safe:true, upsert:true},function(err, orderData){
-        if(err){
-            console.log(err);
-        }
-        else{
-            console.log(orderData);
-        }
+    Order.find({owner:userId, "items.item_id": req.body.data.item}, function(err,result){
+            if(result && result.length>0){    
+                console.log(result); 
+                Order.where({owner:userId, 'items.item_id':req.body.data.item}).update({$inc: {'items.$.quantity': req.body.data.quantity}},function(err2, orderData){
+                if(err2){
+                    console.log(err2);
+                }
+                else{
+                    // console.log("Post req")
+                    console.log(orderData);
+                }
+        
+            });
+            }
+            else{
+                Order.findOneAndUpdate({owner:userId},{$push: {items:newOrder}},{safe:true, upsert:true},function(err, orderData){
+                    if(err){
+                        console.log(err);
+                    }
+                    else{
+                        console.log(orderData);
+                    }
+                });
+            }
     });
-
-});
-
+    // 
+    }); 
+  
+// })
 //Fetch orders for My Cart
 router.get('/', (req,res)=>{
     var userId = mongoose.Types.ObjectId(req.headers._id);
