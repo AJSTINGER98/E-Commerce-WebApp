@@ -15,7 +15,7 @@
             </div>
 
             <div class="modal-body d-flex justify-content-center">
-                <form class="p-0 w-100 ">
+                <form class="p-0 w-100 " @submit.prevent>
                     
                     <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
                             <input type="text" v-model="name" required>

@@ -37,7 +37,8 @@ router.get('/', (req,res)=>{
 
 //Delete order from cart
 router.delete("/:id",function(req,res){
-    Order.findOneAndUpdate({owner:'123456789'},{$pull: {items: {'item_id': req.params.id}}},{safe:true} ,function(err, deleteData){
+    var userId = req.headers._id
+    Order.findOneAndUpdate({owner:userId},{$pull: {items: {'item_id': req.params.id}}},{safe:true} ,function(err, deleteData){
         if(err){
             console.log(err);
         }
