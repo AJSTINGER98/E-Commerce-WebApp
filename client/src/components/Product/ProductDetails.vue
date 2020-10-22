@@ -96,7 +96,7 @@
 
 <script>
 //  import axios from 'axios';
-
+import {mapGetters} from 'vuex';
 
 export default {
 
@@ -106,10 +106,11 @@ export default {
       quantity: 1,
       qtymax : 20,
       qtymin : 1,
-      product : {}
+      product : {},
+      userId: null
     };
   },
-  props:['userId'],
+  // props:['userId'],
   watch:{
     quantity : function(){
       if(this.quantity > this.qtymax){
@@ -151,6 +152,7 @@ export default {
       }
     },
     addToCart(){
+      console.log(this.userId);
        this.$http.post(`${this.$api}orders`, {
          data:{
           name: this.product.name,
@@ -166,9 +168,13 @@ export default {
         })
     }
   },
+  computed : {
+    ...mapGetters(['isAuthenticated','sendData']),
+  },
   created(){
-    // console.log(this.product)
-    console.log(this.userId)
+    // console.log(this.sendData)
+    this.userId = this.sendData ? this.sendData.id : null;
+    // console.log(this.userId)
     this.$http
       .get(`${this.$api}products/${this.$route.params.id}`)
       .then(response => {

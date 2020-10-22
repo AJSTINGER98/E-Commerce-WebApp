@@ -15,7 +15,7 @@
             </div>
 
             <div class="modal-body d-flex justify-content-center">
-                <div class="p-0 w-100 cart-list" v-if="orders.length > 0 && isAuthenticated">
+                <div class="p-0 w-100 cart-list" v-if="(orders.length > 0 && isAuthenticated)">
                     <div v-for="(order,index) in orders" :key="index">
                     <hr v-if="index>0">
                     <div class="row my-2"  >
@@ -42,8 +42,17 @@
                     </div>
                     </div>
                 </div>
-                <div v-else>
-                    <p>Your cart is empty !! Shop Now</p>
+                <div v-else-if="(orders.length == 0 && isAuthenticated)">
+                    <p>Your cart is empty ! Shop Now</p>
+                </div>
+                <div v-else-if="(!isAuthenticated)">
+                    
+                                <!-- <div class="modal-footer"> -->
+                <div class="container-fluid text-center">
+                    <p >Login to add to your cart!</p>
+                    <span class="text-secondary "> Have an Account? <a href= "#" class="text-dark" @click="$emit('change','login')">Login</a></span>
+                <!-- </div> -->
+            </div>
                 </div>
             </div>
 
@@ -68,11 +77,11 @@ export default {
             orders : [],
             wait: false,
             userData: [],
-            // userId: null,
+            userId: null,
            
         };
     },
-     props: ['userId'],
+    //  props: ['userId'],
 
 
     methods:{
@@ -81,7 +90,7 @@ export default {
         },
         deleteOrder(item_id,index){
             this.orders.splice(index,1);
-            this.$http.delete(`${this.$api}orders/${item_id}`)
+            this.$http.delete(`${this.$api}orders/${item_id}`,{ headers: { _id: this.userId}})
                 .then(response =>{
                     console.log('Item Deleted');
                 })
@@ -94,17 +103,22 @@ export default {
     ...mapGetters(['isAuthenticated','sendData']),
     },
     created(){
+        this.userId = this.sendData ? this.sendData.id : null;
+        // console.log(this.sendData.id)
         console.log(this.userId)
-        // this.userId = this.sendData.user ? this.sendData.user.id : null;
-        this.$http.get(`${this.$api}orders`,{ headers: { _id: this.userId}})
-                    .then(response =>{
-                        this.orders = response.data.foundOrder.items;
-                        this.wait = true;
-                    })
-                    .catch(error =>{
-                        console.log(error);
-                        this.order = [];
-                    });
+        this.wait = true;
+        if(this.userId){
+            this.$http.get(`${this.$api}orders`,{ headers: { _id: this.userId}})
+                        .then(response =>{
+                            console.log(response.data)
+                            this.orders = response.data.foundOrder ? response.data.foundOrder.items : [];
+    
+                        })
+                        .catch(error =>{
+                            console.log(error);
+                            this.order = [];
+                        });
+        }
     },
 
 

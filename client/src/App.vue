@@ -26,8 +26,7 @@
             <router-link to="/contact-us" class="nav-link"><span>CONTACT US</span></router-link>
           </li>
           <li class="nav-item">
-            <router-link :to="{ name: 'product', 
-           params: { userId: userData && userData.id ? userData.id : null }}" class="nav-link"><span>PRODUCTS</span></router-link>
+            <router-link :to="{ name: 'product'}" class="nav-link"><span>PRODUCTS</span></router-link>
           </li>
           <!-- <li class="nav-item dropdown show">
             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button">
@@ -130,7 +129,7 @@
 
     <!-- <home :class="{'blur-effect' : isModalVisible}"></home> -->
   
-    <component :is="currentPage" :userId ="userData  && userData.id? userData.id : null" v-show="isModalVisible" @close="closeModal()" @change="currentPage = $event"></component> 
+    <component :is="currentPage" :userId ="userData && userData.id? userData.id : null" v-show="isModalVisible" @close="closeModal()" @change="currentPage = $event"></component> 
     
     <!-- Footer -->
 <footer class="background-col page-footer font-small special-color-dark pt-4">
@@ -224,9 +223,9 @@ export default {
     window.addEventListener('resize',this.windowSize);
     this.windowSize();
     if(this.isAuthenticated){
-      console.log(this.sendData)
+      // console.log(this.sendData)
       this.userData=this.sendData
-      console.log(this.userDate)
+      // console.log(this.userData)
     }
     
   },
@@ -296,7 +295,7 @@ export default {
     },
     watch:{
       sendData(){
-        console.log(this.sendData)
+        // console.log(this.sendData)
         this.userData=this.sendData
         // console.log(this.userDat)
       },

@@ -74,13 +74,13 @@ methods:{
         email: this.email,
         password: this.password
       }
+
       this.$http.post(`${this.$api}user/login`, user)
         .then(res => {
-          //if successfull
-          console.log('hello2')
+        //   if successfull
+        // console.log("DB")
           if (res.status === 200) {
-              console.log('hello3')
-            localStorage.setItem('token', res.data.token);
+            // localStorage.setItem('token', res.data.token);
              this.$http.get(`${this.$api}user/data`, { headers: { token: res.data.token}})
                 .then(resp => {
                     console.log('hello4')
@@ -99,6 +99,7 @@ methods:{
           }
         }).catch(err => {
           console.log(err.response);
+                // console.log("DB")
           this.error = err.response.data.error
         })
     }
