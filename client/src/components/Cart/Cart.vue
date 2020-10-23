@@ -37,8 +37,6 @@
                                 <div class="float-right mr-4" @click="deleteOrder(order.item_id,index)"><button class="btn btn-outline-danger" style="border-radius:10px"><i class="fas fa-trash"></i></button></div>
                             </div>
                         </div>
-
-                   
                     </div>
                     </div>
                 </div>
@@ -112,7 +110,7 @@ export default {
                         .then(response =>{
                             console.log(response.data)
                             this.orders = response.data.foundOrder ? response.data.foundOrder.items : [];
-    
+                            console.log("Orders", this.orders)
                         })
                         .catch(error =>{
                             console.log(error);
