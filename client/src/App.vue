@@ -71,12 +71,19 @@
             <li class="nav-item" v-if="isAuthenticated">
               <p lass="nav-link icons" style="margin-top:7px;">Welcome, {{ userData.name.toUpperCase() }}</p>
             </li>
-            <li class="nav-item" style="cursor:pointer" v-if="!isAuthenticated">
-              <a class="nav-link icons" @click="isModalVisible = true,currentPage='login'"><i class="far fa-user fa-lg"></i></a>
-            </li>
-            <li class="nav-item" style="cursor:pointer" v-else>
-              <a class="nav-link icons" @click="logout()"><i class="fas fa-sign-out-alt fa-lg"></i></a>
-            </li>
+            <span v-if="!isAuthenticated">
+              <li class="nav-item" style="cursor:pointer">
+                <a class="nav-link icons" @click="isModalVisible = true,currentPage='login'"><i class="far fa-user fa-lg"></i></a>
+              </li>
+            </span>
+            <span v-else class="d-flex justify-content-around">
+              <li class="nav-item" style="cursor:pointer">
+                <a class="nav-link icons" @click="logout()"><i class="fas fa-sign-out-alt fa-lg"></i></a>
+              </li>
+              <li class="nav-item" style="cursor:pointer">
+                <a class="nav-link icons" @click="isModalVisible = true, currentPage='edit'"><i class="fas fa-edit fa-lg"></i></a>
+              </li>
+            </span>
 
           </div>
         </ul>
@@ -110,13 +117,20 @@
           <li class="nav-item">
             <a class="nav-link" href="#" @click="isModalVisible = true, currentPage='cart'" >CART</a>
           </li>
-          <li class="nav-item" v-if="!isAuthenticated">
-            <a class="nav-link" href="#" @click="isModalVisible = true, currentPage='login'">LOGIN</a>
-          </li>
-          
-          <li class="nav-item" v-else>       
-            <a class="nav-link" href="#" @click="logout()">LOGOUT</a>
-          </li>
+          <span v-if="!isAuthenticated">
+            <li class="nav-item">
+              <a class="nav-link" href="#" @click="isModalVisible = true, currentPage='login'">LOGIN</a>
+            </li>
+          </span>
+          <span v-else>
+            <li class="nav-item">       
+              <a class="nav-link" href="#" @click="logout()">LOGOUT</a>
+            </li>
+            <li class="nav-item">       
+              <a class="nav-link" href="#" @click="isModalVisible = true, currentPage='edit'">EDIT PROFILE</a>
+            </li>
+
+          </span>
       
         </ul>
       </div>
@@ -192,6 +206,7 @@ import home from './components/Home/Home.vue';
 import login from './components/Auth/Login.vue';
 import signUp from './components/Auth/SignUp.vue';
 import cart from './components/Cart/Cart.vue';
+import edit from './components/Profile/Edit.vue';
 import {mapGetters} from 'vuex';
 import {mapMutations} from 'vuex';
 
@@ -264,6 +279,9 @@ export default {
 
     logout(){
       this.removeData();
+    },
+    edit(){
+
     }
     
   },
@@ -280,6 +298,7 @@ export default {
     login,
     signUp,
     cart,
+    edit,
   },
   mounted() {
     this.navbar()
