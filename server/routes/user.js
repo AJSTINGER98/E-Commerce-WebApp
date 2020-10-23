@@ -66,7 +66,16 @@ router.get('/data', (req, res, next) => {
       console.log(decoded);
       //token is valid
       User.findOne({ _id: decoded.userId }, (err, user) => {
-        if (err) return console.log(err);
+        if (err) 
+          return console.log(err);
+        else if(!user){
+            return res.json({
+              title: 'user not found',
+              user : null
+            });
+
+        }
+
         return res.status(200).json({
           title: 'user grabbed',
           user: {
