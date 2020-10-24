@@ -22,6 +22,9 @@ export const store = new Vuex.Store({
     sendData(state){
         console.log(state.user);
         return state.user;
+    },
+    sendToken(state){
+      return state.token;
     }
   },
   mutations: {
