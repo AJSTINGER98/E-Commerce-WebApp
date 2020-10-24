@@ -102,7 +102,6 @@ export default {
     },
     created(){
         this.userId = this.sendData ? this.sendData.id : null;
-        // console.log(this.sendData.id)
         console.log(this.userId)
         this.wait = true;
         if(this.userId){
