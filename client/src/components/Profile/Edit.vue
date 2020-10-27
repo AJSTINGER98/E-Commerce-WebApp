@@ -102,6 +102,7 @@ export default {
             this.$emit('close');
         },
         save(){
+            
             this.$http.post(`${this.$api}user/update`,this.userData, {headers:{token:this.userToken}})
                 .then(res =>{
                     if(res.status == 200){
@@ -130,7 +131,6 @@ export default {
         if(this.userToken){
             this.$http.get(`${this.$api}user/data`,{headers: {token: this.userToken}})
                     .then(resp=>{
-                        console.log(resp.data.user)
                         this.userData = resp.data.user
                         if(this.userData != null){
                             this.userFound = true
@@ -219,22 +219,26 @@ export default {
     }
 
     .modal-wrapper {
-        display: table-cell;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
         vertical-align: middle;
         padding: 0;
     }
 
     .modal-container {
         width: 80%;
-        height: 80vh;
+        height: 90vh;
         margin: 0px auto;
         padding: 20px 30px;
         background-color: #f2f2f2;
         border-radius: 2px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
         transition: all 0.5s ease-out;
-        max-width: 450px;
-        max-height: 600px;
+        max-width: 80vh;
+        /* max-height: 600px; */
         overflow: scroll;
     }
     .modal-container::-webkit-scrollbar {
