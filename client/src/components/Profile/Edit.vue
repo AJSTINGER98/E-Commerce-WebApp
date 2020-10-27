@@ -237,7 +237,7 @@ export default {
         border-radius: 2px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
         transition: all 0.5s ease-out;
-        max-width: 80vh;
+        max-width: 70vw;
         /* max-height: 600px; */
         overflow: scroll;
     }
