@@ -3,6 +3,7 @@ var router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const mongoose = require("mongoose")
 
 router.post('/signup', (req, res) => {
     const newUser = new User({
@@ -62,7 +63,7 @@ router.get('/data', (req, res, next) => {
       if (err) return res.status(401).json({
         title: 'unauthorized'
       }); 
-      console.log(decoded);
+      // console.log(decoded);
       //token is valid
       User.findOne({ _id: decoded.userId }, (err, user) => {
         if (err) 
@@ -94,14 +95,15 @@ router.get('/data', (req, res, next) => {
 //editing user info
 router.post('/data/edit', (req,res)=>{
   var userId= mongoose.Types.ObjectId(req.headers._id);
-  User.findOneAndUpdate({_id:userId, 'address_location':req.body.data.adaress.location},{$set: {phone:req.body.data.phone, 'address.$.location': req.body.data.address.location,
-    'address.$.pincode':req.body.data.address.pincode, 'address.$.city':req.body.data.address.city, 'address.$.state':req.body.data.address.state,  
-    }},{safe:true, upsert:true},function(err, updatedUser){
+  console.log(req.body)
+  var newAddress={location: req.body.address, pincode:req.body.pincode,city:req.body.city,state:req.body.state}
+  User.findOneAndUpdate({_id:userId},{$set: {phone:req.body.phone}, $push:{address:newAddress}},{safe:true, upsert:true},function(err, updatedUser){
     if(err){
       console.log(err)
     }
     else{
       console.log(updatedUser)
+      return res.status(200)
     }
 });
 })

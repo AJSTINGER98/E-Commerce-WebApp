@@ -34,27 +34,22 @@
                                 <label>Phone Number</label>
                         </div>
                         <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="address1">
+                                <input type="text" required v-model="userData.address[0].location">
                                 <span class="bar"></span>
                                 <label>Address Line 1</label>
                         </div>
                         <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="address2">
-                                <span class="bar"></span>
-                                <label>Address Line 2</label>
-                        </div>
-                        <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="city">
+                                <input type="text" required v-model="userData.address[0].city">
                                 <span class="bar"></span>
                                 <label>City</label>
                         </div>
                         <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="state">
+                                <input type="text" required v-model="userData.address[0].state">
                                 <span class="bar"></span>
                                 <label>State</label>
                         </div>
                         <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="pincode">
+                                <input type="text" required v-model="userData.address[0].pincode">
                                 <span class="bar"></span>
                                 <label>PINCODE</label>
                         </div>
@@ -86,11 +81,12 @@ export default {
             userFound: false,
             userToken : null,
             // TEMPORARY
-            address1 : null,
-            address2 : null,
-            state: null,
-            city: null,
-            pincode: null
+            // phone: null,
+            // address1 : null,
+            // address2 : null,
+            // state: null,
+            // city: null,
+            // pincode: null
         }
   },
     methods:{
@@ -102,7 +98,14 @@ export default {
             this.$emit('close');
         },
         save(){
-            this.$http.post(`${this.$api}user/update`,this.userData, {headers:{token:this.userToken}})
+            let newData = {
+                    phone: this.phone,
+                    address: this.address1+this.address2,
+                    state: this.state,
+                    city: this.city,
+                    pincode: this.pincode
+                }
+            this.$http.post(`${this.$api}user/data/edit`, newData, {headers:{_id:this.userData.id}})
                 .then(res =>{
                     if(res.status == 200){
                         console.log('Details Updated');
