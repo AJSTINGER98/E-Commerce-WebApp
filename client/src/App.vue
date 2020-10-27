@@ -57,12 +57,6 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">SOMETHING ELSE</a>
                 <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
-                <a class="dropdown-item" href="#">SOMETHING ELSE</a>
               </div>
             </li>        
             <li class="nav-item" style="cursor:pointer"> 

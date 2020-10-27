@@ -37,8 +37,6 @@
                                 <div class="float-right mr-4" @click="deleteOrder(order.item_id,index)"><button class="btn btn-outline-danger" style="border-radius:10px"><i class="fas fa-trash"></i></button></div>
                             </div>
                         </div>
-
-                   
                     </div>
                     </div>
                 </div>
@@ -104,7 +102,6 @@ export default {
     },
     created(){
         this.userId = this.sendData ? this.sendData.id : null;
-        // console.log(this.sendData.id)
         console.log(this.userId)
         this.wait = true;
         if(this.userId){
@@ -112,7 +109,7 @@ export default {
                         .then(response =>{
                             console.log(response.data)
                             this.orders = response.data.foundOrder ? response.data.foundOrder.items : [];
-    
+                            console.log("Orders", this.orders)
                         })
                         .catch(error =>{
                             console.log(error);
