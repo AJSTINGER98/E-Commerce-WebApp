@@ -98,10 +98,6 @@ export default {
             this.$emit('close');
         },
         save(){
-<<<<<<< HEAD
-            
-            this.$http.post(`${this.$api}user/update`,this.userData, {headers:{token:this.userToken}})
-=======
             let newData = {
                     phone: this.phone,
                     address: this.address1+this.address2,
@@ -110,7 +106,6 @@ export default {
                     pincode: this.pincode
                 }
             this.$http.post(`${this.$api}user/data/edit`, newData, {headers:{_id:this.userData.id}})
->>>>>>> 7805d498e50e2d05a27bf670bffe5304e9ff3600
                 .then(res =>{
                     if(res.status == 200){
                         console.log('Details Updated');
