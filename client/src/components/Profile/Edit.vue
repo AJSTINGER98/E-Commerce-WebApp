@@ -33,25 +33,37 @@
                                 <span class="bar"></span>
                                 <label>Phone Number</label>
                         </div>
-                        <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.address[0].location">
-                                <span class="bar"></span>
-                                <label>Address Line 1</label>
+                        <div v-for="(addr,index) in userData.address" :key="index">
+                            <h3>Address {{ index+1}}</h3>
+                            <hr> <br>
+                            <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
+                                    <input type="text" required v-model="addr.location">
+                                    <span class="bar"></span>
+                                    <label>LOCATION</label>
+                            </div>
+                            <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
+                                    <input type="text" required v-model="addr.city">
+                                    <span class="bar"></span>
+                                    <label>City</label>
+                            </div>
+                            <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
+                                    <input type="text" required v-model="addr.state">
+                                    <span class="bar"></span>
+                                    <label>State</label>
+                            </div>
+                            <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
+                                    <input type="text" required v-model="addr.pincode">
+                                    <span class="bar"></span>
+                                    <label>PINCODE</label>
+                            </div>
+                             <div class="w-100">
+                                <button class="btn btn-danger" @click.prevent="removeAddress(index)"><i class="fas fa-trash"></i></button>
+                            </div>
+                            <hr>
+                            <br>
                         </div>
-                        <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.address[0].city">
-                                <span class="bar"></span>
-                                <label>City</label>
-                        </div>
-                        <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.address[0].state">
-                                <span class="bar"></span>
-                                <label>State</label>
-                        </div>
-                        <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.address[0].pincode">
-                                <span class="bar"></span>
-                                <label>PINCODE</label>
+                        <div class="w-100">
+                            <button class="btn btn-primary" @click.prevent="addAddress()"> Add <i class="fas fa-plus"></i></button>
                         </div>
 
 
@@ -77,16 +89,9 @@ import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            userData : null,
-            userFound: false,
+            userData : {},
+            userFound: true,
             userToken : null,
-            // TEMPORARY
-            // phone: null,
-            // address1 : null,
-            // address2 : null,
-            // state: null,
-            // city: null,
-            // pincode: null
         }
   },
     methods:{
@@ -122,6 +127,25 @@ export default {
                     this.close();
                 })
         },
+        addAddress(){
+            this.userData.address.push({
+                        location: '',
+                        city: '',
+                        state: '',
+                        pincode: ''
+                    });
+        },
+        removeAddress(index){
+            this.userData.address.splice(index,1)
+            if(this.userData.address.length <= 0){
+              this.userData.address.push({
+                        location: '',
+                        city: '',
+                        state: '',
+                        pincode: ''
+                });   
+            }
+        }
 
     },
     computed:{
@@ -133,9 +157,18 @@ export default {
         if(this.userToken){
             this.$http.get(`${this.$api}user/data`,{headers: {token: this.userToken}})
                     .then(resp=>{
-                        this.userData = resp.data.user
-                        if(this.userData != null){
-                            this.userFound = true
+                        
+                        if(resp.data.user == null){
+                            this.userFound = false
+                        }
+                        else{
+                            this.userData = resp.data.user
+                            this.userData.address.push({
+                                location: '',
+                                city: '',
+                                state: '',
+                                pincode: ''
+                            })
                         }
 
                     })
