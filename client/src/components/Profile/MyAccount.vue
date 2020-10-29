@@ -9,7 +9,7 @@
             </button>
             <div class="mr-0">
                 <div class="container d-flex justify-content-center mt-4">
-                    <h2>EDIT PROFILE</h2>
+                    <h2>My Account</h2>
                 </div>
                 <div class="container mt-4 text-center">
                        <img  class="img-thumbnail rounded-circle" src="https://www.hungertv.com/wp-content/uploads/2017/02/099200-R1-11.jpg">
@@ -24,43 +24,43 @@
                         <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
                                 <input type="email" required v-model="userData.email" disabled>
                                 <span class="bar"></span>
-                                <label style="top: -22px;font-size: 15px;color: black;">Email</label>
+                                <label class="valid">Email</label>
                         </div>
                         <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
                                 <input type="text" required v-model="userData.name" disabled>
                                 <span class="bar"></span>
-                                <label style="top: -22px;font-size: 15px;color: black;">Name</label>
+                                <label class="valid">Name</label>
                         </div>
 
                         <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.phone">
+                                <input type="text" required v-model="userData.phone" disabled>
                                 <span class="bar"></span>
-                                <label>Phone Number</label>
+                                <label class="valid">Phone Number</label>
                         </div>
                         <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.address[0].location">
+                                <input type="text" required v-model="userData.address[0].location" disabled>
                                 <span class="bar"></span>
-                                <label>Address Line 1</label>
+                                <label class="valid">Address Line 1</label>
                         </div>
                         <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.address[0].city">
+                                <input type="text" required v-model="userData.address[0].city" disabled>
                                 <span class="bar"></span>
-                                <label>City</label>
+                                <label class="valid">City</label>
                         </div>
                         <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.address[0].state">
+                                <input type="text" required v-model="userData.address[0].state" disabled>
                                 <span class="bar"></span>
-                                <label>State</label>
+                                <label class="valid">State</label>
                         </div>
                         <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.address[0].pincode">
+                                <input type="text" required v-model="userData.address[0].pincode" disabled>
                                 <span class="bar"></span>
-                                <label>PINCODE</label>
+                                <label class="valid">PINCODE</label>
                         </div>
 
 
                         <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 text-center">
-                            <button class="btn w-100 py-2" id="loginSubmit" @click="save()">SAVE</button>
+                            <button class="btn w-100 py-2" id="loginSubmit" @click="$emit('change','edit')">Edit</button>
                         </div>
                 
                     </form>
@@ -154,6 +154,11 @@ export default {
 </script>
 
 <style scoped>
+    .valid{
+        top: -22px;
+        font-size: 15px;
+        color: black;
+    }
     .img-thumbnail{
         width:100px;
         height:100px;
