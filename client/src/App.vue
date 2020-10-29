@@ -77,6 +77,9 @@
               <li class="nav-item" style="cursor:pointer">
                 <a class="nav-link icons" @click="isModalVisible = true, currentPage='edit'"><i class="fas fa-edit fa-lg"></i></a>
               </li>
+              <li class="nav-item"  style="cursor:pointer">       
+              <a class="nav-link icons" @click="isModalVisible = true, currentPage='myaccount'"><i class="fas fa-user-cog"></i></a>
+            </li>
             </span>
 
           </div>
@@ -122,6 +125,9 @@
             </li>
             <li class="nav-item">       
               <a class="nav-link" href="#" @click="isModalVisible = true, currentPage='edit'">EDIT PROFILE</a>
+            </li>
+            <li class="nav-item">       
+              <a class="nav-link" href="#" @click="isModalVisible = true, currentPage='myaccount'">EDIT PROFILE</a>
             </li>
 
           </span>
@@ -201,6 +207,7 @@ import login from './components/Auth/Login.vue';
 import signUp from './components/Auth/SignUp.vue';
 import cart from './components/Cart/Cart.vue';
 import edit from './components/Profile/Edit.vue';
+import myaccount from './components/Profile/MyAccount';
 import {mapGetters} from 'vuex';
 import {mapMutations} from 'vuex';
 
@@ -293,6 +300,7 @@ export default {
     signUp,
     cart,
     edit,
+    myaccount
   },
   mounted() {
     this.navbar()

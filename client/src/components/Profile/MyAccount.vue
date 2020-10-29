@@ -9,7 +9,7 @@
             </button>
             <div class="mr-0">
                 <div class="container d-flex justify-content-center mt-4">
-                    <h2>EDIT PROFILE</h2>
+                    <h2>My Account</h2>
                 </div>
                 <div class="container mt-4 text-center">
                        <img  class="img-thumbnail rounded-circle" src="https://www.hungertv.com/wp-content/uploads/2017/02/099200-R1-11.jpg">
@@ -21,61 +21,58 @@
                 <div class="modal-body d-flex justify-content-center" v-if="userFound">
                     <form class="p-0 w-100 " @submit.prevent>
                         <div class="row w-100">
-                            <div class="col-12 col-md-6 input-group text-w-100 mb-4">
+                            <div class="col-12 col-md-6 input-group d-flex justify-content-center text-w-100 mb-4">
                                     <input type="email" required v-model="userData.email" disabled>
                                     <span class="bar"></span>
-                                    <label style="top: -22px;font-size: 15px;color: black;" class="pl-4">Email</label>
+                                    <label class="valid">Email</label>
                             </div>
-                            <div class="col-12 col-md-6 input-group text-w-100 mb-4">
+                            <div class="col-12 col-md-6 input-group d-flex justify-content-center text-w-100 mb-4">
                                     <input type="text" required v-model="userData.name" disabled>
                                     <span class="bar"></span>
-                                    <label style="top: -22px;font-size: 15px;color: black;" class="pl-4">Name</label>
+                                    <label class="valid">Name</label>
                             </div>
 
-                            <div class="col-12 input-group w-100 mb-4">
-                                    <input type="text bg-white" required v-model="userData.phone">
+                            <div class="col-12 input-group d-flex justify-content-center text-w-100 mb-4">
+                                    <input type="text" required v-model="userData.phone" disabled>
                                     <span class="bar"></span>
-                                    <label class="pl-4">Phone Number</label>
+                                    <label class="valid">Phone Number</label>
                             </div>
+                        </div>
 
-                        </div>
-                        <div v-for="(addr,index) in userData.address" :key="index">
-                            <h3>Address {{ index+1}}</h3>
-                            <hr> <br>
-                            <div class="row w-100 d-flex justify-content-around">
-                                <div class="col-12 col-md-6 input-group d-flex justify-content-center text-w-100 mb-4">
-                                        <input type="text" class="bg-white" required v-model="addr.location">
-                                        <span class="bar"></span>
-                                        <label class="pl-4">LOCATION</label>
+                        <div class="row w-100">
+                            <div v-for="(addr,index) in userData.address" :key="index">
+                                <h3>Address {{ index+1}}</h3>
+                                <hr> <br>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 input-group mb-4 ">
+                                            <input type="text" required v-model="addr.location" disabled>
+                                            <span class="bar"></span>
+                                            <label class="valid">Location</label>
+                                    </div>
+                                    <div class="col-12 col-md-6 input-group mb-4 ">
+                                            <input type="text" required v-model="addr.city" disabled>
+                                            <span class="bar"></span>
+                                            <label class="valid">City</label>
+                                    </div>
+                                    <div class="col-12 col-md-6 input-group mb-4 ">
+                                            <input type="text" required v-model="addr.state" disabled>
+                                            <span class="bar"></span>
+                                            <label class="valid">State</label>
+                                    </div>
+                                    <div class="col-12 col-md-6 input-group mb-4 ">
+                                            <input type="text" required v-model="addr.pincode" disabled>
+                                            <span class="bar"></span>
+                                            <label class="valid">PINCODE</label>
+                                    </div>
+
                                 </div>
-                                <div class="col-12 col-md-6 input-group d-flex justify-content-center text-w-100 mb-4">
-                                        <input type="text" class="bg-white" required v-model="addr.city">
-                                        <span class="bar"></span>
-                                        <label class="pl-4">City</label>
-                                </div>
-                                <div class="col-12 col-md-6 input-group d-flex justify-content-center text-w-100 mb-4">
-                                        <input type="text" class="bg-white" required v-model="addr.state">
-                                        <span class="bar"></span>
-                                        <label class="pl-4">State</label>
-                                </div>
-                                <div class="col-12 col-md-6 input-group d-flex justify-content-center text-w-100 mb-4">
-                                        <input type="text" class="bg-white" required v-model="addr.pincode">
-                                        <span class="bar"></span>
-                                        <label class="pl-4">PINCODE</label>
-                                </div>
+                                <br>
                             </div>
-                             <div class="w-100">
-                                <button class="btn btn-danger" @click.prevent="removeAddress(index)"><i class="fas fa-trash"></i></button>
-                            </div>
-                            <br><br>
-                        </div>
-                        <div class="w-100">
-                            <button class="btn btn-primary" @click.prevent="addAddress()"> Add <i class="fas fa-plus"></i></button>
                         </div>
 
 
                         <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 text-center">
-                            <button class="btn w-100 py-2" id="loginSubmit" @click="save()">SAVE</button>
+                            <button class="btn w-100 py-2" id="loginSubmit" @click="$emit('change','edit')">Edit</button>
                         </div>
                 
                     </form>
@@ -99,6 +96,13 @@ export default {
             userData : {},
             userFound: true,
             userToken : null,
+            // TEMPORARY
+            // phone: null,
+            // address1 : null,
+            // address2 : null,
+            // state: null,
+            // city: null,
+            // pincode: null
         }
   },
     methods:{
@@ -134,25 +138,6 @@ export default {
                     this.close();
                 })
         },
-        addAddress(){
-            this.userData.address.push({
-                        location: '',
-                        city: '',
-                        state: '',
-                        pincode: ''
-                    });
-        },
-        removeAddress(index){
-            this.userData.address.splice(index,1)
-            if(this.userData.address.length <= 0){
-              this.userData.address.push({
-                        location: '',
-                        city: '',
-                        state: '',
-                        pincode: ''
-                });   
-            }
-        }
 
     },
     computed:{
@@ -165,17 +150,11 @@ export default {
             this.$http.get(`${this.$api}user/data`,{headers: {token: this.userToken}})
                     .then(resp=>{
                         
-                        if(resp.data.user == null || resp.data.user == {}){
+                        if(resp.data.user == null || resp.data.user == {} ){
                             this.userFound = false
                         }
                         else{
                             this.userData = resp.data.user
-                            this.userData.address.push({
-                                location: '',
-                                city: '',
-                                state: '',
-                                pincode: ''
-                            })
                         }
 
                     })
@@ -190,6 +169,11 @@ export default {
 </script>
 
 <style scoped>
+    .valid{
+        top: -22px;
+        font-size: 15px;
+        color: black;
+    }
     .img-thumbnail{
         width:100px;
         height:100px;
@@ -210,7 +194,7 @@ export default {
         display: block;
         width: 300px;
         border: none;
-        /* border-radius: 10%; */
+        border-radius: 10%;
         width: 100%;
     }
 
