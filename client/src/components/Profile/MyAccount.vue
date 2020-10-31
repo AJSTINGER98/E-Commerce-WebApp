@@ -12,7 +12,7 @@
                     <h2>My Account</h2>
                 </div>
                 <div class="container mt-4 text-center">
-                       <img  class="img-thumbnail rounded-circle" src="https://www.hungertv.com/wp-content/uploads/2017/02/099200-R1-11.jpg">
+                       <img  class="img-thumbnail rounded-circle" :src="$api+userData.image">
                 </div>
 
                 
@@ -141,7 +141,7 @@ export default {
                         if(this.userData != null){
                             this.userFound = true
                         }
-
+                        console.log(this.userData)
                     })
                     .catch(err=>{
                         console.log(err);

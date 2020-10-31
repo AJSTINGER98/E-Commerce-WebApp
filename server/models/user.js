@@ -14,7 +14,8 @@ const userSchema = new Schema({
     pincode: Number,
     city: String,
     state: String,
-  }]
+  }],
+  userImage: String
 })
 
 const User = mongoose.model('User', userSchema);

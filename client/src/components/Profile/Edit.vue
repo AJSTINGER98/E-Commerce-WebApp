@@ -14,6 +14,14 @@
                 <div class="container mt-4 text-center">
                        <img  class="img-thumbnail rounded-circle" src="https://www.hungertv.com/wp-content/uploads/2017/02/099200-R1-11.jpg">
                 </div>
+            <form @submit.prevent>  
+                <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
+                        <!-- <input type="text" required v-model="userData.phone"> -->
+                          <input type="file" id="img" @change="onSelect" ref="file" name="files" accept="image/*">
+                        <label>Upload Image</label>
+                </div>
+
+            </form>
 
                 
             </div>
@@ -91,6 +99,8 @@ export default {
             // state: null,
             // city: null,
             // pincode: null
+            image:'',
+            file:''
         }
   },
     methods:{
@@ -107,9 +117,16 @@ export default {
                     address: this.address1,
                     state: this.state,
                     city: this.city,
-                    pincode: this.pincode
+                    pincode: this.pincode,
+                    image: JSON.stringify(this.$refs.file.files[0]),
                 }
-            this.$http.post(`${this.$api}user/data/edit`, newData, {headers:{_id:this.userData.id}})
+            // let image= 
+            // this.userData.append('image',this.$refs.file.files[0])
+            // console.log(newData.image)
+            const formData= new FormData();
+            formData.append('file', this.file)
+            
+            this.$http.post(`${this.$api}user/data/edit`, formData ,{headers:{_id:this.userData.id}})
                 .then(res =>{
                     if(res.status == 200){
                         console.log('Details Updated');
@@ -126,6 +143,10 @@ export default {
                     this.close();
                 })
         },
+        onSelect(){
+            const file=this.$refs.file.files[0]
+            this.file= file
+        }
 
     },
     computed:{
@@ -133,11 +154,12 @@ export default {
     },
     created(){
         this.userToken = this.sendToken ? this.sendToken : null
-        console.log(this.userToken);
+        // console.log(this.userToken);
         if(this.userToken){
-            this.$http.get(`${this.$api}user/data`,{headers: {token: this.userToken}})
+            this.$http.get(`${this.$api}user/data`,{headers: {token: this.userToken, 'Content-Type': 'multipart/form-data'} })
                     .then(resp=>{
                         this.userData = resp.data.user
+
                         if(this.userData != null){
                             this.userFound = true
                         }

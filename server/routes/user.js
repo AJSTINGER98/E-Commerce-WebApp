@@ -4,6 +4,33 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const mongoose = require("mongoose")
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString().replace(/[\/\\:]/g, "_") + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
 
 router.post('/signup', (req, res) => {
     const newUser = new User({
@@ -83,7 +110,8 @@ router.get('/data', (req, res, next) => {
             email: user.email,
             name: user.name,
             phone: user.phone,
-            address: user.address
+            address: user.address,
+            image: user.userImage
           }
         });
       });
@@ -93,11 +121,14 @@ router.get('/data', (req, res, next) => {
 
 
 //editing user info
-router.post('/data/edit', (req,res)=>{
-  var userId= mongoose.Types.ObjectId(req.headers._id);
-  console.log(req.body)
-  var newAddress={location: req.body.address, pincode:req.body.pincode,city:req.body.city,state:req.body.state}
-  User.findOneAndUpdate({_id:userId},{$set: {phone:req.body.phone}, $push:{address:newAddress}},{safe:true, upsert:true},function(err, updatedUser){
+router.post('/data/edit', upload.single('file'),(req,res)=>{
+  // console.log("HERE")
+  var userId= mongoose.Types.ObjectId(req.headers._id); 
+  // console.log(req.files,req.file,userId)
+  // console.log(req.data,req.body.data)
+  console.log(req.file)
+  // var newAddress={location: req.body.address[0], pincode:req.body.pincode,city:req.body.city,state:req.body.state}
+  User.findOneAndUpdate({_id:userId},{$set: {phone:req.body.phone, userImage: req.file.path}},{safe:true, upsert:true},function(err, updatedUser){
     if(err){
       console.log(err)
     }
