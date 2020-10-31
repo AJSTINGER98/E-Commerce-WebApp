@@ -28,42 +28,57 @@
 
                 <div class="modal-body d-flex justify-content-center" v-if="userFound">
                     <form class="p-0 w-100 " @submit.prevent>
+                        <div class="row w-100">
+                            <div class="col-12 col-md-6 input-group text-w-100 mb-4">
+                                    <input type="email" required v-model="userData.email" disabled>
+                                    <span class="bar"></span>
+                                    <label style="top: -22px;font-size: 15px;color: black;" class="pl-4">Email</label>
+                            </div>
+                            <div class="col-12 col-md-6 input-group text-w-100 mb-4">
+                                    <input type="text" required v-model="userData.name" disabled>
+                                    <span class="bar"></span>
+                                    <label style="top: -22px;font-size: 15px;color: black;" class="pl-4">Name</label>
+                            </div>
 
-                        <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="email" required v-model="userData.email" disabled>
-                                <span class="bar"></span>
-                                <label style="top: -22px;font-size: 15px;color: black;">Email</label>
-                        </div>
-                        <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.name" disabled>
-                                <span class="bar"></span>
-                                <label style="top: -22px;font-size: 15px;color: black;">Name</label>
-                        </div>
+                            <div class="col-12 input-group w-100 mb-4">
+                                    <input type="text bg-white" required v-model="userData.phone">
+                                    <span class="bar"></span>
+                                    <label class="pl-4">Phone Number</label>
+                            </div>
 
-                        <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.phone">
-                                <span class="bar"></span>
-                                <label>Phone Number</label>
                         </div>
-                        <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.address[0].location">
-                                <span class="bar"></span>
-                                <label>Address Line 1</label>
+                        <div v-for="(addr,index) in userData.address" :key="index">
+                            <h3>Address {{ index+1}}</h3>
+                            <hr> <br>
+                            <div class="row w-100 d-flex justify-content-around">
+                                <div class="col-12 col-md-6 input-group d-flex justify-content-center text-w-100 mb-4">
+                                        <input type="text" class="bg-white" required v-model="addr.location">
+                                        <span class="bar"></span>
+                                        <label class="pl-4">LOCATION</label>
+                                </div>
+                                <div class="col-12 col-md-6 input-group d-flex justify-content-center text-w-100 mb-4">
+                                        <input type="text" class="bg-white" required v-model="addr.city">
+                                        <span class="bar"></span>
+                                        <label class="pl-4">City</label>
+                                </div>
+                                <div class="col-12 col-md-6 input-group d-flex justify-content-center text-w-100 mb-4">
+                                        <input type="text" class="bg-white" required v-model="addr.state">
+                                        <span class="bar"></span>
+                                        <label class="pl-4">State</label>
+                                </div>
+                                <div class="col-12 col-md-6 input-group d-flex justify-content-center text-w-100 mb-4">
+                                        <input type="text" class="bg-white" required v-model="addr.pincode">
+                                        <span class="bar"></span>
+                                        <label class="pl-4">PINCODE</label>
+                                </div>
+                            </div>
+                             <div class="w-100">
+                                <button class="btn btn-danger" @click.prevent="removeAddress(index)"><i class="fas fa-trash"></i></button>
+                            </div>
+                            <br><br>
                         </div>
-                        <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.address[0].city">
-                                <span class="bar"></span>
-                                <label>City</label>
-                        </div>
-                        <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.address[0].state">
-                                <span class="bar"></span>
-                                <label>State</label>
-                        </div>
-                        <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
-                                <input type="text" required v-model="userData.address[0].pincode">
-                                <span class="bar"></span>
-                                <label>PINCODE</label>
+                        <div class="w-100">
+                            <button class="btn btn-primary" @click.prevent="addAddress()"> Add <i class="fas fa-plus"></i></button>
                         </div>
 
 
@@ -89,8 +104,8 @@ import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            userData : [],
-            userFound: false,
+            userData : {},
+            userFound: true,
             userToken : null,
             // TEMPORARY
             // phone: null,
@@ -146,6 +161,25 @@ export default {
         onSelect(){
             const file=this.$refs.file.files[0]
             this.file= file
+        },
+        addAddress(){
+            this.userData.address.push({
+                        location: '',
+                        city: '',
+                        state: '',
+                        pincode: ''
+                    });
+        },
+        removeAddress(index){
+            this.userData.address.splice(index,1)
+            if(this.userData.address.length <= 0){
+              this.userData.address.push({
+                        location: '',
+                        city: '',
+                        state: '',
+                        pincode: ''
+                });   
+            }
         }
 
     },
@@ -158,10 +192,18 @@ export default {
         if(this.userToken){
             this.$http.get(`${this.$api}user/data`,{headers: {token: this.userToken, 'Content-Type': 'multipart/form-data'} })
                     .then(resp=>{
-                        this.userData = resp.data.user
-
-                        if(this.userData != null){
-                            this.userFound = true
+                        
+                        if(resp.data.user == null || resp.data.user == {}){
+                            this.userFound = false
+                        }
+                        else{
+                            this.userData = resp.data.user
+                            this.userData.address.push({
+                                location: '',
+                                city: '',
+                                state: '',
+                                pincode: ''
+                            })
                         }
 
                     })
@@ -186,7 +228,7 @@ export default {
         margin: 0 auto;
         width:46%;
         float:left;
-        margin:0 2%;
+        /* margin:0 2%; */
 
     }
 
@@ -196,7 +238,7 @@ export default {
         display: block;
         width: 300px;
         border: none;
-        border-radius: 10%;
+        /* border-radius: 10%; */
         width: 100%;
     }
 
