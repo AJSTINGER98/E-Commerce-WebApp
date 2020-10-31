@@ -78,7 +78,7 @@
                 <a class="nav-link icons" @click="isModalVisible = true, currentPage='edit'"><i class="fas fa-edit fa-lg"></i></a>
               </li>
               <li class="nav-item"  style="cursor:pointer">       
-              <a class="nav-link icons" @click="isModalVisible = true, currentPage='myaccount'"><i class="fas fa-user-cog"></i></a>
+              <a class="nav-link icons" @click="isModalVisible = true, currentPage='myaccount'"><i class="fas fa-user-cog fa-lg"></i></a>
             </li>
             </span>
 

@@ -15,6 +15,13 @@
                 <div class="container mt-4 text-center">
                     <img  class="img-thumbnail rounded-circle" src="https://www.hungertv.com/wp-content/uploads/2017/02/099200-R1-11.jpg">
                 </div>
+            <form @submit.prevent>  
+                <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
+                          <input type="file" id="img" @change="onSelect" ref="file" name="files" accept="image/*">
+                        <label>Upload Image</label>
+                </div>
+
+            </form>
 
                 
             </div>
@@ -100,6 +107,8 @@ export default {
             userData : {},
             userFound: true,
             userToken : null,
+            image:'',
+            file:''
         }
   },
     methods:{
@@ -111,29 +120,48 @@ export default {
             this.$emit('close');
         },
         save(){
-            let newData = {
-                    phone: this.phone,
-                    address: this.address1,
-                    state: this.state,
-                    city: this.city,
-                    pincode: this.pincode
-                }
-            this.$http.post(`${this.$api}user/data/edit`, newData, {headers:{_id:this.userData.id}})
+            this.$http.post(`${this.$api}user/data/edit`, this.userData,{headers:{_id:this.userData.id}})
                 .then(res =>{
                     if(res.status == 200){
-                        console.log('Details Updated');
-                        this.close();
+                        console.log('Profile Picture Updated');
+                        // this.close();
                     }
                     else{
                         console.log('Could not update')
-                        this.close();
+                        // this.close();
                     }
                 })
                 .catch(err => {
                     console.log('Something went Wrong')
                     console.log(err)
-                    this.close();
+                    // this.close();
                 })
+        },
+        imageSave(){
+            const formData= new FormData();
+            formData.append('file', this.file)
+            
+            this.$http.post(`${this.$api}user/image/upload`, formData,{headers:{_id:this.userData.id}})
+                .then(res =>{
+                    if(res.status == 200){
+                        console.log('Profile Picture Updated');
+                        // this.close();
+                    }
+                    else{
+                        console.log('Could not update')
+                        // this.close();
+                    }
+                })
+                .catch(err => {
+                    console.log('Something went Wrong')
+                    console.log(err)
+                    // this.close();
+                })
+        },
+        onSelect(){
+            const file=this.$refs.file.files[0]
+            this.file= file
+            this.imageSave()
         },
         addAddress(){
             this.userData.address.push({
@@ -162,9 +190,9 @@ export default {
     },
     created(){
         this.userToken = this.sendToken ? this.sendToken : null
-        console.log(this.userToken);
+        // console.log(this.userToken);
         if(this.userToken){
-            this.$http.get(`${this.$api}user/data`,{headers: {token: this.userToken}})
+            this.$http.get(`${this.$api}user/data`,{headers: {token: this.userToken, 'Content-Type': 'multipart/form-data'} })
                     .then(resp=>{
                         
                         if(resp.data.user == null || resp.data.user == {}){

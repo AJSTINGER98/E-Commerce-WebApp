@@ -31,7 +31,7 @@ app.use(homeRoutes);
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/user", userRoutes);
-
+app.use('/uploads', express.static('uploads'));
 app.listen(process.env.PORT || 3000, (req,res) =>{
     console.log('Server Running on port 3000');
 });
