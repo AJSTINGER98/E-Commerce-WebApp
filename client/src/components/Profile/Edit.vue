@@ -11,8 +11,9 @@
                 <div class="container d-flex justify-content-center mt-4">
                     <h2>EDIT PROFILE</h2>
                 </div>
+
                 <div class="container mt-4 text-center">
-                       <img  class="img-thumbnail rounded-circle" src="https://www.hungertv.com/wp-content/uploads/2017/02/099200-R1-11.jpg">
+                    <img  class="img-thumbnail rounded-circle" src="https://www.hungertv.com/wp-content/uploads/2017/02/099200-R1-11.jpg">
                 </div>
 
                 
@@ -152,7 +153,8 @@ export default {
                         pincode: ''
                 });   
             }
-        }
+        },
+        
 
     },
     computed:{
