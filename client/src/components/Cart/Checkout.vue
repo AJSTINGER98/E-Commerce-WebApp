@@ -28,10 +28,17 @@
 
 <script>
 export default {
+    data(){
+        return{
+            totalAmount:'',
+        }
+    },
     props:['orderData'],
 created(){
 
-    console.log(this.orderData)
+    // console.log(this.orderData)
+
+    // console.log(totalAmount)
 }
 }
 </script>
