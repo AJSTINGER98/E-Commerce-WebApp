@@ -98,8 +98,32 @@ export default {
         },
         checkout(){
             // console.log(this.orders)
-            this.$router.push({ name: 'checkout', params: {orderData: this.orders }})
-            this.$emit('close');
+            if(this.userId){
+                // console.log(this.orders);
+                let total_amount = 0
+                for(let i=0;i<this.orders.length;i++){
+                    total_amount += this.orders[i].price*this.orders[i].quantity;
+                }
+                var params = {
+                    amount: total_amount,  
+                    currency: "INR",
+                    receipt: "su001",
+                    payment_capture: '1'
+                };
+                this.$http.post(`${this.$api}payment/order`,params)
+                    .then(response =>{
+                        if(response.data.status == "success"){
+                            this.$router.push({ name: 'checkout', params: {orderData: this.orders,paymentDetails: response.data.sub }})
+                            this.$emit('close');
+                        }
+                    })
+                    .catch(err=>{
+                        console.log(err);
+                        alert('An error occured! Please try again.')
+                    })
+            } else{
+                this.$emit('change','login');
+            }
         }
     },
     computed : {

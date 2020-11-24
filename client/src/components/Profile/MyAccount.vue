@@ -141,7 +141,7 @@ export default {
 
     },
     computed:{
-        ...mapGetters(['sendToken']),
+        ...mapGetters(['isAuthenticated','sendToken','sendData']),
     },
     created(){
         this.userToken = this.sendToken ? this.sendToken : null
@@ -164,6 +164,12 @@ export default {
                     })
 
         }
+        // if(this.isAuthenticated){
+        //     this.userData = this.sendData
+        //     this.useFound = true;
+        // }else{
+        //     this.userFound = false;
+        // }
     }
 }
 </script>
