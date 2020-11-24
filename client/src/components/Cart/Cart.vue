@@ -57,7 +57,7 @@
             <div class="modal-footer">
                 <div class="container-fluid text-center" v-if="orders.length>0">
                     <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 text-center">
-                        <button class="btn w-50 py-2 float-right" id="loginSubmit">CHECKOUT</button>
+                        <button class="btn w-50 py-2 float-right" @click="checkout()" id="loginSubmit">CHECKOUT</button>
                     </div>
                 </div>
             </div>
@@ -95,6 +95,35 @@ export default {
                 .catch(error =>{
                     console.log('error occured');
                 });
+        },
+        checkout(){
+            // console.log(this.orders)
+            if(this.userId){
+                // console.log(this.orders);
+                let total_amount = 0
+                for(let i=0;i<this.orders.length;i++){
+                    total_amount += this.orders[i].price*this.orders[i].quantity;
+                }
+                var params = {
+                    amount: total_amount,  
+                    currency: "INR",
+                    receipt: "su001",
+                    payment_capture: '1'
+                };
+                this.$http.post(`${this.$api}payment/order`,params)
+                    .then(response =>{
+                        if(response.data.status == "success"){
+                            this.$router.push({ name: 'checkout', params: {orderData: this.orders,paymentDetails: response.data.sub }})
+                            this.$emit('close');
+                        }
+                    })
+                    .catch(err=>{
+                        console.log(err);
+                        alert('An error occured! Please try again.')
+                    })
+            } else{
+                this.$emit('change','login');
+            }
         }
     },
     computed : {

@@ -12,7 +12,7 @@ import Contact from './components/ContactUs/Contact.vue';
 import productDetails from './components/Product/ProductDetails.vue';
 import product from './components/Product/Product.vue';
 import InfiniteLoading from 'vue-infinite-loading';
-
+import checkout from './components/Cart/Checkout.vue'
 import { store } from './store/store';
 
 
@@ -29,7 +29,8 @@ const routes = [
   { path: '/', component: Home, name: 'home' },
   { path: '/contact-us', component: Contact, name: 'contact' },
   {path: '/products/:id', component: productDetails, name: 'productDetails',props: true},
-  {path: '/products',  component: product, name: 'product',props: true}
+  {path: '/products',  component: product, name: 'product',props: true},
+  {path: '/checkout',  component: checkout, name: 'checkout',props: true}
 
 ];
 
