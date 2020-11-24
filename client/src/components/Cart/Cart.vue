@@ -57,7 +57,7 @@
             <div class="modal-footer">
                 <div class="container-fluid text-center" v-if="orders.length>0">
                     <div class="input-group d-flex justify-content-center w-100 mt-4 mb-2 text-center">
-                        <button class="btn w-50 py-2 float-right" id="loginSubmit">CHECKOUT</button>
+                        <button class="btn w-50 py-2 float-right" @click="checkout()" id="loginSubmit">CHECKOUT</button>
                     </div>
                 </div>
             </div>
@@ -95,6 +95,11 @@ export default {
                 .catch(error =>{
                     console.log('error occured');
                 });
+        },
+        checkout(){
+            // console.log(this.orders)
+            this.$router.push({ name: 'checkout', params: {orderData: this.orders }})
+            this.$emit('close');
         }
     },
     computed : {
