@@ -69,7 +69,8 @@ router.delete("/:id",function(req,res){
 });
 
 router.delete("/clearcart",(req,res)=>{
-    Order.remove({},(err)=>{
+    var userId = req.headers._id;
+    Order.findOneAndUpdate({owner:userId},{$unset:{items:{}}},(err)=>{
         if(err){
             return res.json({status: "failed",msg: err});
         }

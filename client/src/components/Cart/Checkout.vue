@@ -16,7 +16,7 @@
                                 Quantity: {{order.quantity}}
                             </h5>
                             <h5>
-                                Price: {{order.price}}
+                                Price: Rs {{order.price.toLocaleString()}}
                             </h5>
                         </div>
                     </div>
@@ -94,6 +94,12 @@ export default {
             .then(response =>{
                 if(response.status=='success'){
                     // clear cart
+                    this.$http.post(`${this.$api}orders/clearcart` ,{headers: { _id: this.userData.id}})
+                    .then(response=>{
+                        if(response.status=='success'){
+                            this.$route.push({name:'home'})
+                        }
+                    })
                     // redirect to homepage
                     console.log(response)
                 }
