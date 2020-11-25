@@ -67,6 +67,15 @@ router.delete("/:id",function(req,res){
         }
     });
 });
+
+router.delete("/clearcart",(req,res)=>{
+    Order.remove({},(err)=>{
+        if(err){
+            return res.json({status: "failed",msg: err});
+        }
+        return res.json({status:"success"});
+    });
+});
 // For frontend axios
 // axios.delete(URL, {
 //     headers: {
