@@ -22,8 +22,15 @@ router.post("/order",(req,res)=>{
 });
 
 router.post('/saveorder',(req,res)=>{
+    console.log(req.headers,req.body);
     var newOrder = new Purchase({
-        order_
+        owner_id : mongoose.Types.ObjectId(req.headers._id),
+        order: {
+            payment_id: req.body.orderDetails.razorpay_payment_id,
+            order_id: req.body.orderDetails.razorpay_order_id,
+            signature: req.body.orderDetails.razorpay_signature,
+        },
+        items: req.body.orderData
     });
     newOrder.save((err,order)=>{
         if(err){

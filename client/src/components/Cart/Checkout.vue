@@ -89,23 +89,27 @@ export default {
 
     },
     saveData(){
-        this.$http.post(`${this.$api}payment/saveorder`, this.orderDetails, this.orderData,{
+        var orderInfo = {
+            orderDetails: this.orderDetails,
+            orderData: this.orderData
+        }
+        this.$http.post(`${this.$api}payment/saveorder`, orderInfo,{
              headers: { _id: this.userData.id}})
             .then(response =>{
-                if(response.status=='success'){
+                if(response.status==200){
                     // clear cart
-                    this.$http.post(`${this.$api}orders/clearcart` ,{headers: { _id: this.userData.id}})
+                    this.$http.delete(`${this.$api}orders/clearcart` ,{headers: { _id: this.userData.id}})
                     .then(response=>{
-                        if(response.status=='success'){
-                            this.$route.push({name:'home'})
+                        if(response.status==200){
+                            this.$router.push({name:'home'});
                         }
-                    })
+                    });
                     // redirect to homepage
-                    console.log(response)
+                    // console.log(response)
                 }
-                // else{
-
-                // }
+                else{
+                    console.log("Something went wrong")
+                }
         })
     }
   

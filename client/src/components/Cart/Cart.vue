@@ -100,7 +100,7 @@ export default {
             // console.log(this.orders)
             if(this.userId){
                 // console.log(this.orders);
-                let total_amount = 0
+                let total_amount = 0.00
                 for(let i=0;i<this.orders.length;i++){
                     total_amount += this.orders[i].price*this.orders[i].quantity;
                 }

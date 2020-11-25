@@ -54,9 +54,20 @@ router.get('/', (req,res)=>{
 
 });
 
+router.delete("/clearcart",(req,res)=>{
+    console.log('Hello');
+    var userId = mongoose.Types.ObjectId(req.headers._id);
+    Order.findOneAndUpdate({owner:userId},{$unset:{items:{}}},(err)=>{
+        if(err){
+            return res.json({status: "failed",msg: err});
+        }
+        return res.json({status:"success"});
+    });
+});
+
 //Delete order from cart
 router.delete("/:id",function(req,res){
-    var userId = req.headers._id;
+    var userId = mongoose.Types.ObjectId(req.headers._id);
     Order.findOneAndUpdate({owner:userId},{$pull: {items: {'item_id': req.params.id}}},{safe:true} ,function(err, deleteData){
         if(err){
             console.log(err);
@@ -68,23 +79,7 @@ router.delete("/:id",function(req,res){
     });
 });
 
-router.delete("/clearcart",(req,res)=>{
-    var userId = req.headers._id;
-    Order.findOneAndUpdate({owner:userId},{$unset:{items:{}}},(err)=>{
-        if(err){
-            return res.json({status: "failed",msg: err});
-        }
-        return res.json({status:"success"});
-    });
-});
-// For frontend axios
-// axios.delete(URL, {
-//     headers: {
-//       Authorization: authorizationToken
-//     },
-//     data: {
-//       source: source
-//     }
-//   });
+
+
 
 module.exports = router;
