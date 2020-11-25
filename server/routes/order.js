@@ -67,14 +67,6 @@ router.delete("/:id",function(req,res){
         }
     });
 });
-// For frontend axios
-// axios.delete(URL, {
-//     headers: {
-//       Authorization: authorizationToken
-//     },
-//     data: {
-//       source: source
-//     }
-//   });
+
 
 module.exports = router;

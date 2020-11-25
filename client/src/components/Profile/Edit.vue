@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="container mt-4 text-center">
-                    <img  class="img-thumbnail rounded-circle" src="https://www.hungertv.com/wp-content/uploads/2017/02/099200-R1-11.jpg">
+                    <img  class="img-thumbnail rounded-circle" :src="$api+userData.image">
                 </div>
             <form @submit.prevent>  
                 <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
