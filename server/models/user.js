@@ -16,7 +16,7 @@ const userSchema = new Schema({
     state: String,
   }],
   userImage: String
-})
+});
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
