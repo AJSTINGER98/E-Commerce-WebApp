@@ -125,10 +125,6 @@ router.get('/data', (req, res, next) => {
 router.post('/image/upload', upload.single('file'),(req,res)=>{
   // console.log("HERE")
   var userId= mongoose.Types.ObjectId(req.headers._id); 
-  // console.log(req.files,req.file,userId)
-  // console.log(req.data,req.body.data)
-  // console.log(req.file);
-  // var newAddress={location: req.body.address[0], pincode:req.body.pincode,city:req.body.city,state:req.body.state}
   User.findOneAndUpdate({_id:userId},{$set: {userImage: req.file.path}},{safe:true, upsert:true},function(err, updatedUser){
     if(err || !updatedUser){
       console.log(err);

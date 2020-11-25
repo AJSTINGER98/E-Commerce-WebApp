@@ -38,8 +38,9 @@ import { mapGetters } from 'vuex';
 export default {
     data(){
         return {
-            userData: {},
-            userFound: true
+            userData: [],
+            userFound: true,
+            orderDetails:[]
         };
     },
     props:['orderData','paymentDetails'],
@@ -56,17 +57,59 @@ export default {
                 // "description": "Razor Test Transaction",
                 "image": "https://previews.123rf.com/images/subhanbaghirov/subhanbaghirov1605/subhanbaghirov160500087/56875269-vector-light-bulb-icon-with-concept-of-idea-brainstorming-idea-illustration-.jpg",
                 "order_id": this.paymentDetails.id,
+                "handler": (response)=>{
+                    this.orderDetails=response
+                    this.saveData()
+                    
+
+                //     console.log(response)
+                // alert(response.razorpay_payment_id);
+                },
+                prefill: {
+                    contact: this.userData.phone,
+                    email: this.userData.email,
+                },
+                theme: {
+                    color: "#00ffff"
+                }
             }
             var rzp1 = new window.Razorpay(options);
+
+            rzp1.on('payment.failed', function (response){
+                alert(response.error.code);
+                // alert(response.error.description);
+                // alert(response.error.source);
+                // alert(response.error.step);
+                // alert(response.error.reason);
+                // alert(response.error.metadata.order_id);
+                // alert(response.error.metadata.payment_id);
+            });
             rzp1.open();
-        }
+
+
+    },
+    saveData(){
+        this.$http.post(`${this.$api}payment/saveorder`, this.orderDetails, this.orderData,{
+             headers: { _id: this.userData.id}})
+            .then(response =>{
+                if(response.status=='success'){
+                    // clear cart
+                    // redirect to homepage
+                    console.log(response)
+                }
+                // else{
+
+                // }
+        })
+    }
+  
     },
     created(){
 
         if(this.isAuthenticated){
             this.userData = this.sendData
             this.useFound = true;
-            console.log(this.userData);
+            // console.log("User Details:"+this.userData.id);
         }else{
             this.userFound = false;
         }

@@ -106,15 +106,18 @@ export default {
                 }
                 var params = {
                     amount: total_amount,  
+                    // amount: 
                     currency: "INR",
                     receipt: "su001",
                     payment_capture: '1'
                 };
                 this.$http.post(`${this.$api}payment/order`,params)
                     .then(response =>{
+                        console.log(response)
                         if(response.data.status == "success"){
                             this.$router.push({ name: 'checkout', params: {orderData: this.orders,paymentDetails: response.data.sub }})
                             this.$emit('close');
+                            
                         }
                     })
                     .catch(err=>{
