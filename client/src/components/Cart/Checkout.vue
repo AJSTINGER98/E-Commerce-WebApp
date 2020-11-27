@@ -26,14 +26,61 @@
                 <hr>
                 <div class="my-3 d-flex justify-content-between mr-5 w-75 p-4">
                     <h4 class="">Total: <strong>Rs {{this.totalAmount.toLocaleString()}}</strong> </h4>
-                    <button class="btn" @click="Buy()">Proceed to Buy</button>
-                    
+                      <button class="btn" @click="Buy()">Proceed to Buy</button>
                 </div>
+                
+                <div class="container">
+                    <h2 class="my-4">SELECT ADDRESS</h2>
+                    <div class="row justify-content-start">
+                        <div class="col-12 col-sm-6 col-lg-4 " style="cursor:pointer" v-for="(address,i) in userData.address" :key="i">
+                            <input type="radio" :id="i" :value="address" v-model="selectedAddress">
+                            <label class="w-100" :for="i" style="cursor:pointer">
+                                <h5 class="w-100 text-left ml-4">{{address.location}},</h5>
+                                <h6 class="w-100 text-left ml-4">{{ address.city}}</h6>
+                                <h6 class="w-100 text-left ml-4">{{address.state}}</h6>
+                                <h6 class="w-100 text-left ml-4">{{address.pincode}}</h6>             
+
+                        </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <h2 class="my-4">USE A DIFFERENT ADDRESS</h2>
+                    <div class="w-100">
+                        <button class="btn w-25 mb-4" @click="newAddressInput = !newAddressInput">
+                            <span v-if="!newAddressInput"><i class="fas fa-plus"></i> New Address</span>
+                            <span v-else><i class="fas fa-times fa-fw"></i>Close</span>
+                        </button>
+                    </div>
+                </div>
+                <transition name="slide-fade" >
+                        <div class="row" v-show="newAddressInput">
+                                <div class="col-12 col-md-6 input-group">
+                                    <input type="text" class="w-100" required v-model="newAddressObj.location">
+                                    <span class="bar w-100"></span>
+                                    <label class="d-flex float-left ml-4 pl-3">Location</label>
+                                </div>
+                                <div class="col-12 col-md-6 input-group">
+                                    <input type="text" class="w-100" required v-model="newAddressObj.city">
+                                    <span class="bar w-100"></span>
+                                    <label class="d-flex float-left ml-4 pl-3">City</label>
+                                </div>
+                                <div class="col-12 col-md-6 input-group">
+                                    <input type="text" class="w-100" required v-model="newAddressObj.state">
+                                    <span class="bar w-100"></span>
+                                    <label class="d-flex float-left ml-4 pl-3">State</label>
+                                </div>
+                                <div class="col-12 col-md-6 input-group">
+                                    <input type="text" class="w-100" required v-model="newAddressObj.pincode">
+                                    <span class="bar w-100"></span>
+                                    <label class="d-flex float-left ml-4 pl-3">Pincode</label>
+                                </div>
+                        </div>
+                   </transition>
+                
         </div>
     </div>
-    <div v-else>
-        <h1>Error:404 User not Logged. Please Login to Continue</h1>
-    </div>
+
 </template>
 
 <script>
@@ -44,7 +91,16 @@ export default {
         return {
             userData: [],
             userFound: true,
-            orderDetails:[]
+            orderDetails:[],
+            selectedAddress: null,
+            newAddressInput : false,
+            newAddressObj :{
+                location: null,
+                city: null,
+                state: null,
+                pincode: null
+
+            }
         };
     },
     props:['orderData','paymentDetails','totalAmount'],
@@ -54,6 +110,7 @@ export default {
     },
     methods:{
         Buy(){
+            console.log(this.selectedAddress);
             var options = {
                 "key": "rzp_test_bCnOnF4NXpGskM",  //Enter your razorpay key
                 "currency": "INR",
@@ -93,9 +150,14 @@ export default {
 
     },
     saveData(){
+        if(this.newAddressInput){
+            this.newAddressObj.pincode = parseInt(this.newAddressObj.pincode)
+            this.selectedAddress = this.newAddressObj
+        }
         var orderInfo = {
             orderDetails: this.orderDetails,
-            orderData: this.orderData
+            orderData: this.orderData,
+            orderAddress: this.selectedAddress
         }
         this.$http.post(`${this.$api}payment/saveorder`, orderInfo,{
              headers: { _id: this.userData.id}})
@@ -142,12 +204,12 @@ export default {
         align-items: center;
     }
     .posi{
-    margin-top:100px !important;
-    margin-left: 20px;
-    margin-right: 20px;
-    /* margin-bottom: 100px; */
-}
-.btn {
+        margin-top:100px !important;
+        margin-left: 20px;
+        margin-right: 20px;
+        /* margin-bottom: 100px; */ 
+    }
+    .btn {
         border: 1px solid black;
         border-radius: 0;
         background: rgb(0,0,0);
@@ -164,6 +226,14 @@ export default {
         color: black;
 
     }
+    input[type="radio"] + label{
+        border: 1px solid #ccc;
+        padding: 4px;
+        border-radius: 4px;
+    }
+    input[type="radio"]:checked + label{
+        border: 3px solid black;
+    }
      @keyframes slide-in {
         from {
             background-position: 50% 100%;
@@ -173,5 +243,81 @@ export default {
             background-position: 0% 100%;
         }
 
+    }
+    .input-group {
+        position: relative;
+        margin: 40px 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background: transparent;
+
+    }
+
+    input[type="text"], textarea {
+        font-size: 18px;
+        padding: 10px 10px 10px 10px;
+        display: block;
+        width: 300px;
+        border: none;
+        border-radius: 10px;
+    }
+
+    input[type="text"]:focus, textarea:focus {
+        outline: none;
+    }
+
+    input[type="text"] ~ label {
+        color: #999;
+        font-size: 18px;
+        font-weight: normal;
+        position: absolute;
+        pointer-events: none;
+        top: 10px;
+        width:100%;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    input[type="text"]:focus ~ label,
+    input[type="text"]:valid ~ label, 
+    textarea:focus ~ label {
+        top: -20px;
+        font-size: 15px;
+        color: blue;
+
+    }
+
+    .bar {
+        position: relative;
+        display:block;
+        width:300px;
+        background: blue;
+        height:2px;
+        border-radius: 10px;
+        transform: scaleX(0);
+        transition: all 0.3s ease;
+    }
+
+
+    input[type="text"]:focus ~ .bar,
+    textarea:focus ~ .bar{
+    /*   width: 50%; */
+        transform: scaleX(0.967);
+    }
+
+
+
+    .slide-fade-enter-active {
+        transition: all .8s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .8s ease;
+    
+    }
+    .slide-fade-enter, .slide-fade-leave-to{
+        transform: translateY(-30px);
+        opacity: 0;
     }
 </style>
