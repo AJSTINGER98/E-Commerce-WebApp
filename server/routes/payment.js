@@ -30,14 +30,28 @@ router.post('/saveorder',(req,res)=>{
             order_id: req.body.orderDetails.razorpay_order_id,
             signature: req.body.orderDetails.razorpay_signature,
         },
-        items: req.body.orderData
+        items: req.body.orderData,
+        address: req.body.orderAddress
     });
     newOrder.save((err,order)=>{
         if(err){
             return res.json({status:"failed",message:"Something went wrong"});
         }
         else{
+            console.log(order);
             return res.json({status:"success",message:"Order has been placed"});
+        }
+    });
+});
+
+router.get('/getorder',(req,res)=>{
+    var userId = mongoose.Schema.Types.ObjectId(req.headers._id);
+    Purchase.find({owner_id: userId},(err,foundOrders)=>{
+        if(err){
+            return res.json({status:"error"});
+        }
+        else{
+            return res.json({status: "success", data:foundOrders});
         }
     });
 });
