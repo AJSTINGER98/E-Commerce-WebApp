@@ -1,29 +1,33 @@
 <template>
     <div class="row posi" v-if="userFound">
         <div class="container d-block text-center justify-content-center my-4">
-            <div class="p-0 w-100" v-if="(orderData.length > 0)">
+            <div class="p-0 w-100 mb-5" v-if="(orderData.length > 0)">
                     <div v-for="(order,index) in orderData" :key="index">
                     <hr v-if="index>0">
-                    <div class="row my-2"  >
+                    <div class="row my-2">
                         <div class="image-container col-4 p-0">
                             <img class = "prod-image" :src="order.image" alt="">
                         </div>
-                        <div>
+                        <div class="text-center w-50 m-auto">
                             <h5>
-                                Name: {{order.name.toUpperCase()}}
+                             Name:  <router-link :to="{ name: 'productDetails', params: { id:order.item_id }}"><strong>{{order.name.toUpperCase()}}</strong></router-link>
+
                             </h5>
                             <h5>
-                                Quantity: {{order.quantity}}
+                                Quantity: <strong>{{order.quantity}}</strong>
                             </h5>
                             <h5>
-                                Price: Rs {{order.price.toLocaleString()}}
+                                Price: <strong>Rs {{order.price.toLocaleString()}}</strong>
                             </h5>
                         </div>
                     </div>
                     </div>
                 </div>
-                <div class="">
+                <hr>
+                <div class="my-3 d-flex justify-content-between mr-5 w-75 p-4">
+                    <h4 class="">Total: <strong>Rs {{this.totalAmount.toLocaleString()}}</strong> </h4>
                     <button class="btn" @click="Buy()">Proceed to Buy</button>
+                    
                 </div>
         </div>
     </div>
@@ -43,7 +47,7 @@ export default {
             orderDetails:[]
         };
     },
-    props:['orderData','paymentDetails'],
+    props:['orderData','paymentDetails','totalAmount'],
 
     computed:{
         ...mapGetters(['isAuthenticated','sendData']),
@@ -115,19 +119,22 @@ export default {
   
     },
     created(){
-
+        console.log(this.totalAmount)
         if(this.isAuthenticated){
             this.userData = this.sendData
             this.useFound = true;
             // console.log("User Details:"+this.userData.id);
+            console.log(this.orderData)
         }else{
             this.userFound = false;
         }
+        
     }
 }
 </script>
 
 <style scoped>
+
     .prod-image{
         width: 80%;
         height: auto;

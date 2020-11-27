@@ -74,11 +74,15 @@
               <li class="nav-item" style="cursor:pointer">
                 <a class="nav-link icons" @click="logout()"><i class="fas fa-sign-out-alt fa-lg"></i></a>
               </li>
-              <li class="nav-item" style="cursor:pointer">
+              <!-- <li class="nav-item" style="cursor:pointer">
                 <a class="nav-link icons" @click="isModalVisible = true, currentPage='edit'"><i class="fas fa-edit fa-lg"></i></a>
-              </li>
+              </li> -->
               <li class="nav-item"  style="cursor:pointer">       
               <a class="nav-link icons" @click="isModalVisible = true, currentPage='myaccount'"><i class="fas fa-user-cog fa-lg"></i></a>
+            </li>
+            <br>
+            <li class="nav-item"  style="cursor:pointer" v-if="isAuthenticated">       
+              <router-link :to="{ name: 'order'}" class="nav-link"><i class="fas fa-cart-arrow-down fa-lg"></i></router-link>
             </li>
             </span>
 
@@ -146,7 +150,8 @@
     <component :is="currentPage" :userId ="userData && userData.id? userData.id : null" v-show="isModalVisible" @close="closeModal()" @change="currentPage = $event"></component> 
     
     <!-- Footer -->
-<footer class="background-col page-footer font-small special-color-dark pt-4">
+<footer class="background-col page-footer font-small special-color-dark pt-4" style="
+">
 
   <!-- Footer Elements -->
   <div class="container d-flex justify-content-center">

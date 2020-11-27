@@ -14,14 +14,15 @@
 
                 <div class="container mt-4 text-center">
                     <img  class="img-thumbnail rounded-circle" :src="$api+userData.image">
-                </div>
-            <form @submit.prevent>  
-                <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
+                                <form @submit.prevent>  
+                <div class="input-group d-flex justify-content-center my-4 float-none">
                           <input type="file" id="img" @change="onSelect" ref="file" name="files" accept="image/*">
-                        <label>Upload Image</label>
+                        <!-- <label>Upload Image</label> -->
                 </div>
 
             </form>
+
+                </div>
 
                 
             </div>
@@ -253,6 +254,8 @@ export default {
     font-size: 18px;
     font-weight: normal;
     position: absolute;
+    /* text-align:center; */
+    /* float:left; */
     pointer-events: none;
     left: 5px;
     top: 10px;
