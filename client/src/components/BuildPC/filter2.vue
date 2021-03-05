@@ -1,6 +1,18 @@
 <template>
-    <div class="container d-flex justify-content-center">
-        <div class="card-wrapper">
+    <div class="mtt-100">
+        <div class="row mb-2 ">
+            <div class="col-12 d-flex justify-content-center">
+                <h2 class="mb-2"> Step:2 Choose your platform </h2>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-8 mb-5 ">
+                <button class="btn float-right" @click="$emit('change','filter3')">Next</button>
+            </div>
+
+        </div>
+        <!-- <div class="card-wrapper">
             <div class="img-card w-100">
                         <img class="card-img" :src="product.image[0].src" alt="Card image cap">
 
@@ -16,23 +28,25 @@
                 </div>
             </div>        
         </div>
-        <div class="card-wrapper">
-            <input type="checkbox" name="" id="">
-            <div class="img-card w-100">
-                        <img class="card-img" :src="product.image[0].src" alt="Card image cap">
-
+         -->
+         <div class="row d-flex justify-content-center">
+            <div class="col-2">
+                <div class="card">
+                    <img class="card-img-top bg-success" src="https://www.themvp.in/image/catalog/amd_icon.png" alt="Card image cap">
+                    <div class="card-body text-center">
+                    <p class="card-text">AMD</p>
+                </div>
+                </div>
             </div>
-            <div class="img-footer">
-                <div class="upper-div mx-0 w-100 justify-content-center ">
-                    <router-link :to="{ name: 'productDetails', params: { id:product._id }}"> <button class="btn">VIEW</button></router-link>
+            <div class="col-2">
+                <div class="card">
+                    <img class="card-img-top bg-primary" src="https://www.themvp.in/image/catalog/intel_icon.png" alt="Card image cap">
+                    <div class="card-body text-center">
+                    <p class="card-text">Intel</p>
                 </div>
-                <div class="lower-div mx-0 ">
-                    <h6 class="mb-0 mt-1 text-muted">{{ product.brand.toUpperCase()}}</h6>
-                    <h6 class="mb-0 mt-1 text-muted">{{ product.name.toUpperCase()}}</h6>
-                    <h5 class="mb-1 text-weight-bold">{{`${product.currency} ${product.price}`}}</h5>
                 </div>
-            </div>        
-        </div>
+            </div>
+         </div>
     </div>
 </template>
 
@@ -42,55 +56,21 @@ export default {
 }
 </script>
 
-<style>
-    input[type = 'checkbox']{
-        opacity: 0;
-        position: relative;
+<style scoped>
+.mtt-100 {
+        margin: 150px 200px;
+        /* margin-left:400px; */
+        /* float:left; */
     }
 
-    .img-card {
-        /* height: 50vh; */
-        /* width: 100%; */
-        height: 300px;
-        /* min-width: 300px; */
-        /* max-width: 350px; */
-        width:70%;
-        /* height:70%; */
-        overflow: hidden;
-        cursor: pointer;
-        padding-bottom: 50px;
-    }
-    .img-card img{
-        margin: 0;
-        padding: 0;
-        height: auto;
-        width: 100%;
-        transition: transform 1s ease-in-out;
-    }
- 
-    .img-footer {
-        /* width: 100%; */
-        margin:10px auto ;
-        bottom: 0;
-        padding: 2px;
-        font-size: 2px;
-        color: black;
-        width:200px;
-        min-width: 200px;
-        max-width: 350px;
-        max-height:10px;
-    }
-    .upper-div{
-        max-height: 0;
-        overflow: hidden;
-        transition: all 0.5s ease-in-out;
-    }
-    .lower-div{
-        max-height: 80px;
-        overflow: hidden;
-        transition: all 0.5s ease-in-out;
-    }
-    .img-footer .upper-div .btn {
+.card{
+    background:transparent;
+    border:none;
+}
+.card-body{
+        padding: 1rem;
+}
+.btn {
         border: 1px solid black;
         background: rgb(0,0,0);
         background: linear-gradient(90deg, rgba(0,0,0,0) 33.33%, rgba(0,0,0,1) 33.33%, rgba(0,0,0,1) 66.66%, rgba(0,0,0,0) 66.66%);
@@ -100,19 +80,49 @@ export default {
         transition: all 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
         padding:10px 60px ;
         border-radius: 0;
-        /* width: 50%; */
+        /* width: 10%; */
         margin:0 auto;
         animation: slide-out 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     }
-    .img-footer .upper-div .btn:hover {
+    .btn{
+        height:40px;
+        text-align:center;
+        /* width:100px; */
+
+    }
+    .btn:hover {
         background-position: 100% 100%;
         color: black;
         animation: slide-in 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     }
-    .div-hover:hover  .img-footer .upper-div{
-        max-height: 60px;
+    .card-img-top{
+        min-height: 100px;
+        /* min-width: 100px; */
     }
-    .div-hover:hover .img-footer .lower-div{
-        max-height: 0;
+    @keyframes slide-in {
+        from {
+            background-position: 50% 100%;
+        }
+
+        to {
+            background-position: 0% 100%;
+        }
+
     }
+    @keyframes slide-out {
+        from {
+            background-position: 100% 100%;
+        }
+
+        to {
+            background-position: 50% 100%;
+        }
+
+    }
+.btn:active,
+.btn:focus,
+.btn:focus:active {
+
+  box-shadow: none;
+}
 </style>

@@ -12,7 +12,7 @@
       </div>
       <div class="row mt-5">
         <div class="col-12 mb-5 ">
-                    <button class="btn float-right">Next</button>
+            <button class="btn float-right" @click="$emit('change','filter2')">Next</button>
         </div>
 
       <div class="col-2">

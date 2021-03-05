@@ -1,13 +1,9 @@
 <template>
     <div class="container">
-        <div class="d-flex justify-content-center w-100">
-            <div class="card-body"> <input type="range" class="custom-range" min="0" max="100" name="">
-                <div class="form-row">
-                    <div class="form-group col-md-6"> <label>Min</label> <input class="form-control" :placeholder="'$'+allPrice[0]" type="number"> </div>
-                    <div class="form-group text-right col-md-6"> <label>Max</label> <input class="form-control" :placeholder="'$'+allPrice[allPrice.length-1]" type="number"> </div>
-                </div> 
+        <div class="d-flex justify-content-center w-50">
+            <p>$ {{ sliderVal }}</p>
+            <div class="card-body"> <input v-model="sliderVal" type="range" class="custom-range" min="0" max="100000" name="">
                 <button class="btn-medium xs-margin-bottom-five">Next</button>
-                <!-- <a class="btn" style="z-index:10000;">Apply Now</a> -->
             </div>
         </div>
     </div>
@@ -15,6 +11,12 @@
 
 <script>
 export default {
+    data(){
+        return {
+            sliderVal: 0
+        };
+    },
+
 
 }
 </script>
