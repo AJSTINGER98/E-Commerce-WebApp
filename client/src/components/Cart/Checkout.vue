@@ -24,11 +24,7 @@
                     </div>
                 </div>
                 <hr>
-                <div class="my-3 d-flex justify-content-between mr-5 w-75 p-4">
-                    <h4 class="">Total: <strong>Rs {{this.totalAmount.toLocaleString()}}</strong> </h4>
-                      <button class="btn" @click="Buy()">Proceed to Buy</button>
-                </div>
-                
+
                 <div class="container">
                     <h2 class="my-4">SELECT ADDRESS</h2>
                     <div class="row justify-content-start">
@@ -42,9 +38,7 @@
 
                         </label>
                         </div>
-                    </div>
-                </div>
-                <div class="container">
+                        <div class="container">
                     <h2 class="my-4">USE A DIFFERENT ADDRESS</h2>
                     <div class="w-100">
                         <button class="btn w-25 mb-4" @click="newAddressInput = !newAddressInput">
@@ -53,6 +47,10 @@
                         </button>
                     </div>
                 </div>
+                    </div>
+                </div>
+
+                
                 <transition name="slide-fade" >
                         <div class="row" v-show="newAddressInput">
                                 <div class="col-12 col-md-6 input-group">
@@ -77,6 +75,11 @@
                                 </div>
                         </div>
                    </transition>
+                                <div class="my-3 d-flex justify-content-between mr-5 w-75 p-4">
+                    <h4 class="">Total: <strong>Rs {{this.totalAmount.toLocaleString()}}</strong> </h4>
+                      <button class="btn" @click="Buy()">Proceed to Buy</button>
+                </div>
+                
                 
         </div>
     </div>
@@ -129,6 +132,9 @@ export default {
                 prefill: {
                     contact: this.userData.phone,
                     email: this.userData.email,
+                },
+                notes: {
+                    // address: this.userData.
                 },
                 theme: {
                     color: "#00ffff"

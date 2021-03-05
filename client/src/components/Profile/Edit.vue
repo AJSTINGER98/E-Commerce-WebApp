@@ -121,15 +121,17 @@ export default {
             this.$emit('close');
         },
         save(){
+            console.log("working")
             this.$http.post(`${this.$api}user/data/edit`, this.userData,{headers:{_id:this.userData.id}})
                 .then(res =>{
+                    console.log(res)
                     if(res.status == 200){
                         console.log('Profile Picture Updated');
-                        // this.close();
+                        this.close();
                     }
                     else{
                         console.log('Could not update')
-                        // this.close();
+                        this.close();
                     }
                 })
                 .catch(err => {
@@ -137,16 +139,17 @@ export default {
                     console.log(err)
                     // this.close();
                 })
+            this.close();
         },
         imageSave(){
             const formData= new FormData();
             formData.append('file', this.file)
-            
+            console.log("hello")
             this.$http.post(`${this.$api}user/image/upload`, formData,{headers:{_id:this.userData.id}})
                 .then(res =>{
                     if(res.status == 200){
                         console.log('Profile Picture Updated');
-                        // this.close();
+                        this.close();
                     }
                     else{
                         console.log('Could not update')

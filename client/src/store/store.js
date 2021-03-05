@@ -20,7 +20,7 @@ export const store = new Vuex.Store({
         return false;
     },
     sendData(state){
-        console.log(state.user);
+        // console.log(state.user);
         return state.user;
     },
     sendToken(state){

@@ -28,6 +28,7 @@
           <li class="nav-item">
             <router-link :to="{ name: 'product'}" class="nav-link"><span>PRODUCTS</span></router-link>
           </li>
+          
           <!-- <li class="nav-item dropdown show">
             <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button">
               DROPDOWN
@@ -47,13 +48,18 @@
             </div>
           </li> -->
           <div class="div-icons ml-auto d-flex d-inline-block">
-            <li class="nav-item dropdown show">
+          <li class="nav-item">
+            <router-link :to="{ name: 'buildpc'}" class="nav-link"><span>Build Your PC</span></router-link>
+          </li>
+            <li class="nav-item dropdown show" v-if="isAuthenticated">
               <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button">
-                DROPDOWN
+               Welcome, {{ userData.name.toUpperCase() }}
               </a>
               <div class="dropdown-menu show" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">ACTION</a>
-                <a class="dropdown-item" href="#">ANOTHER ACTION</a>
+                <a class="nav-link dropdown-item" @click="isModalVisible = true, currentPage='myaccount'" style="cursor:pointer">My Account <i class="float-right fas fa-user-cog fa-lg"></i></a>
+                 <router-link :to="{ name: 'order'}" class="nav-link" style="color:black">My Orders <i class="float-right fas fa-cart-arrow-down fa-lg"></i></router-link>
+                <a class="nav-link dropdown-item" @click="isModalVisible = true, currentPage='edit'" style="cursor:pointer">Edit Account <i class="float-right fas fa-edit fa-lg"></i></a>
+                <a class="nav-link dropdown-item" @click="logout()" style="cursor:pointer">Logout <i class="float-right fas fa-sign-out-alt fa-lg"></i></a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">SOMETHING ELSE</a>
                 <a class="dropdown-item" href="#">SOMETHING ELSE</a>
@@ -62,9 +68,9 @@
             <li class="nav-item" style="cursor:pointer"> 
               <a class="nav-link icons" @click="isModalVisible = true, currentPage='cart'"><i class="fas fa-shopping-cart fa-lg"></i></a>
             </li>
-            <li class="nav-item" v-if="isAuthenticated">
+            <!-- <li class="nav-item" v-if="isAuthenticated">
               <p lass="nav-link icons" style="margin-top:7px;">Welcome, {{ userData.name.toUpperCase() }}</p>
-            </li>
+            </li> -->
             <span v-if="!isAuthenticated">
               <li class="nav-item" style="cursor:pointer">
                 <a class="nav-link icons" @click="isModalVisible = true,currentPage='login'"><i class="far fa-user fa-lg"></i></a>
@@ -72,18 +78,18 @@
             </span>
             <span v-else class="d-flex justify-content-around">
               <li class="nav-item" style="cursor:pointer">
-                <a class="nav-link icons" @click="logout()"><i class="fas fa-sign-out-alt fa-lg"></i></a>
+               
               </li>
               <!-- <li class="nav-item" style="cursor:pointer">
                 <a class="nav-link icons" @click="isModalVisible = true, currentPage='edit'"><i class="fas fa-edit fa-lg"></i></a>
               </li> -->
-              <li class="nav-item"  style="cursor:pointer">       
+              <!-- <li class="nav-item"  style="cursor:pointer">       
               <a class="nav-link icons" @click="isModalVisible = true, currentPage='myaccount'"><i class="fas fa-user-cog fa-lg"></i></a>
-            </li>
-            <br>
-            <li class="nav-item"  style="cursor:pointer" v-if="isAuthenticated">       
+            </li> -->
+            <!-- <br> -->
+            <!-- <li class="nav-item"  style="cursor:pointer" v-if="isAuthenticated">       
               <router-link :to="{ name: 'order'}" class="nav-link"><i class="fas fa-cart-arrow-down fa-lg"></i></router-link>
-            </li>
+            </li> -->
             </span>
 
           </div>
@@ -285,6 +291,7 @@ export default {
 
     logout(){
       this.removeData();
+      this.$router.push('/')
     },
     edit(){
 
