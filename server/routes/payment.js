@@ -45,7 +45,7 @@ router.post('/saveorder',(req,res)=>{
 });
 
 router.get('/getorder',(req,res)=>{
-    var userId = mongoose.Schema.Types.ObjectId(req.headers._id);
+    var userId = mongoose.Types.ObjectId(req.headers._id);
     Purchase.find({owner_id: userId},(err,foundOrders)=>{
         if(err){
             return res.json({status:"error"});

@@ -14,14 +14,15 @@
 
                 <div class="container mt-4 text-center">
                     <img  class="img-thumbnail rounded-circle" :src="$api+userData.image">
-                </div>
-            <form @submit.prevent>  
-                <div class="input-group d-flex justify-content-center text-w-100 mb-4 bg-white">
+                                <form @submit.prevent>  
+                <div class="input-group d-flex justify-content-center my-4 float-none">
                           <input type="file" id="img" @change="onSelect" ref="file" name="files" accept="image/*">
-                        <label>Upload Image</label>
+                        <!-- <label>Upload Image</label> -->
                 </div>
 
             </form>
+
+                </div>
 
                 
             </div>
@@ -120,15 +121,17 @@ export default {
             this.$emit('close');
         },
         save(){
+            console.log("working")
             this.$http.post(`${this.$api}user/data/edit`, this.userData,{headers:{_id:this.userData.id}})
                 .then(res =>{
+                    console.log(res)
                     if(res.status == 200){
                         console.log('Profile Picture Updated');
-                        // this.close();
+                        this.close();
                     }
                     else{
                         console.log('Could not update')
-                        // this.close();
+                        this.close();
                     }
                 })
                 .catch(err => {
@@ -136,16 +139,17 @@ export default {
                     console.log(err)
                     // this.close();
                 })
+            this.close();
         },
         imageSave(){
             const formData= new FormData();
             formData.append('file', this.file)
-            
+            console.log("hello")
             this.$http.post(`${this.$api}user/image/upload`, formData,{headers:{_id:this.userData.id}})
                 .then(res =>{
                     if(res.status == 200){
                         console.log('Profile Picture Updated');
-                        // this.close();
+                        this.close();
                     }
                     else{
                         console.log('Could not update')
@@ -253,6 +257,8 @@ export default {
     font-size: 18px;
     font-weight: normal;
     position: absolute;
+    /* text-align:center; */
+    /* float:left; */
     pointer-events: none;
     left: 5px;
     top: 10px;

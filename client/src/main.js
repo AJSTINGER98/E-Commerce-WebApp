@@ -13,6 +13,8 @@ import productDetails from './components/Product/ProductDetails.vue';
 import product from './components/Product/Product.vue';
 import InfiniteLoading from 'vue-infinite-loading';
 import checkout from './components/Cart/Checkout.vue'
+import order from './components/Profile/Order.vue';
+import buildpc from './components/BuildPC/buildpc.vue'
 import { store } from './store/store';
 
 
@@ -30,7 +32,9 @@ const routes = [
   { path: '/contact-us', component: Contact, name: 'contact' },
   {path: '/products/:id', component: productDetails, name: 'productDetails',props: true},
   {path: '/products',  component: product, name: 'product',props: true},
-  {path: '/checkout',  component: checkout, name: 'checkout',props: true}
+  {path: '/checkout',  component: checkout, name: 'checkout',props: true},
+  {path: '/order',  component: order, name: 'order',props: true},
+  {path: '/buildpc',  component: buildpc, name: 'buildpc',props: true},
 
 ];
 

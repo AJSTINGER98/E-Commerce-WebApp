@@ -1,27 +1,30 @@
 <template>
     <div class="row posi" v-if="userFound">
         <div class="container d-block text-center justify-content-center my-4">
-            <div class="p-0 w-100" v-if="(orderData.length > 0)">
+            <div class="p-0 w-100 mb-5" v-if="(orderData.length > 0)">
                     <div v-for="(order,index) in orderData" :key="index">
                     <hr v-if="index>0">
-                    <div class="row my-2"  >
+                    <div class="row my-2">
                         <div class="image-container col-4 p-0">
                             <img class = "prod-image" :src="order.image" alt="">
                         </div>
-                        <div>
+                        <div class="text-center w-50 m-auto">
                             <h5>
-                                Name: {{order.name.toUpperCase()}}
+                             Name:  <router-link :to="{ name: 'productDetails', params: { id:order.item_id }}"><strong>{{order.name.toUpperCase()}}</strong></router-link>
+
                             </h5>
                             <h5>
-                                Quantity: {{order.quantity}}
+                                Quantity: <strong>{{order.quantity}}</strong>
                             </h5>
                             <h5>
-                                Price: Rs {{order.price.toLocaleString()}}
+                                Price: <strong>Rs {{order.price.toLocaleString()}}</strong>
                             </h5>
                         </div>
                     </div>
                     </div>
                 </div>
+                <hr>
+
                 <div class="container">
                     <h2 class="my-4">SELECT ADDRESS</h2>
                     <div class="row justify-content-start">
@@ -35,9 +38,7 @@
 
                         </label>
                         </div>
-                    </div>
-                </div>
-                <div class="container">
+                        <div class="container">
                     <h2 class="my-4">USE A DIFFERENT ADDRESS</h2>
                     <div class="w-100">
                         <button class="btn w-25 mb-4" @click="newAddressInput = !newAddressInput">
@@ -46,6 +47,10 @@
                         </button>
                     </div>
                 </div>
+                    </div>
+                </div>
+
+                
                 <transition name="slide-fade" >
                         <div class="row" v-show="newAddressInput">
                                 <div class="col-12 col-md-6 input-group">
@@ -70,15 +75,15 @@
                                 </div>
                         </div>
                    </transition>
-                
-                <div class="">
-                    <button class="btn" @click="Buy()">Proceed to Buy</button>
+                                <div class="my-3 d-flex justify-content-between mr-5 w-75 p-4">
+                    <h4 class="">Total: <strong>Rs {{this.totalAmount.toLocaleString()}}</strong> </h4>
+                      <button class="btn" @click="Buy()">Proceed to Buy</button>
                 </div>
+                
+                
         </div>
     </div>
-    <div v-else>
-        <h1>Error:404 User not Logged. Please Login to Continue</h1>
-    </div>
+
 </template>
 
 <script>
@@ -101,7 +106,7 @@ export default {
             }
         };
     },
-    props:['orderData','paymentDetails'],
+    props:['orderData','paymentDetails','totalAmount'],
 
     computed:{
         ...mapGetters(['isAuthenticated','sendData']),
@@ -127,6 +132,9 @@ export default {
                 prefill: {
                     contact: this.userData.phone,
                     email: this.userData.email,
+                },
+                notes: {
+                    // address: this.userData.
                 },
                 theme: {
                     color: "#00ffff"
@@ -179,19 +187,22 @@ export default {
   
     },
     created(){
-
+        console.log(this.totalAmount)
         if(this.isAuthenticated){
             this.userData = this.sendData
             this.useFound = true;
             // console.log("User Details:"+this.userData.id);
+            console.log(this.orderData)
         }else{
             this.userFound = false;
         }
+        
     }
 }
 </script>
 
 <style scoped>
+
     .prod-image{
         width: 80%;
         height: auto;

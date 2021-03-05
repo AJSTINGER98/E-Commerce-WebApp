@@ -25,7 +25,7 @@
                         <div class="info-container col-8 pr-0">
                             <div class=" mb-1 d-flex d-inline-block align-items-center w-100">
                                 <h6 class="m-0">Name:</h6>
-                                <div class="w-100 pl-2" style="cursor:pointer" @click="$emit('close')"><strong><router-link tag="span" :to="{ name: 'productDetails', params: { id:order.item_id }}">{{ order.name }}</router-link></strong></div>
+                                <div class="w-100 pl-2" style="cursor:pointer" @click="$emit('close')"><strong><router-link tag="span" :to="{ name: 'productDetails', params: { id:order.item_id }}">{{ order.name.toUpperCase() }}</router-link></strong></div>
                             </div>
                             <div class=" my-3 d-flex d-inline-block align-items-center w-100">
                                 <h6 class="m-0"> Qty:</h6>
@@ -76,6 +76,7 @@ export default {
             wait: false,
             userData: [],
             userId: null,
+            total_amount:0.00,
            
         };
     },
@@ -100,12 +101,12 @@ export default {
             // console.log(this.orders)
             if(this.userId){
                 // console.log(this.orders);
-                let total_amount = 0.00
+                this.total_amount = 0.00
                 for(let i=0;i<this.orders.length;i++){
-                    total_amount += this.orders[i].price*this.orders[i].quantity;
+                    this.total_amount += this.orders[i].price*this.orders[i].quantity;
                 }
                 var params = {
-                    amount: total_amount,  
+                    amount: this.total_amount,  
                     // amount: 
                     currency: "INR",
                     receipt: "su001",
@@ -115,7 +116,8 @@ export default {
                     .then(response =>{
                         console.log(response)
                         if(response.data.status == "success"){
-                            this.$router.push({ name: 'checkout', params: {orderData: this.orders,paymentDetails: response.data.sub }})
+
+                            this.$router.push({ name: 'checkout', params: {orderData: this.orders,paymentDetails: response.data.sub, totalAmount: this.total_amount }})
                             this.$emit('close');
                             
                         }
@@ -165,13 +167,34 @@ export default {
 
     .cart-list{
         overflow-y: scroll;
-        /* overflow-x:hidden; */
+        overflow-x:hidden;
         max-height: 100%;
     }
 
     .cart-list::-webkit-scrollbar {
-        display: none;
+        /* display: none; */
+        /* background:black; */
+        /* width:10px; */
     }
+    .cart-list::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+
+    .cart-list::-webkit-scrollbar
+    {
+        width: 5px;
+        background-color: #F5F5F5;
+    }
+
+    .cart-list::-webkit-scrollbar-thumb
+    {
+        background-color: #000000;
+        /* border: 2px solid #555555; */
+    }
+
+
 
 
     .cart-list {
